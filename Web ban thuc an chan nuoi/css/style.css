@@ -3615,3 +3615,8 @@ ol {
 .hero__search__form {
 	margin: auto;
 }
+
+.label__radio {
+    padding: 10px 20px;
+    font-size: 20px;
+}
