@@ -3585,3 +3585,49 @@ ol {
         font-size: 24px;
     }
 }
+
+
+
+
+/* edit */
+
+.header__top__right__language{
+	display: none;
+}
+.header__cart__price{
+	display: none !important;
+}
+
+.header__menu{
+	display: flex;
+}
+
+.menu__list {
+	margin: auto;
+}
+
+.hero__search {
+	display: flex;
+	padding: 15px 0px;
+	margin: 0px;
+}
+
+.hero__search__form {
+	margin: auto;
+}
+
+.label__radio {
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.one__lever > li > a {
+    padding-left: 15px !important;
+}
+.one__lever > li > ul > li > a {
+    padding-left: 30px!important;
+}
+
+.menu__item > ul{
+    display: none !important;
+}
