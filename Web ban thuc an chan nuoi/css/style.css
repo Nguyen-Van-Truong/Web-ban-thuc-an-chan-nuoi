@@ -1,35 +1,3 @@
-/******************************************************************
-  Template Name: Ogani
-  Description:  Ogani eCommerce  HTML Template
-  Author: Colorlib
-  Author URI: https://colorlib.com
-  Version: 1.0
-  Created: Colorlib
-******************************************************************/
-
-/*------------------------------------------------------------------
-[Table of contents]
-
-1.  Template default CSS
-	1.1	Variables
-	1.2	Mixins
-	1.3	Flexbox
-	1.4	Reset
-2.  Helper Css
-3.  Header Section
-4.  Hero Section
-5.  Service Section
-6.  Categories Section
-7.  Featured Section
-8.  Latest Product Section
-9.  Contact
-10.  Footer Style
--------------------------------------------------------------------*/
-
-/*----------------------------------------*/
-/* Template default CSS
-/*----------------------------------------*/
-
 html,
 body {
     height: 100%;
@@ -723,7 +691,7 @@ ol {
 
 .hero__search__phone__text span {
     font-size: 14px;
-    color: #6f6f6f;
+    color: #d9d7d7;
 }
 
 .hero__item {
@@ -751,6 +719,7 @@ ol {
 
 .hero__text p {
     margin-bottom: 35px;
+    color: #c1b9b9;
 }
 
 /*---------------------
@@ -766,20 +735,23 @@ ol {
     position: absolute;
     left: 0;
     width: 100%;
-    padding: 0 20px;
-    bottom: 20px;
+    padding: 0px 2px;
+    bottom: 0px;
     text-align: center;
+
 }
 
 .categories__item h5 a {
-    font-size: 18px;
-    color: #1c1c1c;
+    font-size: 15px;
+    color: #ffff;
     font-weight: 700;
+    font-family: Arial;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 12px 0 10px;
-    background: #ffffff;
+    background: #7fad39;
     display: block;
+    border-radius: 5px;
 }
 
 .categories__slider .col-lg-3 {
