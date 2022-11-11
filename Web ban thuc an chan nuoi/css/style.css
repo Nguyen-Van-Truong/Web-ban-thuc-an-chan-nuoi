@@ -2976,6 +2976,16 @@ ol {
         top: 22px;
     }
 
+
+    .hero__search {
+        display: none!important;
+    }
+    .header__cart {
+        display: none!important;
+    }
+
+
+
     .header .container {
         position: relative;
     }
@@ -3287,6 +3297,12 @@ ol {
         position: absolute;
         right: 15px;
         top: 22px;
+    }
+    .hero__search {
+        display: none!important;
+    }
+    .header__cart {
+        display: none!important;
     }
 
     .header .container {
@@ -3600,6 +3616,6 @@ ol {
     padding-left: 30px!important;
 }
 
-.menu__item > ul{
-    display: none !important;
+.menu {
+    padding-left: 30px;
 }

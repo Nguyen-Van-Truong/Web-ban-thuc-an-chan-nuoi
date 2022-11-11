@@ -1,0 +1,35 @@
+
+
+.user__information {
+    background-color: #f0fff3;
+
+}
+
+.img {
+    display: flex;
+}
+.img > p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.img__user {
+    width: 70px;
+    margin: 10px;
+    border-radius: 450px;
+}
+
+.information {
+    margin: 50px;
+}
+
+ul {
+    list-style: none;
+}
+li {
+    margin: 10px;
+    padding-left: 10px;
+}
+li > button {
+    border: none;
+    background-color: #f0fff3;
+}
