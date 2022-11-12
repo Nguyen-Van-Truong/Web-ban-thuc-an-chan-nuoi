@@ -211,35 +211,153 @@
       </div>
     </header>
     <!-- Header Section End -->
-    <div class="profile">
+    <div class="user">
         <div class="container user__information ">
             <div class="row">
               <div class="col-lg-3 col-md-5">
-                <div class="img">
+                <div class="img-left">
                     <img src="https://gaigoidep.xyz/wp-content/uploads/2022/11/clip-nong-anna-gau-33-hinh-4.jpg" alt="" class="img__user">
                     <p>Nguyen Thi Hoa Hong</p>
                 </div>
-               <ul>
-                <li>
-                    <button>Tài khoản của tôi</button>
-                    <ul>
-                        <li><button>Hồ Sơ</button></li>
-                        <li><button>Ngân hàng</button></li>
-                        <li><button>Địa chỉ</button></li>
-                        <li><button>Mật khẩu</button></li>
-                    </ul>
-                </li>
-                <li><button>Đơn mua</button></li>
-                <li><button>Sản phẩm đã thích</button></li>
-                <li><button>Sản phẩm đã mua</button></li>
-                <li><button>Lịch sử mua hàng</button></li>
+               <ul class="menu">
+                <li><button class="menu__item" onclick="profile_click()" >Hồ Sơ</button></li>
+                <li><button class="menu__item" onclick="password_click()">Đổi mật khẩu</button></li>
+                <li><button class="menu__item" onclick="oder_click()">Đơn hàng đang giao</button></li>
+                <li><button class="menu__item" onclick="oder_click()">Đơn hàng đã giao</button></li>
+                <li><a href="./shop-grid.html"><button class="menu__item">Sản phẩm yêu thích</button></a></li>
+                <li><a href="./shop-grid.html"><button class="menu__item">Sản phẩm đã mua</button></a></li>
+
+                
                </ul>
               </div>
               <div class="col-lg-9 col-md-7">
-                <div class="information">
-                    <p>Tên: Nguyen Thi Hoa Hong</p>
-                    <p>Ngày Sinh: 88/77/1254</p>
-                    <p>Địa Chỉ:jjjjjjjjjjjjjjjjjjjjjjjjjj</p>
+                <div class="profile" id="profile">
+                  <div class="left__profile">
+                    <div class="user__name profile__item">
+                      <label for="">Tên tài khoản</label>
+                      <input type="text" name="" id="" value="Nguyển Thị Hoa Hồng">
+                      <a href=""> Thay đổi</a>
+                     </div>
+                     <div class="email profile__item">
+                      <label for="">Địa chỉ email</label>
+                      <input type="text" name="" id="" value="aimailfeed@gmail.com">
+                      <a href="">Thay đổi</a>
+                     </div>
+                     <div class="phone__number  profile__item"">
+                      <label for="">Số điện thoại</label>
+                      <input type="text" name="" id="" value="*********999">
+                      <a href="">Thay đổi</a>
+                     </div>
+                     <div class="gender  profile__item"">
+                      <label for=""> Giới tính</label>
+                      <input type="radio" name="gender">
+                      <label for=""> Nam</label>
+                      <input type="radio" name="gender">
+                      <label for=""> Nữ</label>
+                      <input type="radio" name="gender">
+                      <label for="">Khác</label>
+                     </div>
+                     <div class="birthay  profile__item"">
+                      <label for="">Ngày sinh</label>
+                      <select name="day" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                      <select name="month" id="">
+                        <option value="1">Tháng 1</option>
+                        <option value="2">Tháng 2</option>
+                        <option value="3">Tháng 3</option>
+                      </select>
+                      <select name="years" id="">
+                        <option value="2015">2015</option>
+                        <option value="2017">2016</option>
+                        <option value="2016">2017</option>
+                      </select>
+                     </div>
+                     
+                  </div>
+                  <div class="right__profile">
+                    <div style="display: flex; flex-direction: column;">
+                      <img src="https://gaigoidep.xyz/wp-content/uploads/2022/11/clip-nong-anna-gau-33-hinh-4.jpg" alt="" style="width: 200px; border-radius: 200px; margin: auto;">
+                      <input type="file" name="image__user" id="image__user" value="Chọn ảnh" style="width: 98px; margin: 10px auto;" >
+                    </div>
+                   </div>
+                </div>
+                <div id="oder">
+                  <div class="oder">
+                    <table>
+                      <tr>
+                        <th>Mã Đơn Hàng</th>
+                        <th>Ngày mua hàng</th>
+                        <th>Số lượng hàng hóa</th>
+                        <th>Tổng Tiền</th>
+                        <th>Chi tiết đơn hàng</th>
+                      </tr>
+
+                      <tr>
+                        <td>123456</td>
+                        <td>12/11/2022</td>
+                        <td>50</td>
+                        <td>25000000vnd</td>
+                        <td><a href="">xem chi tiết</a></td>
+                      </tr>
+
+                      <tr>
+                        <td>123456</td>
+                        <td>12/11/2022</td>
+                        <td>50</td>
+                        <td>25000000vnd</td>
+                        <td><a href="">xem chi tiết</a></td>
+                      </tr>
+
+                      <tr>
+                        <td>123456</td>
+                        <td>12/11/2022</td>
+                        <td>50</td>
+                        <td>25000000vnd</td>
+                        <td><a href="">xem chi tiết</a></td>
+                      </tr>
+
+
+                      <tr>
+                        <td>123456</td>
+                        <td>12/11/2022</td>
+                        <td>50</td>
+                        <td>25000000vnd</td>
+                        <td><a href="">xem chi tiết</a></td>
+                      </tr>
+
+                      <tr>
+                        <td>123456</td>
+                        <td>12/11/2022</td>
+                        <td>50</td>
+                        <td>25000000vnd</td>
+                        <td><a href="">xem chi tiết</a></td>
+                      </tr>
+                    </table>
+
+                  </div>
+                </div>
+              
+                <div id="password">
+                  <form action="">
+                    <div>
+                      <label for="old_pass">Nhập mật khẩu cũ</label>
+                    <input type="text" name="old_pass" id="">
+                    </div>
+                   <div>
+                    <label for="new_pass">Mật khẩu mới</label>
+                    <input type="text" name="new_pass" id="">
+                   </div>
+                    <div>
+                      <label for="new_pass-retypr">Nhập lại mật khẩu mới</label>
+                    <input type="text" name="new_pass-retype" id="">
+                    </div>
+                    <div>
+                      <button id="btn">Lưu thay đổi</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -261,5 +379,27 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/over_common_part.js"></script>
+
+   <script>
+    const id_list = ["profile","oder", "password"];
+    function hideadd() {
+      for(var i = 0; i < id_list.length; i++) {
+        document.getElementById(id_list[i]).style.display = "none";
+      }
+    }
+
+    function profile_click(){
+      hideadd();
+      document.getElementById('profile').style.display = "flex"
+    }
+    function oder_click(){
+      hideadd();
+      document.getElementById('oder').style.display = "flex"
+    }
+    function password_click(){
+      hideadd();
+      document.getElementById('password').style.display = "block"
+    }
+   </script>
   </body>
 </html>

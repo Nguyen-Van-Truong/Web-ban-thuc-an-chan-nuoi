@@ -1,14 +1,13 @@
 
 
-.user__information {
-    background-color: #f0fff3;
-
+.user {
+    background-color: #f8f7f7;
 }
-
-.img {
+.img-left {
     display: flex;
+    margin-top: 20px;
 }
-.img > p {
+.img-left > p {
     margin-top: 10px;
     font-weight: bold;
 }
@@ -18,18 +17,89 @@
     border-radius: 450px;
 }
 
-.information {
-    margin: 50px;
+.profile {
+    margin: 20px;
+    background-color: white;
+    display: flex;
 }
+
 
 ul {
     list-style: none;
 }
 li {
-    margin: 10px;
-    padding-left: 10px;
+    margin: 5px 20px;
 }
-li > button {
+
+.menu {
+    margin: 10px 0px;
+}
+
+.menu__item {
+    background-color: #f8f7f7;
     border: none;
-    background-color: #f0fff3;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.menu__item:hover {
+    background-color: #7fad39;
+}
+
+.profile__item {
+    display: flex;
+    padding: 20px 40px;
+}
+.profile__item > label {
+    padding-right: 20px;
+}
+.profile__item a {
+    padding-left: 10px;
+    color: black;
+}
+.profile__item a:hover {
+    color: blue;
+}
+
+.profile label {
+    margin: 0px 10px;
+}
+.right__profile {
+    margin: auto;
+}
+
+#password {
+    padding: 20px 0px;
+    margin: 20px;
+    display: none;
+    flex-direction: column;    
+    background-color: white;
+}
+#password div {
+    margin: 30px 50px;
+    display: flex;
+}
+#password div label {
+    min-width: 200px;
+}
+#password div input {
+    flex: 1;
+    border-radius: 2px;
+}
+
+#btn {
+    background-color: #92c842;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#oder{
+    display: none;
+    margin: 20px;
+    background-color: white;
+}
+.oder {
+    padding: 30px;
+}
+table {
+    width: 100%;
 }
