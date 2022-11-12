@@ -38,16 +38,23 @@ li {
 .menu__item {
     background-color: #f8f7f7;
     border: none;
-    border-radius: 3px;
     padding: 5px 10px;
+    border-bottom: 2px solid #9b9b9b;
+    width: 200px;
+    text-align: left;
 }
 .menu__item:hover {
     background-color: #7fad39;
+    border-radius: 3px;
+
 }
 
 .profile__item {
     display: flex;
     padding: 20px 40px;
+}
+.profile input {
+    flex: 1;
 }
 .profile__item > label {
     padding-right: 20px;
@@ -64,7 +71,11 @@ li {
     margin: 0px 10px;
 }
 .right__profile {
-    margin: auto;
+    margin: auto 30px;
+}
+
+.left__profile {
+    flex: 1;
 }
 
 #password {
@@ -95,6 +106,7 @@ li {
 #oder{
     display: none;
     margin: 20px;
+    padding: 30px;
     background-color: white;
 }
 .oder {
@@ -102,4 +114,7 @@ li {
 }
 table {
     width: 100%;
+}
+th td {
+    margin: 20px 200px;
 }
