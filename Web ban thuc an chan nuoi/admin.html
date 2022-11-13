@@ -32,8 +32,6 @@
       <div class="loader"></div>
     </div>
 
-
-
     <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
@@ -96,33 +94,80 @@
     <div class="containers">
       <div class="left_containers">
         <div class="menu">
-          <div class="menu__item" id="create_product__menu" style="background-color: #ebebeb;" onclick="create_product()">Thêm Sản Phẩm</div>
-          <div class="menu__item" id="update_product__menu" onclick="update_product()">Cập Nhật Sản Phẩm</div>
-          <div class="menu__item" id="blog__menu" onclick="blog()">Thêm Tin Tức</div>
-          <div class="menu__item" id="account__menu" onclick="account()">Tài khoản người dùng</div>
+          <div
+            class="menu__item"
+            id="create_product__menu"
+            style="background-color: #ebebeb"
+            onclick="create_product()"
+          >
+            Thêm Sản Phẩm
+          </div>
+          <div
+            class="menu__item"
+            id="update_product__menu"
+            onclick="update_product()"
+          >
+            Cập Nhật Sản Phẩm
+          </div>
+          <div class="menu__item" id="blog__menu" onclick="blog()">
+            Tin Tức
+          </div>
+          <div class="menu__item" id="account__menu" onclick="account()">
+            Tài khoản người dùng
+          </div>
           <div class="menu__item" onclick="listProduct()">Sản phẩm</div>
-<!--          <div class="menu__item" onclick="my()">Sản phẩm</div>-->
-<!--          <div class="menu__item" onclick="my()">Sản phẩm</div>-->
+          <!--          <div class="menu__item" onclick="my()">Sản phẩm</div>-->
+          <!--          <div class="menu__item" onclick="my()">Sản phẩm</div>-->
         </div>
       </div>
 
       <div class="right_containers">
-        <div id="create_product" style="display: flex;">
+        <!-- create_product -->
+        <div id="create_product" style="display:block ;">
+          <h3>Nhập các thông tin cần thiết để tạo một sản phẩm mới</h3>
+          <div style="display: flex;">
             <div class="create_product-left">
-              <h3>Nhập các thông tin cần thiết để tạo một sản phẩm mới</h3>
-
               <form action="">
                 <div class="form_item">
                   <label for="product_name">Tên sản phẩm</label>
-                  <input type="text" name="product_name" id="">
+                  <input type="text" name="" id="product_name" />
                 </div>
                 <div class="form_item">
                   <label for="product_code">Mã sản phẩm</label>
-                  <input type="text" name="product_code" id="">
+                  <input type="text" name="" id="product_code" />
+                </div>
+                <div class="form_item">
+                  <label for="category">Danh mục cho sản phẩm</label>
+                  <select name="" id="category">
+                    <option value="">Thức ăn gia cầm</option>
+                    <option value="">Thức ăn gia súc</option>
+                    <option value="">Thức ăn cho</option>
+                    <option value="">Thức ăn thủy sản</option>
+                    <option value="">Thức ăn cho gà</option>
+                  </select>
+                </div>
+                <div class="form_item">
+                  <label for="properties">Tính chât sản phẩm</label>
+                  <select name="" id="properties">
+                    <option value="">Thức ăn thô</option>
+                    <option value="">Thức ăn tinh</option>
+                    <option value="">Thức ăn tươi</option>
+                    <option value="">Thức ăn giàu đạm</option>
+                    <option value="">Thức ăn ủ chua</option>
+                  </select>
+                </div>
+                <div class="form_item">
+                  <label for="source">Tính chât sản phẩm</label>
+                  <select name="" id="source">
+                    <option value="">Thức ăn nguồn gốc thực vật </option>
+                    <option value="">Thức ăn nguồn gốc động vật</option>
+                    <option value="">Thức ăn nguồn gốc khoáng chất</option>
+                    <option value="">Thức ăn vi sinh</option>
+                  </select>
                 </div>
                 <div class="form_item">
                   <label for="depcription">Mô tả về sản phẩm</label>
-                  <textarea name="depcription" id="" cols="80" rows="35"></textarea>
+                  <textarea name="depcription"id=""cols="80"rows="35"></textarea>
                 </div>
                 <div class="form_item">
                   <button class="btn">Tạo sản phẩm</button>
@@ -130,75 +175,76 @@
               </form>
             </div>
             <div class="create_product-right">
-
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_1">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_1" />
                 <label for="img_1">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_2">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_2" />
                 <label for="img_2">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_3">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_3" />
                 <label for="img_3">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_4">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_4" />
                 <label for="img_4">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_5">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_5" />
                 <label for="img_5">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_6">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_6" />
                 <label for="img_6">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_7">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_7" />
                 <label for="img_7">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_8">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_8" />
                 <label for="img_8">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_9">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_9" />
                 <label for="img_9">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_10">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_10" />
                 <label for="img_10">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_11">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_11" />
                 <label for="img_11">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_12">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_12" />
                 <label for="img_12">Chọn ảnh</label>
               </div>
-
-
             </div>
+          </div>
         </div>
+        <!--create_product End --> 
+        
+        <!--update_product -->
         <div id="update_product">
           <h3>Cập nhật sản phẩm hiện có</h3>
           <label for="" class="update_option">Cập nhật thông tin sản phẩm</label>
-          <div style="display: flex;">
+          <div style="display: flex">
             <div class="create_product-left">
               <form action="">
                 <div class="form_item">
@@ -214,15 +260,20 @@
                 </div>
                 <div class="form_item">
                   <label for="product_name">Tên sản phẩm</label>
-                  <input type="text" name="product_name" id="">
+                  <input type="text" name="product_name" id="" />
                 </div>
                 <div class="form_item">
                   <label for="product_code">Mã sản phẩm</label>
-                  <input type="text" name="product_code" id="">
+                  <input type="text" name="product_code" id="" />
                 </div>
                 <div class="form_item">
                   <label for="depcription">Mô tả về sản phẩm</label>
-                  <textarea name="depcription" id="" cols="80" rows="35"></textarea>
+                  <textarea
+                    name="depcription"
+                    id=""
+                    cols="80"
+                    rows="35"
+                  ></textarea>
                 </div>
                 <div class="form_item">
                   <button class="btn">Lưu thay đổi</button>
@@ -230,77 +281,73 @@
               </form>
             </div>
             <div class="create_product-right">
-
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_1">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_1" />
                 <label for="img_1">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_2">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_2" />
                 <label for="img_2">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_3">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_3" />
                 <label for="img_3">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_4">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_4" />
                 <label for="img_4">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_5">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_5" />
                 <label for="img_5">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_6">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_6" />
                 <label for="img_6">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_7">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_7" />
                 <label for="img_7">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_8">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_8" />
                 <label for="img_8">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_9">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_9" />
                 <label for="img_9">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_10">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_10" />
                 <label for="img_10">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_11">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_11" />
                 <label for="img_11">Chọn ảnh</label>
               </div>
               <div class="product_img">
-                <img src="./img/img_default.jpg" alt="">
-                <input type="file" name="product_img" id="img_12">
+                <img src="./img/img_default.jpg" alt="" />
+                <input type="file" name="product_img" id="img_12" />
                 <label for="img_12">Chọn ảnh</label>
               </div>
-
-
             </div>
           </div>
-
-          
-         
-          <div style="display:flex; padding: 20px;">
-            <div style="flex:1;">
-              <label for="" class="update_option">Cập nhật số lượng sản phẩm</label>
+          <div style="display: flex; padding: 20px">
+            <div style="flex: 1">
+              <label for="" class="update_option"
+                >Cập nhật số lượng sản phẩm</label
+              >
               <form action="">
                 <div class="form_item">
                   <label for="">Chọn một mã sản phẩm</label>
@@ -323,19 +370,21 @@
                 </div>
                 <div class="form_item">
                   <label for="amount">Số lượng</label>
-                  <input type="number" name="" id="amount">
+                  <input type="number" name="" id="amount" />
                 </div>
                 <div class="form_item">
                   <label for="in_price">Giá nhập</label>
-                  <input type="number" name="" id="in_price">
+                  <input type="number" name="" id="in_price" />
                 </div>
                 <div class="form_item">
                   <button class="btn">Lưu thay đổi</button>
                 </div>
               </form>
             </div>
-            <div style="flex:1 ;">
-              <label for="" class="update_option">Cập nhật giá bán sản phẩm</label>
+            <div style="flex: 1">
+              <label for="" class="update_option"
+                >Cập nhật giá bán sản phẩm</label
+              >
               <form action="">
                 <div class="form_item">
                   <label for="">Chọn một mã sản phẩm</label>
@@ -358,167 +407,404 @@
                 </div>
                 <div class="form_item">
                   <label for="out_price">Giá bán</label>
-                  <input type="number" name="" id="out_price">
+                  <input type="number" name="" id="out_price" />
                 </div>
                 <div class="form_item">
                   <button class="btn">Lưu thay đổi</button>
                 </div>
               </form>
             </div>
-          
           </div>
+          <div style="display: flex; padding: 20px">
+            <div style="flex: 1">
+              <label for="" class="update_option"
+                >Cập nhật Danh mục sản phẩm</label
+              >
+              <form action="">
+                <div class="form_item">
+                  <label for="">Chọn một mã sản phẩm</label>
+                  <select name="" id="">
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                  </select>
+                </div>
+                <div class="form_item">
+                  <label for="product_name">Tên sản phẩm</label>
+                  <p>xxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="form_item">
+                  <label for="product_code">Mã sản phẩm</label>
+                  <p>xxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="form_item">
+                  <label for="category">Thêm danh mục cho sản phẩm</label>
+                  <select name="" id="category">
+                    <option value="">Thức ăn gia cầm</option>
+                    <option value="">Thức ăn gia súc</option>
+                    <option value="">Thức ăn cho</option>
+                    <option value="">Thức ăn thủy sản</option>
+                    <option value="">Thức ăn cho gà</option>
+                  </select>
+                </div>
+                <div class="form_item">
+                  <label for="">Xóa danh mục của sản phẩm</label>
+                  <table>
+                    <tr>
+                      <th>Danh Mục</th>
+                      <th>Mã sản phẩm</th>
+                      <th><button>Xóa</button></th></a></th>
+                    </tr>
+                    <tr>
+                      <td>Thức ăn cho gà</td>
+                      <td>XXX</td>
+                      <td><button>Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Thức ăn cho gà</td>
+                      <td>XXX</td>
+                      <td><button>Xóa</button></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="form_item">
+                  <button class="btn">Lưu thay đổi</button>
+                </div>
+              </form>
+            </div>
+            <div style="flex: 1">
+              <label for="" class="update_option">Cập nhật tính chất sản phẩm</label>
+              <form action="">
+                <div class="form_item">
+                  <label for="">Chọn một mã sản phẩm</label>
+                  <select name="" id="">
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                  </select>
+                </div>
+                <div class="form_item">
+                  <label for="product_name">Tên sản phẩm</label>
+                  <p>xxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="form_item">
+                  <label for="product_code">Mã sản phẩm</label>
+                  <p>xxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="form_item">
+                  <label for="properties">Tính chât sản phẩm</label>
+                  <select name="" id="properties">
+                    <option value="">Thức ăn thô</option>
+                    <option value="">Thức ăn tinh</option>
+                    <option value="">Thức ăn tươi</option>
+                    <option value="">Thức ăn giàu đạm</option>
+                    <option value="">Thức ăn ủ chua</option>
+                  </select>
+                </div>
+                <div class="form_item">
+                  <label for="">Xóa tính chất sản phẩm</label>
+                  <table>
+                    <tr>
+                      <th>Tính chất sản phẩm</th>
+                      <th>Mã sản phẩm</th>
+                      <th>Xóa</th>
+                    </tr>
+                    <tr>
+                      <td>Tinh</td>
+                      <td>XXXX</td>
+                      <td><button>Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Tươi</td>
+                      <td>XXXX</td>
+                      <td><button>Xóa</button></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="form_item">
+                  <button class="btn">Lưu thay đổi</button>
+                </div>
+              </form>
+            </div>
+            <div style="flex: 1">
+              <label for="" class="update_option">Cập nhật nguồn gốc sản phẩm</label>
+              <form action="">
+                <div class="form_item">
+                  <label for="">Chọn một mã sản phẩm</label>
+                  <select name="" id="">
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                    <option value="">mã sp</option>
+                  </select>
+                </div>
+                <div class="form_item">
+                  <label for="product_name">Tên sản phẩm</label>
+                  <p>xxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="form_item">
+                  <label for="product_code">Mã sản phẩm</label>
+                  <p>xxxxxxxxxxxxxxxxxx</p>
+                </div>
+                <div class="form_item">
+                  <label for="source">Nguồn gốc sản phẩm</label>
+                  <select name="" id="source">
+                    <option value="">Thức ăn nguồn gốc thực vật </option>
+                    <option value="">Thức ăn nguồn gốc động vật</option>
+                    <option value="">Thức ăn nguồn gốc khoáng chất</option>
+                    <option value="">Thức ăn vi sinh</option>
+                  </select>
+               
+                </div>
+                <div class="form_item">
+                  <label for="">Xóa nguồn gốc sản phẩm</label>
+                  <table>
+                    <tr>
+                      <th>Nguồn gốc sản phẩm</th>
+                      <th>Mã sản phẩm</th>
+                      <th>Xóa</th>
+                    </tr>
+                    <tr>
+                      <td>Thực vật</td>
+                      <td>XXXX</td>
+                      <td><button>Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Thực vật</td>
+                      <td>XXXX</td>
+                      <td><button>Xóa</button></td>
+                    </tr>
+                    <tr>
+                      <td>Thực vật</td>
+                      <td>XXXX</td>
+                      <td><button>Xóa</button></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="form_item">
+                  <button class="btn">Lưu thay đổi</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!--update_product End --> 
         
-
-
-
-        </div>
+        <!--blog -->
         <div id="blog">
+          <h3>Tạo và Xóa bài viết</h3>
+          <label for="" class="update_option">Tạo một bài viết</label>
           <label for="title_blog">Tiêu đề</label>
-            <input type="text" name="title_blog" id="tilte_blog">
-            <label for="paragraph1">Đoạn văn 1</label>
-            <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
-            <div class="product_img">
-              <img src="./img/img_default.jpg" alt="">
-              <input type="file" name="product_img" id="img_1">
-              <label for="img_1">Chọn ảnh</label>
-            </div>
-            <label for="paragraph1">Đoạn văn 1</label>
-            <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
-            <div class="product_img">
-              <img src="./img/img_default.jpg" alt="">
-              <input type="file" name="product_img" id="img_1">
-              <label for="img_1">Chọn ảnh</label>
-            </div>
-            <label for="paragraph1">Đoạn văn 1</label>
-            <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
-            <div class="product_img">
-              <img src="./img/img_default.jpg" alt="">
-              <input type="file" name="product_img" id="img_1">
-              <label for="img_1">Chọn ảnh</label>
-            </div>
-            <label for="paragraph1">Đoạn văn 1</label>
-            <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
-            <div class="product_img">
-              <img src="./img/img_default.jpg" alt="">
-              <input type="file" name="product_img" id="img_1">
-              <label for="img_1">Chọn ảnh</label>
-            </div>
-            <label for="paragraph1">Đoạn văn 1</label>
-            <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
-            <div class="product_img">
-              <img src="./img/img_default.jpg" alt="">
-              <input type="file" name="product_img" id="img_1">
-              <label for="img_1">Chọn ảnh</label>
-            </div>
-            <div>
-              <button>Tạo bài viết</button>
-            </div>
-        </div>
-        <div id="account">
-            <table>
-              <tr>
-                <th>Ảnh đại diện</th>
-                <th>Tên tài khoản</th>
-                <th>Địa chỉ email</th>
-                <th>Số đơn hàng đã mua</th>
-                <th>Xem chi tiết</th>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Nguyễn Thị Hoa Hồng</p></td>
-                <td><p>nthhong@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Trần Thị Thu Huyền</p></td>
-                <td><p>ttthuyen@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Nguyễn Thị Hồng Ánh</p></td>
-                <td><p>anhhongnguyenthi@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Lê Thị Hoa</p></td>
-                <td><p>lethihoa@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Nguyễn Thị Hồng Lan</p></td>
-                <td><p>ngthihonglan@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Lưu Đình Nhựt Nam</p></td>
-                <td><p>nhutnamld@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Hoàng Thái Quốc</p></td>
-                <td><p>thaiquochoang@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Nguyễn Huy Khánh</p></td>
-                <td><p>khanh1274@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Bành Lê Mỹ Lệ</p></td>
-                <td><p>myle337@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Nguyễn Thị Hồng Linh</p></td>
-                <td><p>honglinhnt@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Nguyễn Thị Huệ</p></td>
-                <td><p>nguyenthihue@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Cao Thị Thúy Hằng</p></td>
-                <td><p>hangcao@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-              <tr>
-                <td><img src="./img/avatar.jpg" alt="" style="width:150px ;"></td>
-                <td><p>Nguyễn Hòa Hiệp</p></td>
-                <td><p>hiepnguyen@gmail.com</p></td>
-                <td><p>xx</p></td>
-                <td><a href="profile.html">Xem chi tiết</a></td>
-              </tr>
-          
-            </table>
-        </div>
-      </div>
+          <input type="text" name="title_blog" id="tilte_blog" />
+          <label for="paragraph1">Đoạn văn 1</label>
+          <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
+          <div class="product_img">
+            <img src="./img/img_default.jpg" alt="" />
+            <input type="file" name="product_img" id="img_1" />
+            <label for="img_1">Chọn ảnh</label>
+          </div>
+          <label for="paragraph1">Đoạn văn 1</label>
+          <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
+          <div class="product_img">
+            <img src="./img/img_default.jpg" alt="" />
+            <input type="file" name="product_img" id="img_1" />
+            <label for="img_1">Chọn ảnh</label>
+          </div>
+          <label for="paragraph1">Đoạn văn 1</label>
+          <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
+          <div class="product_img">
+            <img src="./img/img_default.jpg" alt="" />
+            <input type="file" name="product_img" id="img_1" />
+            <label for="img_1">Chọn ảnh</label>
+          </div>
+          <label for="paragraph1">Đoạn văn 1</label>
+          <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
+          <div class="product_img">
+            <img src="./img/img_default.jpg" alt="" />
+            <input type="file" name="product_img" id="img_1" />
+            <label for="img_1">Chọn ảnh</label>
+          </div>
+          <label for="paragraph1">Đoạn văn 1</label>
+          <textarea name="" id="paragraph1" cols="30" rows="10"></textarea>
+          <div class="product_img">
+            <img src="./img/img_default.jpg" alt="" />
+            <input type="file" name="product_img" id="img_1" />
+            <label for="img_1">Chọn ảnh</label>
+          </div>
+          <div class="btn_create_blog">
+            <button>Tạo bài viết</button>
+          </div>
 
+          <label for="" class="update_option">Xóa bài viêt</label>
+          <table>
+            <tr>
+              <th>Tên bài viết</th>
+              <th>Xem chi tiết</th>
+              <th>Xóa</th>
+            </tr>
+            <tr>
+              <td>Cách cho gà ăn</td>
+              <td><a href="xem chi tiết">xem chi tiết</a></td>
+              <td><button>Xóa</button></td>
+            </tr>
+            <tr>
+              <td>Tại sao gà bị bệnh</td>
+              <td><a href="xem chi tiết">xem chi tiết</a></td>
+              <td><button>Xóa</button></td>
+            </tr>
+            <tr>
+              <td>Cá chết hàng loạt</td>
+              <td><a href="xem chi tiết">xem chi tiết</a></td>
+              <td><button>Xóa</button></td>
+            </tr>
+            <tr>
+              <td>Conn gà 45kg ?????</td>
+              <td><a href="xem chi tiết">xem chi tiết</a></td>
+              <td><button>Xóa</button></td>
+            </tr>
+          </table>
+        </div>
+        <!--blog End --> 
+        
+        <!--account -->
+        <div id="account">
+          <table>
+            <tr>
+              <th>Ảnh đại diện</th>
+              <th>Tên tài khoản</th>
+              <th>Địa chỉ email</th>
+              <th>Số đơn hàng đã mua</th>
+              <th>Xem chi tiết</th>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>nthhong@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Trần Thị Thu Huyền</p></td>
+              <td><p>ttthuyen@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Nguyễn Thị Hồng Ánh</p></td>
+              <td><p>anhhongnguyenthi@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Lê Thị Hoa</p></td>
+              <td><p>lethihoa@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Nguyễn Thị Hồng Lan</p></td>
+              <td><p>ngthihonglan@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Lưu Đình Nhựt Nam</p></td>
+              <td><p>nhutnamld@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Hoàng Thái Quốc</p></td>
+              <td><p>thaiquochoang@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Nguyễn Huy Khánh</p></td>
+              <td><p>khanh1274@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Bành Lê Mỹ Lệ</p></td>
+              <td><p>myle337@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Nguyễn Thị Hồng Linh</p></td>
+              <td><p>honglinhnt@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Nguyễn Thị Huệ</p></td>
+              <td><p>nguyenthihue@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Cao Thị Thúy Hằng</p></td>
+              <td><p>hangcao@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+            <tr>
+              <td>
+                <img src="./img/avatar.jpg" alt="" style="width: 150px" />
+              </td>
+              <td><p>Nguyễn Hòa Hiệp</p></td>
+              <td><p>hiepnguyen@gmail.com</p></td>
+              <td><p>xx</p></td>
+              <td><a href="profile.html">Xem chi tiết</a></td>
+            </tr>
+          </table>
+        </div>
+        <!--account End -->
+      </div>
     </div>
 
     <!-- Footer Section Begin -->
@@ -537,46 +823,56 @@
     <script src="js/over_common_part.js"></script>
 
     <script>
-        const id_div_list = ["create_product","update_product","blog","account"];
-        const id_menu_list = ["create_product__menu","update_product__menu","blog__menu","account__menu"];
+      const id_div_list = [
+        "create_product",
+        "update_product",
+        "blog",
+        "account",
+      ];
+      const id_menu_list = [
+        "create_product__menu",
+        "update_product__menu",
+        "blog__menu",
+        "account__menu",
+      ];
 
       function hideall() {
-        for(var i = 0; i < id_div_list.length; i++) {
-            document.getElementById(id_div_list[i]).style.display = "none";
+        for (var i = 0; i < id_div_list.length; i++) {
+          document.getElementById(id_div_list[i]).style.display = "none";
         }
       }
-      function greenAll(){
-        for(var i=0; i < id_menu_list.length; i++){
-            document.getElementById(id_menu_list[i]).style.backgroundColor = "#7fad39";
+      function greenAll() {
+        for (var i = 0; i < id_menu_list.length; i++) {
+          document.getElementById(id_menu_list[i]).style.backgroundColor =
+            "#7fad39";
         }
       }
       function create_product() {
         hideall();
         greenAll();
-        document.getElementById("create_product").style.display = "flex";
-        document.getElementById("create_product__menu").style.backgroundColor = "#ebebeb";
-
+        document.getElementById("create_product").style.display = "block";
+        document.getElementById("create_product__menu").style.backgroundColor =
+          "#ebebeb";
       }
       function update_product() {
         hideall();
         greenAll();
         document.getElementById("update_product").style.display = "block";
-        document.getElementById("update_product__menu").style.backgroundColor = "#ebebeb";
-
+        document.getElementById("update_product__menu").style.backgroundColor =
+          "#ebebeb";
       }
       function account() {
         hideall();
         greenAll();
         document.getElementById("account").style.display = "flex";
-        document.getElementById("account__menu").style.backgroundColor = "#ebebeb";
-
+        document.getElementById("account__menu").style.backgroundColor =
+          "#ebebeb";
       }
       function blog() {
         hideall();
         greenAll();
         document.getElementById("blog").style.display = "flex";
         document.getElementById("blog__menu").style.backgroundColor = "#ebebeb";
-
       }
     </script>
   </body>

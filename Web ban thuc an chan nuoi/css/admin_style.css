@@ -135,3 +135,14 @@ h3 {
 #account img {
     margin: 15px 0px;
 }
+
+#update_product table {
+    margin: 20px;
+}
+
+#blog table {
+    margin: 10px;
+}
+.btn_create_blog {
+    margin-bottom: 20px;
+}
