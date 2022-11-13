@@ -109,7 +109,16 @@ li {
     padding: 30px;
     background-color: white;
 }
+#odered {
+    display: none;
+    margin: 20px;
+    padding: 30px;
+    background-color: white;
+}
 .oder {
+    padding: 30px;
+}
+.odered {
     padding: 30px;
 }
 table {
