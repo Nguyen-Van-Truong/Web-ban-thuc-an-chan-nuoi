@@ -3639,14 +3639,27 @@ ol {
     border-radius: 5px;
 }
 
-.comments > h5 {
+.comments > .user_name {
     margin: 5px;
     font-weight: bold;
+    color: black;
 }
-.comments > h6 {
+.comments > .content {
+    margin: 5px;
+    color: black;
+}
+.comments > .star {
     margin: 5px;
 }
 
+.review_star > i{
+    margin-left: 10px;
+}
+
+.review_choose {
+    margin: 20px;
+    margin-left: 35px;
+}
 .page_comment {
     margin: 30px;
     height: 300px;

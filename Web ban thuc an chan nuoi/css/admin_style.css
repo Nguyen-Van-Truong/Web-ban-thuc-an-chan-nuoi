@@ -127,10 +127,13 @@ h3 {
 
 #account {
     padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 #account table {
     width: 100%;
+    margin-top: 50px;
 }
 
 #account img {
@@ -151,4 +154,51 @@ h3 {
 .space {
     height: 500px;
     border-bottom: 2px solid #000000;
+}
+
+#oder {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+#oder h4 {
+    margin: 25px 10px;
+}
+
+#oder table {
+    margin: 10px;
+}
+
+#oder table p {
+    margin: 0px;
+    padding: 15px 0px;
+}
+#oder label {
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+#discount {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+}
+
+#discount h4 {
+    margin: 25px 0px;
+}
+
+#discoutn table {
+    margin: 10px;
+}
+
+#discount table p {
+    margin: 0px;
+    padding: 15px 0px;
+}
+#discount label {
+    font-weight: bold;
+    margin: 10px 0px;
 }

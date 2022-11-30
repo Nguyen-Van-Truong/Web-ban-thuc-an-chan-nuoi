@@ -115,9 +115,9 @@
           <div class="menu__item" id="account__menu" onclick="account()">
             Tài khoản người dùng
           </div>
-          <div class="menu__item" onclick="listProduct()">Sản phẩm</div>
-          <!--          <div class="menu__item" onclick="my()">Sản phẩm</div>-->
-          <!--          <div class="menu__item" onclick="my()">Sản phẩm</div>-->
+          <div class="menu__item" id="discount__menu" onclick="discount()">Giảm Giá</div>
+          <div class="menu__item" id="oder__menu" onclick="oder()">Quản lý đơn hàng</div>
+
         </div>
       </div>
 
@@ -674,9 +674,276 @@
           </table>
         </div>
         <!--blog End --> 
+
+        <!--create and update discount-->
+        <div id="discount">
+          <h3>Tạo vầ cập nhật giảm giá</h3>
+          <h4>Tạo một giảm giá</h4>
+          <label for="discount__code">Mã giảm giá</label>
+          <input type="tel" name="" id="discount__code">
+          <label for="discount__value">Phần trăm giảm</label>
+           <input type="number">
+          <button class="admin_btn" style="margin-top:20px ;">Tạo giảm giá</button>
+
+          <h4>Thêm sản phẩm áp dụng mã giảm</h4>
+          <label for="search_product">Nhập tên sản phẩm để tìm kiếm</label>
+          <div style="display: flex; flex-direction: columns;">
+            <input type="text" style="flex: 1; border-radius: 5px;">
+            <button class="admin_btn">Tìm kiếm</button>
+          </div>
+          <table style="margin-top:30px ;">
+            <tr>
+              <th>Mã sản phẩm</th>
+              <th>Tên sản phẩm</th>
+              <th>Giá sản phẩm</th>
+              <th>Áp dụng</th>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>1000000</p></td>
+              <td><input type="checkbox" name="" id=""></td>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>1000000</p></td>
+              <td><input type="checkbox" name="" id=""></td>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>1000000</p></td>
+              <td><input type="checkbox" name="" id=""></td>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>1000000</p></td>
+              <td><input type="checkbox" name="" id=""></td>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>1000000</p></td>
+              <td><input type="checkbox" name="" id=""></td>
+            </tr>
+          </table>
+          <button class="admin_btn" style="margin-top:20px ;">Cập nhật</button>
+
+
+          <h4>Các sản phẳm đã áp dụng giảm giá</h4>
+          <table>
+            <tr>
+              <th>Mã sản phẩm</th>
+              <th>Tên sản phẩm</th>
+              <th>Mã giảm</th>
+              <th>Giá gốc</th>
+              <th>Giá sau khi áp dụng mã giảm</th>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>JK10</p></td>
+              <td><p>1000000</p></td>
+              <td><p>900000</p></td>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>JK10</p></td>
+              <td><p>1000000</p></td>
+              <td><p>900000</p></td>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>JK10</p></td>
+              <td><p>1000000</p></td>
+              <td><p>900000</p></td>
+            </tr>
+            <tr>
+              <td><p>132F43</p></td>
+              <td><p>Thức ăn cho gà</p></td>
+              <td><p>JK10</p></td>
+              <td><p>1000000</p></td>
+              <td><p>900000</p></td>
+            </tr>
+    
+          </table>
+        </div>
+        <!--create and update discount End-->
         
+
+        <!--oder-->
+        <div id="oder">
+          <h3>Quản lý đơn hàng</h3>
+          <h4>Cập nhật trạng thái đơn hàng</h4>
+          <div class="form_item">
+            <label for="id_oder">Nhập mã đơn hàng</label>
+            <div style="display: flex;">
+              <input type="text" name="" id="id_oder" style="flex: 1; border-radius: 5px;">
+              <button class="admin_btn">Tìm kiếm</button>
+            </div>
+            <label for="">Tên khách hàng</label>
+            <p>Nguyễn văn A</p>
+            <label for="">Ngày đặt hàng</label>
+            <p>18/02/2025</p>
+            <label for="">Phương thức vận chuyển</label>
+            <p>Nhanh</p>
+            <label for="">Trạng thái hiện tại</label>
+            <p>Chưa thanh toán</p>
+            <label for="">Chọn trạng thái mới để cập nhật</label>
+            <select name="" id="">
+              <option value="">Chưa thanh toán</option>
+              <option value="">Chưa được duyêt</option>
+              <option value="">Đã giao</option>
+=            </select>
+            <button class="admin_btn" style="margin-top:20px ;">Cập nhật</button>
+
+          </div>
+
+          <h4>Đơn hàng chưa thanh toán</h4>
+          <table>
+            <tr>
+              <th>Mã đơn hàng</th>
+              <th>Tên khách hàng</th>
+              <th>Số điện thoại khách hàng</th>
+              <th>Ngày đặt hàng</th>
+              <th>Phương thức vận chuyển</th>
+              <th>Trạng thái đơn hàng</th>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>chua thanh toán</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>chua thanh toán</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>chua thanh toán</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>chua thanh toán</p></td>
+            </tr>
+    
+          </table>
+          <h4>Đơn hàng đã thanh toán</h4>
+          <table>
+            <tr>
+              <th>Mã đơn hàng</th>
+              <th>Tên khách hàng</th>
+              <th>Số điện thoại khách hàng</th>
+              <th>Ngày đặt hàng</th>
+              <th>Phương thức vận chuyển</th>
+              <th>Trạng thái đơn hàng</th>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Đã thanh toán</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Đã thanh toán</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Đã thanh toán</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Đã thanh toán</p></td>
+            </tr>
+    
+          </table>
+
+          <h4>Đơn hàng chưa được duyệt</h4>
+          <table>
+            <tr>
+              <th>Mã đơn hàng</th>
+              <th>Tên khách hàng</th>
+              <th>Số điện thoại khách hàng</th>
+              <th>Ngày đặt hàng</th>
+              <th>Phương thức vận chuyển</th>
+              <th>Trạng thái đơn hàng</th>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Chưa được duyệt</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Chưa được duyệt</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Chưa được duyệt</p></td>
+            </tr>
+            <tr>
+              <td><p>123456</p></td>
+              <td><p>Nguyễn Thị Hoa Hồng</p></td>
+              <td><p>095647821</p></td>
+              <td><p>18/1/2023</p></td>
+              <td><p>Nhanh</p></td>
+              <td><p>Chưa được duyệt</p></td>
+            </tr>
+    
+          </table>
+        </div>
+
+        <!--oder End-->
+
+
         <!--account -->
         <div id="account">
+          <h3>Tài khoảng người dùng</h3>
           <table>
             <tr>
               <th>Ảnh đại diện</th>
@@ -829,12 +1096,16 @@
         "update_product",
         "blog",
         "account",
+        "discount",
+        "oder"
       ];
       const id_menu_list = [
         "create_product__menu",
         "update_product__menu",
         "blog__menu",
         "account__menu",
+        "discount__menu",
+        "oder__menu",
       ];
 
       function hideall() {
@@ -874,6 +1145,18 @@
         greenAll();
         document.getElementById("blog").style.display = "flex";
         document.getElementById("blog__menu").style.backgroundColor = "#ebebeb";
+      }
+      function discount() {
+        hideall();
+        greenAll();
+        document.getElementById("discount").style.display = "flex";
+        document.getElementById("discount__menu").style.backgroundColor = "#ebebeb";
+      }
+      function oder() {
+        hideall();
+        greenAll();
+        document.getElementById("oder").style.display = "flex";
+        document.getElementById("oder__menu").style.backgroundColor = "#ebebeb";
       }
     </script>
   </body>
