@@ -7,7 +7,7 @@
 }
 
 .left_containers {
-    width: 250px;
+    width: 300px;
     background-color: #7fad39;
 }
 
@@ -92,7 +92,7 @@ h3 {
     border-bottom: 2px solid #9c9c9c;
 }
 
-.btn {
+.admin_btn {
     padding: 10px;
     background-color: #7fad39;
     border-radius: 3px;
@@ -103,6 +103,7 @@ h3 {
     font-size: 20px;
     font-weight: bold;
     padding: 10px;
+    margin-top: 20px;
 }
 
 #blog {
@@ -145,4 +146,9 @@ h3 {
 }
 .btn_create_blog {
     margin-bottom: 20px;
+}
+
+.space {
+    height: 500px;
+    border-bottom: 2px solid #000000;
 }
