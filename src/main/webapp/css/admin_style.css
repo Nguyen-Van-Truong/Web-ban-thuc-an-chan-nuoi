@@ -1,0 +1,204 @@
+
+
+.containers {
+    background-color: #ebebeb;
+    display: flex;
+
+}
+
+.left_containers {
+    width: 300px;
+    background-color: #7fad39;
+}
+
+.right_containers {
+    flex: 1;
+    padding: 10px;
+}
+
+.menu {
+    padding: 0px;
+
+}
+
+.menu__item {
+    background: #7fad39;
+    padding: 10px;
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #bfbfbf;
+
+}
+.menu__item:hover {
+    background-color: #ebebeb !important;
+}
+
+.right_containers > div {
+    display: none;
+}
+
+.create_product {
+    display: flex;
+}
+
+.create_product-left{
+    flex: 1;
+}
+
+.create_product-right {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.form_item {
+    margin: 30px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.form_item > input {
+    flex: 1;
+    border-radius: 3px;
+}
+
+.product_img {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 300px;
+}
+
+.product_img > input {
+    display: none;
+    border: 2px solid #9c9c9c;
+
+}
+
+.product_img > label{
+    padding: 5px 15px;
+    border-radius: 3px;
+    background: #7fad39;
+    margin: 5px auto;
+}
+
+h3 {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #9c9c9c;
+}
+
+.admin_btn {
+    padding: 10px;
+    background-color: #7fad39;
+    border-radius: 3px;
+    margin: auto;
+}
+
+.update_option {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#blog {
+    flex-direction: column;
+    padding: 20px;
+}
+
+#blog label, #blog input, #blog textarea {
+    padding: 10px;
+}
+
+#blog .product_img {
+    margin: auto;
+}
+
+#blog>div>button {
+    padding: 10px;
+    background-color: #7fad39;
+    border-radius: 3px;
+}
+
+#account {
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#account table {
+    width: 100%;
+    margin-top: 50px;
+}
+
+#account img {
+    margin: 15px 0px;
+}
+
+#update_product table {
+    margin: 20px;
+}
+
+#blog table {
+    margin: 10px;
+}
+.btn_create_blog {
+    margin-bottom: 20px;
+}
+
+.space {
+    height: 500px;
+    border-bottom: 2px solid #000000;
+}
+
+#oder {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+#oder h4 {
+    margin: 25px 10px;
+}
+
+#oder table {
+    margin: 10px;
+}
+
+#oder table p {
+    margin: 0px;
+    padding: 15px 0px;
+}
+#oder label {
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+#discount {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+}
+
+#discount h4 {
+    margin: 25px 0px;
+}
+
+#discoutn table {
+    margin: 10px;
+}
+
+#discount table p {
+    margin: 0px;
+    padding: 15px 0px;
+}
+#discount label {
+    font-weight: bold;
+    margin: 10px 0px;
+}

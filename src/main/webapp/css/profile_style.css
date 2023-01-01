@@ -1,0 +1,129 @@
+
+
+.user {
+    background-color: #f8f7f7;
+}
+.img-left {
+    display: flex;
+    margin-top: 20px;
+}
+.img-left > p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.img__user {
+    width: 70px;
+    margin: 10px;
+    border-radius: 450px;
+}
+
+.profile {
+    margin: 20px;
+    background-color: white;
+    display: flex;
+}
+
+
+ul {
+    list-style: none;
+}
+li {
+    margin: 5px 20px;
+}
+
+.menu {
+    margin: 10px 0px;
+}
+
+.menu__item {
+    background-color: #f8f7f7;
+    border: none;
+    padding: 5px 10px;
+    border-bottom: 2px solid #9b9b9b;
+    width: 200px;
+    text-align: left;
+}
+.menu__item:hover {
+    background-color: #7fad39;
+    border-radius: 3px;
+
+}
+
+.profile__item {
+    display: flex;
+    padding: 20px 40px;
+}
+.profile input {
+    flex: 1;
+}
+.profile__item > label {
+    padding-right: 20px;
+}
+.profile__item a {
+    padding-left: 10px;
+    color: black;
+}
+.profile__item a:hover {
+    color: blue;
+}
+
+.profile label {
+    margin: 0px 10px;
+}
+.right__profile {
+    margin: auto 30px;
+}
+
+.left__profile {
+    flex: 1;
+}
+
+#password {
+    padding: 20px 0px;
+    margin: 20px;
+    display: none;
+    flex-direction: column;    
+    background-color: white;
+}
+#password div {
+    margin: 30px 50px;
+    display: flex;
+}
+#password div label {
+    min-width: 200px;
+}
+#password div input {
+    flex: 1;
+    border-radius: 2px;
+}
+
+#btn {
+    background-color: #92c842;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#oder{
+    display: none;
+    margin: 20px;
+    padding: 30px;
+    background-color: white;
+}
+#odered {
+    display: none;
+    margin: 20px;
+    padding: 30px;
+    background-color: white;
+}
+.oder {
+    padding: 30px;
+}
+.odered {
+    padding: 30px;
+}
+table {
+    width: 100%;
+}
+th td {
+    margin: 20px 200px;
+}
