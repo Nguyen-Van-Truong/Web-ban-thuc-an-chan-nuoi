@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class ListProduct extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> list = ProductService.getListProduct();
+        List<Product> list = ProductService.getListProduct(1);
 
         request.setAttribute("listProduct", list);
         request.getRequestDispatcher("shop-grid.jsp").forward(request, response);
@@ -30,7 +30,7 @@ public class ListProduct extends HttpServlet {
     }
 
     public static void main(String[] args) {
-        List<Product> list = ProductService.getListProduct();
+        List<Product> list = ProductService.getListProduct(1);
         System.out.println(list);
 
     }

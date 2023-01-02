@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="vn.edu.hcmuaf.fit.service.ProductService" %>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -542,8 +543,7 @@
                                 <div class="product__discount__item">
                                     <div
                                             class="product__discount__item__pic set-bg"
-                                            data-setbg="img/images/ga/ga-con/hp20g.png"
-                                    >
+                                            data-setbg="img/images/ga/ga-con/hp20g.png">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li>
@@ -593,46 +593,65 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <%--                    listproduct--%>
-                    <%
-                        List<Product> list = (List<Product>) request.getAttribute("listProduct");
-                        for (Product p : list) {
-                    %>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div
-                                    class="product__item__pic set-bg"
-                                    data-setbg="<%=p.getImg()%>"
-                            >
-                                <ul class="product__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="shop-details.jsp"><%=p.getName()%>
-                                </a></h6>
-                                <h5><%=p.getPrice()%>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <% }%>
+
+                <%--                    listproduct--%>
+                <div id="content" class="row">
+
                 </div>
+                <%
+                    int pageSize = ProductService.getPageSize();  // Number of products per page
+                    int totalProducts = ProductService.getTotalNumberOfProducts();  // Total number of products
+                    int totalPages = (int) Math.ceil((double) totalProducts / pageSize);  // Total number of pages
+
+                %>
                 <div class="product__pagination">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <button onclick="loadPage(1)">1</button>
+                    <!-- Add links for additional pages -->
+                    <% for (int i = 2; i <= totalPages; i++) { %>
+                    <button onclick="loadPage(<%= i %>)"><%= i %></button>
+                    <% } %>
                 </div>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+                <script>
+
+                    var currentPage = 1;
+
+                    function loadPage(page) {
+                        currentPage = page;
+                        $.ajax({
+                            url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax",
+                            type: "get",
+                            data: {page: page},
+                            success: function (data) {
+                                var row = document.getElementById("content");
+                                row.innerHTML = data;
+                            },
+                            error: function (xhr) {
+                                //Do Something to handle error
+                            }
+                        });
+                    }
+
+                    function loadData() {
+                        $.ajax({
+                            url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax",
+                            type: "get",
+                            data: {page: currentPage + 1},
+                            success: function (data) {
+                                var row = document.getElementById("content");
+                                row.innerHTML += data;
+                            },
+                            error: function (xhr) {
+                                //Do Something to handle error
+                            }
+                        });
+                    }
+
+                    loadPage(1);
+                </script>
+
+
             </div>
         </div>
     </div>

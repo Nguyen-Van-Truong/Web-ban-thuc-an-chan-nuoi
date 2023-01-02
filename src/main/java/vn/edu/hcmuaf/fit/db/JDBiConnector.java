@@ -39,7 +39,7 @@ public class JDBiConnector {
     }
     public static void main(String[] args) {
         List<Product> products = JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("select * from products").mapToBean(Product.class)
+            return handle.createQuery("select * from product").mapToBean(Product.class)
                     .stream().collect(Collectors.toList());
         });
 
