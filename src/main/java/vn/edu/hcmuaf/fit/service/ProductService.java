@@ -28,7 +28,8 @@ public class ProductService {
             return handle.createQuery("SELECT priceout FROM outprice WHERE product_id = ? AND outprice.status = 1 ORDER BY outprice_id DESC ")
                     .bind(0, productId)
                     .mapTo(Integer.class)
-                    .first();
+                    .findFirst()
+                    .orElse(0);
         });
     }
     public static String get1SrcImg(int productId) {
@@ -36,7 +37,8 @@ public class ProductService {
             return handle.createQuery("SELECT src_img FROM productimage WHERE product_id = ? AND status = 1 ")
                     .bind(0, productId)
                     .mapTo(String.class)
-                    .first();
+                    .findFirst()
+                    .orElse("img/images/img_default/img_not_found.png");
         });
     }
 
@@ -57,6 +59,7 @@ public class ProductService {
     }
 
     public static void main(String[] args) {
-        System.out.println(get1SrcImg(1));
+//        System.out.println(getOutPrice(13));
+        System.out.println(get1SrcImg(13));
     }
 }
