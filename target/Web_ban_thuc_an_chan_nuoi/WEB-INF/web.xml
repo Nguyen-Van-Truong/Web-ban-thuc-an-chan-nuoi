@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+<!--  <filter>-->
+<!--    <filter-name>Utf8</filter-name>-->
+<!--    <filter-class>vn.edu.hcmuaf.fit.filter.Utf8</filter-class>-->
+<!--  </filter>-->
+
+<!--  <filter-mapping>-->
+<!--    <filter-name>Utf8</filter-name>-->
+<!--    <url-pattern>/*</url-pattern>-->
+<!--  </filter-mapping>-->
+
+
 </web-app>
