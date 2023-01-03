@@ -14,19 +14,23 @@ import java.util.List;
 public class LoadProductsAJax_shopGrid extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // Get the printwriter object to write the response
         PrintWriter out = response.getWriter();
 
         // Get the page number from the request
         int page = 1;
+        int category_id;
         String pageParam = request.getParameter("page");
         if (pageParam != null) {
             page = Integer.parseInt(pageParam);
         }
-
-        // Write the response
         List<Product> products = ProductService.getListProduct(page);
+
+        String cateParam = request.getParameter("category_id");
+        if (cateParam != null) {
+            category_id = Integer.parseInt(request.getParameter("category_id"));
+            products = ProductService.getListProductFromCategory(page,category_id);
+        }
         for (Product p : products) {
             out.println("<div class=\"col-lg-4 col-md-6 col-sm-6\">\n" +
                     "  <div class=\"product__item\">\n" +
@@ -60,5 +64,10 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    protected void loadCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        out.println("ga");
     }
 }
