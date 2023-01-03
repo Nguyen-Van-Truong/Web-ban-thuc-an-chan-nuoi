@@ -49,7 +49,14 @@ public class ProductService {
                     .one();
         });
     }
-
+    public static int getTotalNumberOfProductsFromCategoryId(int category_id) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select count(p.product_id) from product p,product_category pc where p.product_id = pc.category_id AND pc.category_id = ? ")
+                    .bind(0, category_id)
+                    .mapTo(Integer.class)
+                    .one();
+        });
+    }
     public static int getPageSize() {
         return pageSize;
     }
@@ -58,8 +65,22 @@ public class ProductService {
         ProductService.pageSize = pageSize;
     }
 
+    public static List<Product> getListProductFromCategory(int page, int category_id) {
+        int offset = (page - 1) * pageSize;  // Offset cho trang hien tai
+
+        // Query the database
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT p.product_id,p.product_name,p.product_description,p.create_date,p.quantity,p.status FROM product p , product_category pc, category c WHERE " +
+                            "p.product_id = pc.product_id AND pc.category_id = c.category_id And c.category_id = :idCategory limit :pageSize offset :offset")
+                    .bind("pageSize", pageSize)
+                    .bind("offset", offset)
+                    .bind("idCategory", category_id)
+                    .mapToBean(Product.class)
+                    .stream().collect(Collectors.toList());
+        });
+    }
     public static void main(String[] args) {
-//        System.out.println(getOutPrice(13));
-        System.out.println(get1SrcImg(13));
+        System.out.println(getTotalNumberOfProductsFromCategoryId(12));
+
     }
 }
