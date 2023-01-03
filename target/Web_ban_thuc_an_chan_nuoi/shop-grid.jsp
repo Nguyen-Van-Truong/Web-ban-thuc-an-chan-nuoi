@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="vn.edu.hcmuaf.fit.service.ProductService" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.Category" %>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -257,35 +259,28 @@
                     <div class="sidebar__item">
                         <ul>
                             <h4>Danh Mục</h4>
+                            <%
+                                List<Category> categories = (List<Category>) request.getAttribute("ListCategory");
+                                for (Category c : categories) {
+                                    if (c.getParentCategoryId() == 0) {
+                            %>
                             <li class="menu_item">
-                                <a href="">Thức ăn cho gia cầm</a>
+                                <a onclick="loadPage(1,<%=c.getCategoryId()%>)" style="cursor: pointer"><%=c.getName()%>
+                                </a>
                                 <ul class="menu">
-                                    <li><a href=""></a></li>
-                                    <li><a href="">Thức ăn cho gà</a></li>
-                                    <li><a href="">Thức ăn cho vịt</a></li>
-                                    <li><a href="">Thức ăn cho chim</a></li>
+                                    <%
+                                        for (Category sub : c.getListSubCategory()) {
+                                    %>
+                                    <li><a onclick="loadPage(1,<%=sub.getCategoryId()%>)"
+                                           style="cursor: pointer"><%=sub.getName()%>
+                                    </a></li>
+                                    <%}%>
                                 </ul>
                             </li>
-                            <li class="menu_item">
-                                <a href="">Thức ăn cho gia súc</a>
-                                <ul class="menu">
-                                    <li><a href="">Thức ăn cho trâu</a></li>
-                                    <li><a href="">Thúc ăn cho lợn</a></li>
-                                    <li><a href="">Thức ăn cho bò</a></li>
-                                    <li><a href="">Thức ăn cho ngựa</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu_item">
-                                <a href="">Thức ăn cho thủy sản</a>
-                                <ul class="menu">
-                                    <li><a href="">Thức ăn cho tôm</a></li>
-                                    <li><a href="">Thức ăn cho cá</a></li>
-                                    <li><a href="">Thức ăn cho mực</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu_item">
-                                <a href="">Các loại thức ăn khác</a>
-                            </li>
+                            <%
+                                    }
+                                }
+                            %>
                         </ul>
 
 
@@ -542,8 +537,7 @@
                                 <div class="product__discount__item">
                                     <div
                                             class="product__discount__item__pic set-bg"
-                                            data-setbg="img/images/ga/ga-con/hp20g.png"
-                                    >
+                                            data-setbg="img/images/ga/ga-con/hp20g.png">
                                         <div class="product__discount__percent">-20%</div>
                                         <ul class="product__item__pic__hover">
                                             <li>
@@ -593,46 +587,61 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <%--                    listproduct--%>
-                    <%
-                        List<Product> list = (List<Product>) request.getAttribute("listProduct");
-                        for (Product p : list) {
-                    %>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="product__item">
-                            <div
-                                    class="product__item__pic set-bg"
-                                    data-setbg="<%=p.getImg()%>"
-                            >
-                                <ul class="product__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="shop-details.jsp"><%=p.getName()%>
-                                </a></h6>
-                                <h5><%=p.getPrice()%>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <% }%>
+
+                <%--                    listproduct--%>
+                <div id="content" class="row">
                 </div>
+                <%
+                    int pageSize = ProductService.getPageSize();  // Number of products per page
+                    int totalProducts = ProductService.getTotalNumberOfProducts();  // Total number of products
+                    int totalPages = (int) Math.ceil((double) totalProducts / pageSize);  // Total number of pages
+                %>
                 <div class="product__pagination">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <button onclick="loadPage(1,currentCategory)"><<</button>
+                    <button onclick="loadPage(1,currentCategory)">1</button>
+                    <!-- Add links for additional pages -->
+                    <% for (int i = 2; i <= totalPages; i++) { %>
+                    <button onclick="loadPage(<%= i %>,currentCategory)"><%= i %>
+                    </button>
+                    <% } %>
+                    <button onclick="loadPage(<%= totalPages %>,currentCategory)">>></button>
                 </div>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+                <script>
+                    var currentPage = 1;
+                    var currentCategory = null;
+                    const buttons = document.querySelectorAll('.product__pagination button');
+                    buttons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            buttons.forEach(b => {
+                                b.style.color = '#333';
+                                b.style.backgroundColor = '#fff';
+                            });
+                            button.style.color = 'white';
+                            button.style.backgroundColor = '#555';
+                        });
+                    });
+
+                    function loadPage(page, category_id) {
+                        currentPage = page;
+                        currentCategory = category_id;
+                        $.ajax({
+                            url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax_shopGrid",
+                            type: "get",
+                            data: {page: page, category_id: category_id},
+                            success: function (data) {
+                                var row = document.getElementById("content");
+                                row.innerHTML = data;
+                            },
+                            error: function (xhr) {
+                            }
+                        });
+                    }
+
+                    loadPage(1);
+                </script>
+
             </div>
         </div>
     </div>
