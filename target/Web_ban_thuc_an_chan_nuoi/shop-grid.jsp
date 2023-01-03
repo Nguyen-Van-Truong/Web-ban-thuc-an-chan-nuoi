@@ -602,25 +602,37 @@
                     int pageSize = ProductService.getPageSize();  // Number of products per page
                     int totalProducts = ProductService.getTotalNumberOfProducts();  // Total number of products
                     int totalPages = (int) Math.ceil((double) totalProducts / pageSize);  // Total number of pages
+                    int currentPage = 1;
 
                 %>
                 <div class="product__pagination">
+                    <button onclick="loadPage(1)"><<</button>
                     <button onclick="loadPage(1)">1</button>
                     <!-- Add links for additional pages -->
                     <% for (int i = 2; i <= totalPages; i++) { %>
                     <button onclick="loadPage(<%= i %>)"><%= i %></button>
                     <% } %>
+                    <button onclick="loadPage(<%= totalPages %>)">>></button>
                 </div>
 
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
                 <script>
-
-                    var currentPage = 1;
+                    const buttons = document.querySelectorAll('.product__pagination button');
+                    buttons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            buttons.forEach(b => {
+                                b.style.color = '#333';
+                                b.style.backgroundColor = '#fff';
+                            });
+                            button.style.color = 'white';
+                            button.style.backgroundColor = '#555';
+                        });
+                    });
 
                     function loadPage(page) {
                         currentPage = page;
                         $.ajax({
-                            url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax",
+                            url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax_shopGrid",
                             type: "get",
                             data: {page: page},
                             success: function (data) {
@@ -628,14 +640,14 @@
                                 row.innerHTML = data;
                             },
                             error: function (xhr) {
-                                //Do Something to handle error
+
                             }
                         });
                     }
 
                     function loadData() {
                         $.ajax({
-                            url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax",
+                            url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax_shopGrid",
                             type: "get",
                             data: {page: currentPage + 1},
                             success: function (data) {
@@ -643,7 +655,7 @@
                                 row.innerHTML += data;
                             },
                             error: function (xhr) {
-                                //Do Something to handle error
+
                             }
                         });
                     }
