@@ -10,19 +10,6 @@ import java.util.stream.Collectors;
 public class ProductService {
     static int pageSize = 4;  // so san pham 1 trang
 
-    public static List<Product> getListProduct(int page) {
-        int offset = (page - 1) * pageSize;  // Offset cho trang hien tai
-
-        // Query the database
-        return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("select * from product limit :pageSize offset :offset")
-                    .bind("pageSize", pageSize)
-                    .bind("offset", offset)
-                    .mapToBean(Product.class)
-                    .stream().collect(Collectors.toList());
-        });
-    }
-
     public static Integer getOutPrice(int productId) {
         return JDBiConnector.get().withHandle(handle -> {
             return handle.createQuery("SELECT priceout FROM outprice WHERE product_id = ? AND outprice.status = 1 ORDER BY outprice_id DESC ")
@@ -32,6 +19,7 @@ public class ProductService {
                     .orElse(0);
         });
     }
+
     public static String get1SrcImg(int productId) {
         return JDBiConnector.get().withHandle(handle -> {
             return handle.createQuery("SELECT src_img FROM productimage WHERE product_id = ? AND status = 1 ")
@@ -49,6 +37,7 @@ public class ProductService {
                     .one();
         });
     }
+
     public static int getTotalNumberOfProductsFromCategoryId(int category_id) {
         return JDBiConnector.get().withHandle(handle -> {
             return handle.createQuery("select count(p.product_id) from product p,product_category pc where p.product_id = pc.category_id AND pc.category_id = ? ")
@@ -57,6 +46,7 @@ public class ProductService {
                     .one();
         });
     }
+
     public static int getPageSize() {
         return pageSize;
     }
@@ -65,22 +55,60 @@ public class ProductService {
         ProductService.pageSize = pageSize;
     }
 
-    public static List<Product> getListProductFromCategory(int page, int category_id) {
+    public static List<Product> getListProductFromCategory(int page, int category_id, int source_id) {
+        //neu co loai san pham
         int offset = (page - 1) * pageSize;  // Offset cho trang hien tai
-
-        // Query the database
+        //neu co loai san pham
+        if (category_id != -99)
+            if (source_id == -99) {
+                return JDBiConnector.get().withHandle(handle -> {
+                    return handle.createQuery("SELECT p.product_id,p.product_name,p.product_description,p.create_date,p.quantity,p.status FROM product p , product_category pc, category c WHERE " +
+                                    "p.product_id = pc.product_id AND pc.category_id = c.category_id And c.category_id = :idCategory limit :pageSize offset :offset")
+                            .bind("pageSize", pageSize)
+                            .bind("offset", offset)
+                            .bind("idCategory", category_id)
+                            .mapToBean(Product.class)
+                            .stream().collect(Collectors.toList());
+                });
+            }else{
+                return JDBiConnector.get().withHandle(handle -> {
+                    return handle.createQuery("SELECT p.product_id,p.product_name,p.product_description,p.create_date,p.quantity,p.status FROM product p , product_category pc, category c" +
+                                    ",characteristic cha, product_characteristic pca WHERE " +
+                                    "p.product_id = pc.product_id AND pc.category_id = c.category_id And c.category_id = :idCategory " +
+                                    "AND p.product_id = pca.product_id AND cha.charistic_id = pca.characeristic_id AND cha.charistic_id = :source_id limit :pageSize offset :offset")
+                            .bind("pageSize", pageSize)
+                            .bind("offset", offset)
+                            .bind("idCategory", category_id)
+                            .bind("source_id", source_id)
+                            .mapToBean(Product.class)
+                            .stream().collect(Collectors.toList());
+                });
+            }
+        if (source_id != -99)
+            return JDBiConnector.get().withHandle(handle -> {
+                return handle.createQuery("SELECT p.product_id,p.product_name,p.product_description,p.create_date,p.quantity,p.status " +
+                                "FROM product p, characteristic cha, product_characteristic pca WHERE " +
+                                "p.product_id = pca.product_id AND cha.charistic_id = pca.characeristic_id AND cha.charistic_id = :source_id limit :pageSize offset :offset")
+                        .bind("pageSize", pageSize)
+                        .bind("offset", offset)
+                        .bind("idCategory", category_id)
+                        .bind("source_id", source_id)
+                        .mapToBean(Product.class)
+                        .stream().collect(Collectors.toList());
+            });
+            //mac dinh
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT p.product_id,p.product_name,p.product_description,p.create_date,p.quantity,p.status FROM product p , product_category pc, category c WHERE " +
-                            "p.product_id = pc.product_id AND pc.category_id = c.category_id And c.category_id = :idCategory limit :pageSize offset :offset")
+            return handle.createQuery("select * from product limit :pageSize offset :offset")
                     .bind("pageSize", pageSize)
                     .bind("offset", offset)
-                    .bind("idCategory", category_id)
                     .mapToBean(Product.class)
                     .stream().collect(Collectors.toList());
         });
+
     }
+
     public static void main(String[] args) {
-        System.out.println(getTotalNumberOfProductsFromCategoryId(12));
+        System.out.println(getListProductFromCategory(1,-99,2));
 
     }
 }

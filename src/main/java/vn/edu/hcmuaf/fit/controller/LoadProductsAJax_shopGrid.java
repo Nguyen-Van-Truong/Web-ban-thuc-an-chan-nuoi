@@ -16,6 +16,7 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the printwriter object to write the response
         PrintWriter out = response.getWriter();
+        List<Product> products;
 
         // Get the page number from the request
         int page = 1;
@@ -24,13 +25,13 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
         if (pageParam != null) {
             page = Integer.parseInt(pageParam);
         }
-        List<Product> products = ProductService.getListProduct(page);
 
         String cateParam = request.getParameter("category_id");
-        if (cateParam != null) {
             category_id = Integer.parseInt(request.getParameter("category_id"));
-            products = ProductService.getListProductFromCategory(page,category_id);
-        }
+
+        int source_id = Integer.parseInt(request.getParameter("source_id"));
+        products = ProductService.getListProductFromCategory(page,category_id,source_id);
+
         for (Product p : products) {
             out.println("<div class=\"col-lg-4 col-md-6 col-sm-6\">\n" +
                     "  <div class=\"product__item\">\n" +
