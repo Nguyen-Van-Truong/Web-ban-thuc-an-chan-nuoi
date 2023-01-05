@@ -615,8 +615,7 @@
                         });
                     }
 
-                    var sourceIdList = [1,2,3];
-
+                    var sourceIdList = [];
                     loadPage(1, -99, sourceIdList)
                 </script>
 
