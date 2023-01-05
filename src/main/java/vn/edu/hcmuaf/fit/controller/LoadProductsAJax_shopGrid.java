@@ -8,7 +8,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @WebServlet(name = "LoadProductsAJax_shopGrid", value = "/LoadProductsAJax_shopGrid")
 public class LoadProductsAJax_shopGrid extends HttpServlet {
@@ -27,10 +29,21 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
         }
 
         String cateParam = request.getParameter("category_id");
-            category_id = Integer.parseInt(request.getParameter("category_id"));
+        category_id = Integer.parseInt(request.getParameter("category_id"));
 
-        int source_id = Integer.parseInt(request.getParameter("source_id"));
-        products = ProductService.getListProductFromCategory(page,category_id,source_id);
+        List<Integer> source_id = new ArrayList<Integer>();
+
+        String sourceIdValues = request.getParameter("charistic_id");
+        System.out.println(sourceIdValues);
+
+        StringTokenizer st = new StringTokenizer(sourceIdValues, ",");
+        while (st.hasMoreTokens()) {
+            String i = st.nextToken();
+            System.out.println(i);
+            source_id.add(Integer.parseInt(i));
+        }
+        products = ProductService.getListProduct(page, category_id, source_id);
+
 
         for (Product p : products) {
             out.println("<div class=\"col-lg-4 col-md-6 col-sm-6\">\n" +

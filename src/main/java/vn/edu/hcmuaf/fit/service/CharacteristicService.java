@@ -8,19 +8,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CharacteristicService {
-    public static List<Characteristic> getListCharacteristic(int startIndex, int endIndex) {
+    public static List<Characteristic> getListCharacteristic() {
 
         // Query the database
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("select * from characteristic limit :startIndex offset :endIndex")
-                    .bind("startIndex", startIndex)
-                    .bind("endIndex", endIndex)
+            return handle.createQuery("select * from characteristic")
                     .mapToBean(Characteristic.class)
                     .stream().collect(Collectors.toList());
         });
     }
 
     public static void main(String[] args) {
-        System.out.println(getListCharacteristic(4,0));
+        System.out.println(getListCharacteristic());
     }
 }

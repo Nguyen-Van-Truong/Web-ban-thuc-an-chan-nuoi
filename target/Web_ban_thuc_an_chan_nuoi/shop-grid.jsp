@@ -261,10 +261,10 @@
                         <ul>
                             <h4>Danh Mục</h4>
                             <li class="menu_item">
-                                <a onclick="loadPage(1,-99,currentSource)" style="cursor: pointer">Tất cả sản phẩm
+                                <a onclick="loadPage(1,-99,currentCharistic)" style="cursor: pointer">Tất cả sản phẩm
                                 </a>
                                 <ul class="menu">
-                                    <li><a onclick="loadPage(1,-99,currentSource)"
+                                    <li><a onclick="loadPage(1,-99,currentCharistic)"
                                            style="cursor: pointer">Tất cả sản phẩm
                                     </a></li>
                                 </ul>
@@ -276,14 +276,14 @@
                                     if (c.getParentCategoryId() == 0) {
                             %>
                             <li class="menu_item">
-                                <a onclick="loadPage(1,<%=c.getCategoryId()%>,currentSource)"
+                                <a onclick="loadPage(1,<%=c.getCategoryId()%>,currentCharistic)"
                                    style="cursor: pointer"><%=c.getName()%>
                                 </a>
                                 <ul class="menu">
                                     <%
                                         for (Category sub : c.getListSubCategory()) {
                                     %>
-                                    <li><a onclick="loadPage(1,<%=sub.getCategoryId()%>,currentSource)"
+                                    <li><a onclick="loadPage(1,<%=sub.getCategoryId()%>,currentCharistic)"
                                            style="cursor: pointer"><%=sub.getName()%>
                                     </a></li>
                                     <%}%>
@@ -297,30 +297,15 @@
                     </div>
 
                     <div class="sidebar__item">
-                        <h4>Nguồn gốc</h4>
-                        <ul>
-                            <%
-                                List<Characteristic> sources = (List<Characteristic>) request.getAttribute("ListSource");
-                                for (Characteristic s : sources) {
-                            %>
-                            <li>
-                                <input type="radio" name="source" value="<%=s.getCharistic_id()%>"/>
-                                <label class="label__radio"><%=s.getName()%>
-                                </label>
-                            </li>
-                            <%}%>
-                        </ul>
-                    </div>
-                    <div class="sidebar__item">
                         <h4>Tính Chất</h4>
                         <ul>
                             <%
-                                List<Characteristic> characteristics = (List<Characteristic>) request.getAttribute("ListCharacteristic");
-                                for (Characteristic characteristic : characteristics) {
+                                List<Characteristic> sources = (List<Characteristic>) request.getAttribute("ListCharacteristic");
+                                for (Characteristic s : sources) {
                             %>
                             <li>
-                                <input type="radio" name="characteristic" value="<%=characteristic.getName()%>"/>
-                                <label class="label__radio"><%=characteristic.getName()%>
+                                <input type="checkbox" name="charistic" value="<%=s.getCharistic_id()%>"/>
+                                <label class="label__checkbox"><%=s.getName()%>
                                 </label>
                             </li>
                             <%}%>
@@ -372,7 +357,7 @@
                         </ul>
                     </div>
 
-                    <input onclick="loadPage(1,currentCategory,getSelectedRadio())" type="submit" value="Tìm Kiếm"
+                    <input onclick="loadPage(1,currentCategory,getSelectedCheckboxes())" type="submit" value="Tìm Kiếm"
                            style="height: 50px; width: 100px; background-color:
                     darkred;color: white;border: none;font-size: 16px;  cursor: pointer;"/>
                 </div>
@@ -585,21 +570,21 @@
                     int totalPages = (int) Math.ceil((double) totalProducts / pageSize);  // Total number of pages
                 %>
                 <div class="product__pagination">
-                    <button onclick="loadPage(1,currentCategory,currentSource)"><<</button>
-                    <button onclick="loadPage(1,currentCategory,currentSource)">1</button>
+                    <button onclick="loadPage(1,currentCategory,currentCharistic)"><<</button>
+                    <button onclick="loadPage(1,currentCategory,currentCharistic)">1</button>
                     <!-- Add links for additional pages -->
                     <% for (int i = 2; i <= totalPages; i++) { %>
-                    <button onclick="loadPage(<%= i %>,currentCategory,currentSource)"><%= i %>
+                    <button onclick="loadPage(<%= i %>,currentCategory,currentCharistic)"><%= i %>
                     </button>
                     <% } %>
-                    <button onclick="loadPage(<%= totalPages %>,currentCategory,currentSource)">>></button>
+                    <button onclick="loadPage(<%= totalPages %>,currentCategory,currentCharistic)">>></button>
                 </div>
 
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
                 <script>
                     var currentPage = 1;
                     var currentCategory = -99;
-                    var currentSource = -99;
+                    var currentCharistic = -99;
 
                     const buttons = document.querySelectorAll('.product__pagination button');
                     buttons.forEach(button => {
@@ -613,14 +598,14 @@
                         });
                     });
 
-                    function loadPage(page, category_id, source_id) {
+                    function loadPage(page, category_id, charistic_id) {
                         currentPage = page;
                         currentCategory = category_id;
-                        currentSource = source_id;
+                        currentCharistic = charistic_id;
                         $.ajax({
                             url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax_shopGrid",
                             type: "get",
-                            data: {page: page, category_id: category_id, source_id: source_id},
+                            data: {page: page, category_id: category_id, charistic_id: charistic_id.join(",")},
                             success: function (data) {
                                 var row = document.getElementById("content");
                                 row.innerHTML = data;
@@ -630,7 +615,9 @@
                         });
                     }
 
-                    loadPage(1, -99, -99);
+                    var sourceIdList = [1,2,3];
+
+                    loadPage(1, -99, sourceIdList)
                 </script>
 
                 <script>
@@ -642,7 +629,18 @@
                                 return radios[i].value;
                             }
                         }
-                        return null;
+                        return -99;
+                    }
+
+                    function getSelectedCheckboxes() {
+                        var checkboxes = document.getElementsByName("charistic");
+                        var selected = [];
+                        for (var i = 0; i < checkboxes.length; i++) {
+                            if (checkboxes[i].checked) {
+                                selected.push(checkboxes[i].value);
+                            }
+                        }
+                        return selected;
                     }
                 </script>
 
