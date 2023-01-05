@@ -29,10 +29,7 @@ public class LoadProductsAJax_index extends HttpServlet {
         }
 
         // Write the response
-        List<Product> products = ProductService.getListProduct(page);
-        for (Product p : products) {
-            out.println();
-        }
+
     }
 
     @Override

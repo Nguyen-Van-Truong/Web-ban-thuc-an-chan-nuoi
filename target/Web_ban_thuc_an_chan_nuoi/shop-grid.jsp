@@ -4,6 +4,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="vn.edu.hcmuaf.fit.service.ProductService" %>
 <%@ page import="vn.edu.hcmuaf.fit.model.Category" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.Characteristic" %>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -259,19 +260,30 @@
                     <div class="sidebar__item">
                         <ul>
                             <h4>Danh Mục</h4>
+                            <li class="menu_item">
+                                <a onclick="loadPage(1,-99,currentCharistic)" style="cursor: pointer">Tất cả sản phẩm
+                                </a>
+                                <ul class="menu">
+                                    <li><a onclick="loadPage(1,-99,currentCharistic)"
+                                           style="cursor: pointer">Tất cả sản phẩm
+                                    </a></li>
+                                </ul>
+                            </li>
+
                             <%
                                 List<Category> categories = (List<Category>) request.getAttribute("ListCategory");
                                 for (Category c : categories) {
                                     if (c.getParentCategoryId() == 0) {
                             %>
                             <li class="menu_item">
-                                <a onclick="loadPage(1,<%=c.getCategoryId()%>)" style="cursor: pointer"><%=c.getName()%>
+                                <a onclick="loadPage(1,<%=c.getCategoryId()%>,currentCharistic)"
+                                   style="cursor: pointer"><%=c.getName()%>
                                 </a>
                                 <ul class="menu">
                                     <%
                                         for (Category sub : c.getListSubCategory()) {
                                     %>
-                                    <li><a onclick="loadPage(1,<%=sub.getCategoryId()%>)"
+                                    <li><a onclick="loadPage(1,<%=sub.getCategoryId()%>,currentCharistic)"
                                            style="cursor: pointer"><%=sub.getName()%>
                                     </a></li>
                                     <%}%>
@@ -282,56 +294,21 @@
                                 }
                             %>
                         </ul>
-
-
                     </div>
 
-                    <div class="sidebar__item">
-                        <h4>Nguồn gốc</h4>
-                        <ul>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Động Vật</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Thực Vật</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Khoáng Chất</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Vi Sinh Vật</label>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="sidebar__item">
                         <h4>Tính Chất</h4>
                         <ul>
+                            <%
+                                List<Characteristic> sources = (List<Characteristic>) request.getAttribute("ListCharacteristic");
+                                for (Characteristic s : sources) {
+                            %>
                             <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Thức Ăn Thô</label>
+                                <input type="checkbox" name="charistic" value="<%=s.getCharistic_id()%>"/>
+                                <label class="label__checkbox"><%=s.getName()%>
+                                </label>
                             </li>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Thức Ăn Tinh</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Thức Ăn Tươi</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio"
-                                >Thức Ăn Giàu Đạm</label
-                                >
-                            </li>
-                            <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">Thức Ăn Ủ Chua</label>
-                            </li>
+                            <%}%>
                         </ul>
                     </div>
                     <div class="sidebar__item">
@@ -342,22 +319,14 @@
                                     data-min="10"
                                     data-max="540"
                             >
-                                <div
-                                        class="ui-slider-range ui-corner-all ui-widget-header"
-                                ></div>
-                                <span
-                                        tabindex="0"
-                                        class="ui-slider-handle ui-corner-all ui-state-default"
-                                ></span>
-                                <span
-                                        tabindex="0"
-                                        class="ui-slider-handle ui-corner-all ui-state-default"
-                                ></span>
+                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                             </div>
                             <div class="range-slider">
                                 <div class="price-input">
-                                    <input type="text" id="minamount"/>
-                                    <input type="text" id="maxamount"/>
+                                    <input type="text" id="minamount" name="minprice" value=""/>
+                                    <input type="text" id="maxamount" name="maxprice" value=""/>
                                 </div>
                             </div>
                         </div>
@@ -366,27 +335,31 @@
                         <h4>Đánh Giá</h4>
                         <ul>
                             <li>
-                                <input type="radio" name="n"/>
+                                <input type="radio" name="rating" value="5 sao"/>
                                 <label class="label__radio">5 sao</label>
                             </li>
                             <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">4 Sao</label>
+                                <input type="radio" name="rating" value="4 sao"/>
+                                <label class="label__radio">4 sao</label>
                             </li>
                             <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">3 Sao</label>
+                                <input type="radio" name="rating" value="3 sao"/>
+                                <label class="label__radio">3 sao</label>
                             </li>
                             <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">2 Sao</label>
+                                <input type="radio" name="rating" value="2 sao"/>
+                                <label class="label__radio">2 sao</label>
                             </li>
                             <li>
-                                <input type="radio" name="n"/>
-                                <label class="label__radio">1 Sao</label>
+                                <input type="radio" name="rating" value="1 sao"/>
+                                <label class="label__radio">1 sao</label>
                             </li>
                         </ul>
                     </div>
+
+                    <input onclick="loadPage(1,currentCategory,getSelectedCheckboxes())" type="submit" value="Tìm Kiếm"
+                           style="height: 50px; width: 100px; background-color:
+                    darkred;color: white;border: none;font-size: 16px;  cursor: pointer;"/>
                 </div>
             </div>
             <div class="col-lg-9 col-md-7">
@@ -597,20 +570,22 @@
                     int totalPages = (int) Math.ceil((double) totalProducts / pageSize);  // Total number of pages
                 %>
                 <div class="product__pagination">
-                    <button onclick="loadPage(1,currentCategory)"><<</button>
-                    <button onclick="loadPage(1,currentCategory)">1</button>
+                    <button onclick="loadPage(1,currentCategory,currentCharistic)"><<</button>
+                    <button onclick="loadPage(1,currentCategory,currentCharistic)">1</button>
                     <!-- Add links for additional pages -->
                     <% for (int i = 2; i <= totalPages; i++) { %>
-                    <button onclick="loadPage(<%= i %>,currentCategory)"><%= i %>
+                    <button onclick="loadPage(<%= i %>,currentCategory,currentCharistic)"><%= i %>
                     </button>
                     <% } %>
-                    <button onclick="loadPage(<%= totalPages %>,currentCategory)">>></button>
+                    <button onclick="loadPage(<%= totalPages %>,currentCategory,currentCharistic)">>></button>
                 </div>
 
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
                 <script>
                     var currentPage = 1;
-                    var currentCategory = null;
+                    var currentCategory = -99;
+                    var currentCharistic = -99;
+
                     const buttons = document.querySelectorAll('.product__pagination button');
                     buttons.forEach(button => {
                         button.addEventListener('click', () => {
@@ -623,13 +598,14 @@
                         });
                     });
 
-                    function loadPage(page, category_id) {
+                    function loadPage(page, category_id, charistic_id) {
                         currentPage = page;
                         currentCategory = category_id;
+                        currentCharistic = charistic_id;
                         $.ajax({
                             url: "/Web_ban_thuc_an_chan_nuoi_war/LoadProductsAJax_shopGrid",
                             type: "get",
-                            data: {page: page, category_id: category_id},
+                            data: {page: page, category_id: category_id, charistic_id: charistic_id.join(",")},
                             success: function (data) {
                                 var row = document.getElementById("content");
                                 row.innerHTML = data;
@@ -639,7 +615,33 @@
                         });
                     }
 
-                    loadPage(1);
+                    var sourceIdList = [1,2,3];
+
+                    loadPage(1, -99, sourceIdList)
+                </script>
+
+                <script>
+                    //lay ra source da chon
+                    function getSelectedRadio() {
+                        var radios = document.getElementsByName("source");
+                        for (var i = 0; i < radios.length; i++) {
+                            if (radios[i].checked) {
+                                return radios[i].value;
+                            }
+                        }
+                        return -99;
+                    }
+
+                    function getSelectedCheckboxes() {
+                        var checkboxes = document.getElementsByName("charistic");
+                        var selected = [];
+                        for (var i = 0; i < checkboxes.length; i++) {
+                            if (checkboxes[i].checked) {
+                                selected.push(checkboxes[i].value);
+                            }
+                        }
+                        return selected;
+                    }
                 </script>
 
             </div>

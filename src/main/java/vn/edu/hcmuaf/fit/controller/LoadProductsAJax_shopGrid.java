@@ -8,7 +8,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @WebServlet(name = "LoadProductsAJax_shopGrid", value = "/LoadProductsAJax_shopGrid")
 public class LoadProductsAJax_shopGrid extends HttpServlet {
@@ -16,6 +18,7 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the printwriter object to write the response
         PrintWriter out = response.getWriter();
+        List<Product> products;
 
         // Get the page number from the request
         int page = 1;
@@ -24,13 +27,24 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
         if (pageParam != null) {
             page = Integer.parseInt(pageParam);
         }
-        List<Product> products = ProductService.getListProduct(page);
 
         String cateParam = request.getParameter("category_id");
-        if (cateParam != null) {
-            category_id = Integer.parseInt(request.getParameter("category_id"));
-            products = ProductService.getListProductFromCategory(page,category_id);
+        category_id = Integer.parseInt(request.getParameter("category_id"));
+
+        List<Integer> source_id = new ArrayList<Integer>();
+
+        String sourceIdValues = request.getParameter("charistic_id");
+        System.out.println(sourceIdValues);
+
+        StringTokenizer st = new StringTokenizer(sourceIdValues, ",");
+        while (st.hasMoreTokens()) {
+            String i = st.nextToken();
+            System.out.println(i);
+            source_id.add(Integer.parseInt(i));
         }
+        products = ProductService.getListProduct(page, category_id, source_id);
+
+
         for (Product p : products) {
             out.println("<div class=\"col-lg-4 col-md-6 col-sm-6\">\n" +
                     "  <div class=\"product__item\">\n" +
