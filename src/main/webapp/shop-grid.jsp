@@ -621,16 +621,6 @@
 
                 <script>
                     //lay ra source da chon
-                    function getSelectedRadio() {
-                        var radios = document.getElementsByName("source");
-                        for (var i = 0; i < radios.length; i++) {
-                            if (radios[i].checked) {
-                                return radios[i].value;
-                            }
-                        }
-                        return -99;
-                    }
-
                     function getSelectedCheckboxes() {
                         var checkboxes = document.getElementsByName("charistic");
                         var selected = [];

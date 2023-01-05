@@ -65,7 +65,7 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
                     "      </ul>\n" +
                     "    </div>\n" +
                     "    <div class=\"product__item__text\">\n" +
-                    "      <h6><a href=\"shop-details.jsp\">" + p.getProduct_name() + "\n" +
+                    "      <h6><a href=\"shop-detail?productId=" + p.getProduct_id() + "\">" + p.getProduct_name() + "\n" +
                     "      </a></h6>\n" +
                     "      <h5>" + p.getOutPrice() + "\n" +
                     "      </h5>\n" +
