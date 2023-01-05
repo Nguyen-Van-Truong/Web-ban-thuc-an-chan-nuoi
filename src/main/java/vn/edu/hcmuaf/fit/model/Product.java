@@ -1,62 +1,96 @@
 package vn.edu.hcmuaf.fit.model;
 
+import vn.edu.hcmuaf.fit.db.JDBiConnector;
+import vn.edu.hcmuaf.fit.service.ProductService;
+
 import java.io.Serializable;
+import java.util.stream.Collectors;
 
 public class Product implements Serializable {
-    private int id;
-    private String name;
-    private String img;
-    private long price;
+    private int product_id;
+    private String product_name;
+    private String product_description;
+    private String create_date;
+    private int quantity;
+    private String status;
 
     public Product() {
     }
 
-    public Product(int id, String name, String img, long price) {
-        this.id = id;
-        this.name = name;
-        this.img = img;
-        this.price = price;
+    public Product(int product_id, String product_name, String product_description, String create_date, int quantity, String status) {
+        this.product_id = product_id;
+        this.product_name = product_name;
+        this.product_description = product_description;
+        this.create_date = create_date;
+        this.quantity = quantity;
+        this.status = status;
     }
 
-    public int getId() {
-        return id;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public String getName() {
-        return name;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
-    public String getImg() {
-        return img;
+    public String getProduct_description() {
+        return product_description;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setProduct_description(String product_description) {
+        this.product_description = product_description;
     }
 
-    public long getPrice() {
-        return price;
+    public String getCreate_date() {
+        return create_date;
     }
 
-    public void setPrice(long price) {
-        this.price = price;
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String get1SrcImg() {
+        return ProductService.get1SrcImg(this.getProduct_id());
+    }
+
+    public Integer getOutPrice() {
+        return ProductService.getOutPrice(this.getProduct_id());
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", img='" + img + '\'' +
-                ", price=" + price +
+                "product_id=" + product_id +
+                ", product_name='" + product_name + '\'' +
+                ", product_description='" + product_description + '\'' +
+                ", create_date='" + create_date + '\'' +
+                ", quantity=" + quantity +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
