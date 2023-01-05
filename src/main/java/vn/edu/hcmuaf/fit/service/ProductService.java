@@ -11,6 +11,15 @@ import java.util.stream.Collectors;
 public class ProductService {
     static int pageSize = 4;  // so san pham 1 trang
 
+    public static Product getProductFromProductId(int productId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT * FROM product WHERE product_id = :productId")
+                    .bind("productId", productId)
+                    .mapToBean(Product.class)
+                    .findOnly();
+        });
+    }
+
     public static Integer getOutPrice(int productId) {
         return JDBiConnector.get().withHandle(handle -> {
             return handle.createQuery("SELECT priceout FROM outprice WHERE product_id = ? AND outprice.status = 1 ORDER BY outprice_id DESC ")
@@ -28,6 +37,23 @@ public class ProductService {
                     .mapTo(String.class)
                     .findFirst()
                     .orElse("img/images/img_default/img_not_found.png");
+        });
+    }
+
+    public static List<String> getAllImgFromProductId(int productId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT src_img FROM productimage WHERE product_id = :productId AND status = 1")
+                    .bind("productId", productId)
+                    .mapTo(String.class)
+                    .list();
+        });
+    }
+    public static List<Integer> getAllCategoryIdsFromProductId(int productId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select category_id from product_category where product_id = :productId")
+                    .bind("productId", productId)
+                    .mapTo(Integer.class)
+                    .list();
         });
     }
 
@@ -84,6 +110,28 @@ public class ProductService {
         });
     }
 
+    public static List<Product> getNRelatedProducts(int n, List<Integer> categoriesID) {
+        String listToString = "";
+        for (Integer c : categoriesID) {
+            listToString += c + ",";
+        }
+        listToString = listToString.substring(0, listToString.length() - 1);
+        String finalListToString = listToString;
+        System.out.println(finalListToString+" !@3");
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select p.product_id,p.product_name,p.product_description,p.create_date,p.quantity,p.status from product as p\n" +
+                            "where p.product_id in (\n" +
+                            "  select product_id from product_category\n" +
+                            "  where category_id in ("+finalListToString+")\n" +
+                            "  group by product_id\n" +
+                            ")\n" +
+                            "LIMIT :n")
+                    .bind("n", n)
+                    .mapToBean(Product.class)
+                    .stream().collect(Collectors.toList());
+        });
+    }
+
     private static List<Product> getProductsFromCategoryAndCharacteristic(int category_id, List<Integer> characteristic_ids, int offset) {
         if (characteristic_ids.isEmpty())
             return getProductsFromCategory(category_id, offset);
@@ -103,7 +151,7 @@ public class ProductService {
                             "INNER JOIN product_characteristic pca ON p.product_id = pca.product_id " +
                             "INNER JOIN characteristic cha ON cha.charistic_id = pca.characeristic_id " +
                             "WHERE c.category_id = :idCategory " +
-                            "AND cha.charistic_id IN ("+finalListToString+") " +
+                            "AND cha.charistic_id IN (" + finalListToString + ") " +
                             "GROUP BY p.product_id " +
                             "HAVING COUNT(DISTINCT cha.charistic_id) = :charistic_id_count " +
                             "LIMIT :pageSize OFFSET :offset ")
@@ -162,11 +210,11 @@ public class ProductService {
 //        System.out.println(getListProductFromCategory(1, -99, 2));
 //        System.out.println(getProductsFromCategory(-99,0));
         List<Integer> listChar = new ArrayList<>();
-        listChar.add(1);
-        listChar.add(2);
-        listChar.add(3);
-        System.out.println(getProductsFromCategoryAndCharacteristic(5,listChar, 0));
-        System.out.println(getProductsFromCharacteristic(listChar, 0));
+        listChar.add(8);
+        listChar.add(5);
+//        System.out.println(getProductsFromCategoryAndCharacteristic(5,listChar, 0));
+//        System.out.println(getProductsFromCharacteristic(listChar, 0));
+//        System.out.println(getProductFromProductId(1));
 
     }
 }

@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.db.JDBiConnector;
 import vn.edu.hcmuaf.fit.service.ProductService;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Product implements Serializable {
@@ -78,8 +79,20 @@ public class Product implements Serializable {
         return ProductService.get1SrcImg(this.getProduct_id());
     }
 
+    public List<String> getAllSrcImg() {
+        return ProductService.getAllImgFromProductId(this.getProduct_id());
+    }
+
     public Integer getOutPrice() {
         return ProductService.getOutPrice(this.getProduct_id());
+    }
+
+    public List<Integer> getAllCategoryIds() {
+        return ProductService.getAllCategoryIdsFromProductId(this.getProduct_id());
+    }
+
+    public List<Product> getNRelatedProducts(int n) {
+        return ProductService.getNRelatedProducts(n, getAllCategoryIds());
     }
 
     @Override
