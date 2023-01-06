@@ -1,3 +1,6 @@
+<%@ page import="vn.edu.hcmuaf.fit.model.Category" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -37,7 +40,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="./index.html"><img src="img/logo.png" alt=""/></a>
+        <a href="./index"><img src="img/logo.png" alt=""/></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -66,7 +69,7 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="./index.html">Trang chủ</a></li>
+            <li class="active"><a href="./index">Trang chủ</a></li>
             <li>
                 <a href="./shop-grid">Sản phẩm</a>
                 <ul class="header__menu__dropdown one__lever">
@@ -162,7 +165,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""/></a>
+                    <a href="./index"><img src="img/logo.png" alt=""/></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -203,7 +206,7 @@
             <div class="col-lg-12">
                 <nav class="header__menu">
                     <ul class="menu__list">
-                        <li class="active"><a href="./index.html">Trang Chủ</a></li>
+                        <li class="active"><a href="./index">Trang Chủ</a></li>
                         <li><a href="./shop-grid">Sản phẩm</a></li>
                         <li><a href="blog.jsp">Tin Tức</a></li>
                         <li><a href="contact.jsp">Liên Hệ</a></li>
@@ -239,38 +242,25 @@
     <div class="container">
         <div class="row">
             <div class="categories__slider owl-carousel">
+                <%
+                    List<Category> listAllCategory = (List<Category>) request.getAttribute("ListAllCategory");
+                    for (Category cate : listAllCategory) {
+                        String imgProductFromCategory = cate.get1ImgProductFromCategory();
+                        if (imgProductFromCategory != null) {
+                %>
                 <div class="col-lg-3">
                     <div
                             class="categories__item set-bg"
-                            data-setbg="img/images/heo/dam-dac/hp10.png"
+                            data-setbg="<%=imgProductFromCategory%>"
                     >
-                        <h5><a href="shop-grid">Thức ăn cho gia súc</a></h5>
+                        <h5><a href="shop-grid?categoryId=<%=cate.getCategoryId()%>"><%=cate.getName()%>
+                        </a></h5>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div
-                            class="categories__item set-bg"
-                            data-setbg="img/images/ga/ga-thit/hp22s.png"
-                    >
-                        <h5><a href="shop-grid">Thức ăn cho gia cầm</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div
-                            class="categories__item set-bg"
-                            data-setbg="img/images/ca/ca-covay/6136.png"
-                    >
-                        <h5><a href="shop-grid">Thức ăn cho thủy sản</a></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div
-                            class="categories__item set-bg"
-                            data-setbg="img/images/de/a35-s.png "
-                    >
-                        <h5><a href="shop-grid">Các loại sản phẩm khác</a></h5>
-                    </div>
-                </div>
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
     </div>
@@ -289,20 +279,29 @@
                 <div class="featured__controls">
                     <ul>
                         <li class="active" data-filter="*">Tất cả</li>
-                        <li data-filter=".oranges">Gia Cầm</li>
-                        <li data-filter=".fresh-meat">Gia Súc</li>
-                        <li data-filter=".vegetables">Thủy Sản</li>
-                        <li data-filter=".fastfood">Sản Phẩm Khác</li>
+                        <%
+                            List<Category> categoryList = (List<Category>) request.getAttribute("ListCategoryHaveFeaturedProduct");
+                            for (Category c : categoryList) {
+                        %>
+                        <li data-filter=".c<%=c.getCategoryId()%>"><%=c.getName()%>
+                        </li>
+                        <%
+                            }
+                        %>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="row featured__filter">
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+            <%
+                List<Product> ListFeaturedProduct = (List<Product>) request.getAttribute("ListFeaturedProduct");
+                for (Product p : ListFeaturedProduct) {
+            %>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix <%=p.toStringListCate(p.getAllCategoryIds())%>">
                 <div class="featured__item">
                     <div
                             class="featured__item__pic set-bg"
-                            data-setbg="img/images/bo/bo-sua/a60.png"
+                            data-setbg="<%=p.get1SrcImg()%>"
                     >
                         <ul class="featured__item__pic__hover">
                             <li>
@@ -317,179 +316,15 @@
                         </ul>
                     </div>
                     <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Thức ăn hỗn hợp Bò sữa</a></h6>
-                        <h5>259,000 đ</h5>
+                        <h6><a href="shop-detail?productId=<%=p.getProduct_id()%>"><%=p.getProduct_name()%>
+                        </a></h6>
+                        <h5><%=p.getOutPrice()%> đ</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                <div class="featured__item">
-                    <div
-                            class="featured__item__pic set-bg"
-                            data-setbg="img/images/ca/ca-giong/6116.png"
-                    >
-                        <ul class="featured__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Thức ăn cao cấp cho Cá rô phi</a></h6>
-                        <h5>279,000 đ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                <div class="featured__item">
-                    <div
-                            class="featured__item__pic set-bg"
-                            data-setbg="img/images/ga/ga-con/hp20g.png"
-                    >
-                        <ul class="featured__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Thức ăn hỗn hợp hoàn chỉnh cho gà con</a></h6>
-                        <h5>269,000 đ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                <div class="featured__item">
-                    <div
-                            class="featured__item__pic set-bg"
-                            data-setbg="img/images/ga/ga-de/hp32.png"
-                    >
-                        <ul class="featured__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Thức ăn hỗn hợp hoàn chỉnh cho gà đẻ</a></h6>
-                        <h5>249,000 đ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                <div class="featured__item">
-                    <div
-                            class="featured__item__pic set-bg"
-                            data-setbg="img/images/heo/heo-con/hp02.png"
-                    >
-                        <ul class="featured__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Thức ăn hỗn hợp hoàn chỉnh cho heo</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                <div class="featured__item">
-                    <div
-                            class="featured__item__pic set-bg"
-                            data-setbg="img/images/vit/vit-thit/mavin6102.jpg"
-                    >
-                        <ul class="featured__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Hỗn hợp cho vịt, ngan thịt</a></h6>
-                        <h5>229,000 đ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                <div class="featured__item">
-                    <div
-                            class="featured__item__pic set-bg"
-                            data-setbg="img/images/vit/vit-de/a20.png"
-                    >
-                        <ul class="featured__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Thức ăn hỗn hợp cho vịt đẻ<br>Trứng to, vỏ dày</a></h6>
-                        <h5>219,000 đ</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                <div class="featured__item">
-                    <div
-                            class="featured__item__pic set-bg"
-                            data-setbg="img/images/de/a35-s.png"
-                    >
-                        <ul class="featured__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured__item__text">
-                        <h6><a href="shop-details.jsp">Thức ăn hỗn hợp cho dê thịt, vỗ béo</a></h6>
-                        <h5>$30.00</h5>
-                    </div>
-                </div>
-            </div>
+            <%
+                }
+            %>
         </div>
     </div>
 </section>

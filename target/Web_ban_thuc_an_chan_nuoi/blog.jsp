@@ -37,7 +37,7 @@
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="index.jsp"><img src="img/logo.png" alt=""/></a>
+        <a href="index"><img src="img/logo.png" alt=""/></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -66,12 +66,12 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="index.jsp">Trang chủ</a></li>
+            <li class="active"><a href="index">Trang chủ</a></li>
             <li>
-                <a href="./shop-grid.jsp">Sản phẩm</a>
+                <a href="./shop-grid">Sản phẩm</a>
                 <ul class="header__menu__dropdown one__lever">
                     <li>
-                        <a href="./shop-grid.jsp">Thức ăn gia súc</a>
+                        <a href="./shop-grid">Thức ăn gia súc</a>
                         <ul class="header__menu__dropdown">
                             <li><a href="./shop-grid">Thức ăn cho bò</a></li>
                             <li><a href="./shop-grid">Thức ăn cho ngựa</a></li>
@@ -170,7 +170,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="index.jsp"><img src="img/logo.png" alt=""/></a>
+                    <a href="index"><img src="img/logo.png" alt=""/></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -211,7 +211,7 @@
             <div class="col-lg-12">
                 <nav class="header__menu">
                     <ul class="menu__list">
-                        <li><a href="index.jsp">Trang Chủ</a></li>
+                        <li><a href="index">Trang Chủ</a></li>
                         <li><a href="./shop-grid">Sản Phẩm</a></li>
                         <li class="active"><a href="./blog.html">Tin Tức</a></li>
                         <li><a href="contact.jsp">Liên Hệ</a></li>
@@ -235,7 +235,7 @@
                 <div class="breadcrumb__text">
                     <h2>Tin Tức</h2>
                     <div class="breadcrumb__option">
-                        <a href="index.jsp">Trang chủ</a>
+                        <a href="index">Trang chủ</a>
                         <span>Tin Tức</span>
                     </div>
                 </div>
