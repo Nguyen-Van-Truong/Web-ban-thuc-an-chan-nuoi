@@ -19,6 +19,10 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+    public String get1ImgProductFromCategory() {
+        return CategoryService.get1ImgProductFromCategory(this.getCategoryId());
+    }
+
     public List<Category> getListSubCategory() {
         return CategoryService.getListSubCategory(this.getCategoryId());
     }

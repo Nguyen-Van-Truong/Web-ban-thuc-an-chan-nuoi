@@ -26,6 +26,11 @@ public class ShopGridController extends HttpServlet {
         List<Characteristic> listCharacteristic = CharacteristicService.getListCharacteristic();
         request.setAttribute("ListCharacteristic", listCharacteristic);
 
+        String categoryIdId = request.getParameter("categoryId");
+        if (categoryIdId != null) {
+            Category category = CategoryService.getCategoryFromCategoryId(Integer.parseInt(categoryIdId));
+            request.setAttribute("current-category", category);
+        }
         request.getRequestDispatcher("shop-grid.jsp").forward(request, response);
     }
 

@@ -37,7 +37,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
       <div class="humberger__menu__logo">
-        <a href="index.jsp"><img src="img/logo.png" alt="" /></a>
+        <a href="index"><img src="img/logo.png" alt="" /></a>
       </div>
       <div class="humberger__menu__cart">
         <ul>
@@ -66,33 +66,33 @@
       </div>
       <nav class="humberger__menu__nav mobile-menu">
         <ul>
-          <li class="active"><a href="index.jsp">Trang chủ</a></li>
+          <li class="active"><a href="index">Trang chủ</a></li>
           <li>
             <a href="./shop-grid">Sản phẩm</a>
             <ul class="header__menu__dropdown one__lever">
               <li>
                 <a href="./shop-grid">Thức ăn gia súc</a>
                 <ul class="header__menu__dropdown">
-                  <li><a href="./shop-grid.html">Thức ăn cho bò</a></li>
-                  <li><a href="./shop-grid.html">Thức ăn cho ngựa</a></li>
-                  <li><a href="./shop-grid.html">Thức ăn cho lợn</a></li>
-                  <li><a href="./shop-grid.html">Thức ăn cho trâu</a></li>
+                  <li><a href="./shop-grid">Thức ăn cho bò</a></li>
+                  <li><a href="./shop-grid">Thức ăn cho ngựa</a></li>
+                  <li><a href="./shop-grid">Thức ăn cho lợn</a></li>
+                  <li><a href="./shop-grid">Thức ăn cho trâu</a></li>
                 </ul>
               </li>
               <li>
-                <a href="./shop-grid.html">Thức ăn gai cầm</a>
+                <a href="./shop-grid">Thức ăn gai cầm</a>
                 <ul class="header__menu__dropdown">
-                  <li><a href="./shop-grid.html">Thức ăn gia súc</a></li>
-                  <li><a href="./shop-grid.html">Thức ăn gai cầm</a></li>
-                  <li><a href="./shop-grid.html">Thức ăn thủy sản</a></li>
+                  <li><a href="./shop-grid">Thức ăn gia súc</a></li>
+                  <li><a href="./shop-grid">Thức ăn gai cầm</a></li>
+                  <li><a href="./shop-grid">Thức ăn thủy sản</a></li>
                 </ul>
               </li>
               <li>
-                <a href="./shop-grid.html">Thức ăn thủy sản</a>
+                <a href="./shop-grid">Thức ăn thủy sản</a>
                 <ul class="header__menu__dropdown">
-                  <li><a href="./shop-grid.html">Thức ăn cho tôm</a></li>
-                  <li><a href="./shop-grid.html">Thức ăn cho cá</a></li>
-                  <li><a href="./shop-grid.html">Thức ăn cho mực</a></li>
+                  <li><a href="./shop-grid">Thức ăn cho tôm</a></li>
+                  <li><a href="./shop-grid">Thức ăn cho cá</a></li>
+                  <li><a href="./shop-grid">Thức ăn cho mực</a></li>
                 </ul>
               </li>
             </ul>
@@ -170,7 +170,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="index.jsp"><img src="img/logo.png" alt="" /></a>
+              <a href="index"><img src="img/logo.png" alt="" /></a>
             </div>
           </div>
           <div class="col-lg-6">
@@ -200,7 +200,7 @@
             <div class="header__cart">
               <ul>
                 <li>
-                  <a href="shop-grid.html"><i class="fa fa-heart"></i> <span>1</span></a>
+                  <a href="shop-grid"><i class="fa fa-heart"></i> <span>1</span></a>
                 </li>
                 <li>
                   <a href="shoping-cart.jsp"
@@ -221,7 +221,7 @@
           <div class="col-lg-12">
             <nav class="header__menu">
               <ul class="menu__list">
-                <li><a href="index.jsp">Trang Chủ</a></li>
+                <li><a href="index">Trang Chủ</a></li>
                 <li><a href="./shop-grid">Sản Phẩm</a></li>
                 <li><a href="blog.jsp">Tin Tức</a></li>
                 <li class="active"><a href="./contact.html">Liên Hệ</a></li>
@@ -245,7 +245,7 @@
             <div class="breadcrumb__text">
               <h2>Liên hệ chúng tôi</h2>
               <div class="breadcrumb__option">
-                <a href="index.jsp">Trang chủ</a>
+                <a href="index">Trang chủ</a>
                 <span>Liên hệ chúng tôi</span>
               </div>
             </div>
