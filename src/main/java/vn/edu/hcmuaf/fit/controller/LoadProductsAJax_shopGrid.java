@@ -80,8 +80,4 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
 
     }
 
-    protected void loadCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        out.println("ga");
-    }
 }

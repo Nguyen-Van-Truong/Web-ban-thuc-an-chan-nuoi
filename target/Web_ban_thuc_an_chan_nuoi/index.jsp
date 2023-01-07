@@ -194,7 +194,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <nav class="header__menu">
-                    <ul class="menu__list">
+                    <ul class="menu__list" style="z-index: 99">
                         <li class="active"><a href="./index">Trang Chủ</a></li>
                         <li><a href="./shop-grid">Sản phẩm</a></li>
                         <li><a href="blog.jsp">Tin Tức</a></li>
@@ -212,7 +212,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="hero__item set-bg" data-setbg="img/images/banner.jpg">
+                <div class="hero__item set-bg" data-setbg="img/images/banner.jpg" style="margin-top: 17px">
                     <div class="hero__text">
                         <span>Thức ăn chăn nuôi</span>
                         <h2>Từ Thiên Nhiên<br/>100% Chất Lượng</h2>
