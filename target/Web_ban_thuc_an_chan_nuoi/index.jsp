@@ -358,64 +358,40 @@
                     <h4>Sản phẩm mới nhất</h4>
                     <div class="latest-product__slider owl-carousel">
                         <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
+                            <%
+                                List<Product> list6NewProducts = (List<Product>) request.getAttribute("ListNNewProducts");
+                                for (int i = 0; i < list6NewProducts.size() / 2; i++) {
+                                    Product p = list6NewProducts.get(i);%>
+                            <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
-                                    <img src="img/images/tom/700.png" alt=""/>
+                                    <img src="<%=p.get1SrcImg()%>" alt=""/>
                                 </div>
                                 <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp cho tôm sú giống</h6>
-                                    <span>239,000 đ</span>
+                                    <h6><%=p.getProduct_name()%>></h6>
+                                    <span><%=p.getOutPrice()%>> đ</span>
                                 </div>
                             </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/de/5217.png" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp cho dê vỗ béo</h6>
-                                    <span>229,000 đ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/ca/ca-giong/7424.png" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp cho cá giống (Cá Tra, Điêu hồng)</h6>
-                                    <span>219,000 đ</span>
-                                </div>
-                            </a>
+                            <%
+                                }
+                            %>
                         </div>
                         <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
+                            <%
+                                for (int i = list6NewProducts.size() / 2; i < list6NewProducts.size(); i++) {
+                                    Product p = list6NewProducts.get(i);%>
+                            <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
-                                    <img src="img/images/de/a35-s.png" alt=""/>
+                                    <img src="<%=p.get1SrcImg()%>" alt=""/>
                                 </div>
                                 <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp cao cấp <br> Dê thịt, dê vỗ béo</h6>
-                                    <span>259,000 đ</span>
+                                    <h6><%=p.getProduct_name()%>></h6>
+                                    <span><%=p.getOutPrice()%>> đ</span>
                                 </div>
                             </a>
-                            <a href="#" class="latest-product__item">
+                            <%
+                                }
+                            %>
 
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/vit/vit-de/a20-super.png" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp <br> Vịt đẻ thương phẩm</h6>
-                                    <span>$30.00</span>
-                                </div>
-
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/ga/ga-con/hp20s-1.png" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp hoàn chỉnh cho gà con</h6>
-                                    <span>239,000 đ</span>
-                                </div>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -425,62 +401,42 @@
                     <h4>Sản phẩm bán chạy</h4>
                     <div class="latest-product__slider owl-carousel">
                         <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
+
+                            <%
+                                List<Product> list6BestSellingProducts = (List<Product>) request.getAttribute("ListNBestSellingProducts");
+                                for (int i = 0; i < list6BestSellingProducts.size()/2; i++) {
+                                    Product p = list6BestSellingProducts.get(i);%>
+                            <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
-                                    <img src="img/images/ga/ga-de/1242P.jpg" alt=""/>
+                                    <img src="<%=p.get1SrcImg()%>" alt=""/>
                                 </div>
                                 <div class="latest-product__item__text">
-                                    <h6>Cám gà đẻ thương phẩm</h6>
-                                    <span>279,000 đ</span>
+                                    <h6><%=p.getProduct_name()%>></h6>
+                                    <span><%=p.getOutPrice()%>> đ</span>
                                 </div>
                             </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/heo/dam-dac/mavin8933ct.jpg" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Hỗn hợp cho heo siêu</h6>
-                                    <span>289,000 đ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/heo/dam-dac/hp10.png" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Thức ăn đậm đặc cho lợn thịt từ 5kg - xuất chuồng</h6>
-                                    <span>299,000 đ</span>
-                                </div>
-                            </a>
+                            <%
+                                }
+                            %>
                         </div>
                         <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
+
+                            <%
+                                for (int i = list6NewProducts.size() / 2; i < list6BestSellingProducts.size(); i++) {
+                                    Product p = list6BestSellingProducts.get(i);%>
+                            <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
-                                    <img src="img/images/vit/vit-con/hp43.png" alt=""/>
+                                    <img src="<%=p.get1SrcImg()%>" alt=""/>
                                 </div>
                                 <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp hoàn chỉnh cho vịt, ngan dưới 21 ngày tuổi</h6>
-                                    <span>219,000 đ</span>
+                                    <h6><%=p.getProduct_name()%>></h6>
+                                    <span><%=p.getOutPrice()%>> đ</span>
                                 </div>
                             </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/ga/ga-thit/mavin5302.jpg" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Hỗn hợp cho gà thịt 5302</h6>
-                                    <span>209,000 đ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/heo/dam-dac/mavin8933ct.jpg" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Hỗn hợp cho heo siêu từ 40kg - xuất chuồng</h6>
-                                    <span>233,000 đ</span>
-                                </div>
-                            </a>
+                            <%
+                                }
+                            %>
+
                         </div>
                     </div>
                 </div>
@@ -490,62 +446,41 @@
                     <h4>Đánh được đánh giá cao</h4>
                     <div class="latest-product__slider owl-carousel">
                         <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
+                            <%
+                                List<Product> listNBestAvgScoreProducts = (List<Product>) request.getAttribute("ListNBestAvgScoreProducts");
+                                for (int i = 0; i < listNBestAvgScoreProducts.size()/2; i++) {
+                                    Product p = listNBestAvgScoreProducts.get(i);%>
+                            <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
-                                    <img src="img/images/vit/vit-de/a20-super.png" alt=""/>
+                                    <img src="<%=p.get1SrcImg()%>" alt=""/>
                                 </div>
                                 <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp <br> Vịt đẻ thương phẩm</h6>
-                                    <span>266,000 đ</span>
+                                    <h6><%=p.getProduct_name()%>></h6>
+                                    <span><%=p.getOutPrice()%>> đ</span>
                                 </div>
                             </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/ga/ga-de/1242P.jpg" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Cám gà đẻ thương phẩm</h6>
-                                    <span>279,000 đ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/heo/dam-dac/hp10.png" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Thức ăn đậm đặc cho lợn thịt từ 5kg - xuất chuồng</h6>
-                                    <span>299,000 đ</span>
-                                </div>
-                            </a>
+                            <%
+                                }
+                            %>
                         </div>
                         <div class="latest-prdouct__slider__item">
-                            <a href="#" class="latest-product__item">
+
+                            <%
+                                for (int i = listNBestAvgScoreProducts.size() / 2; i < listNBestAvgScoreProducts.size(); i++) {
+                                    Product p = listNBestAvgScoreProducts.get(i);%>
+                            <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
-                                    <img src="img/images/de/a35-s.png" alt=""/>
+                                    <img src="<%=p.get1SrcImg()%>" alt=""/>
                                 </div>
                                 <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp cao cấp <br> Dê thịt, dê vỗ béo</h6>
-                                    <span>259,000 đ</span>
+                                    <h6><%=p.getProduct_name()%>></h6>
+                                    <span><%=p.getOutPrice()%>> đ</span>
                                 </div>
                             </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/de/a35-s.png" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Thức ăn hỗn hợp cao cấp <br> Dê thịt, dê vỗ béo</h6>
-                                    <span>259,000 đ</span>
-                                </div>
-                            </a>
-                            <a href="#" class="latest-product__item">
-                                <div class="latest-product__item__pic">
-                                    <img src="img/images/heo/dam-dac/mavin8933ct.jpg" alt=""/>
-                                </div>
-                                <div class="latest-product__item__text">
-                                    <h6>Hỗn hợp cho heo siêu</h6>
-                                    <span>289,000 đ</span>
-                                </div>
-                            </a>
+                            <%
+                                }
+                            %>
+
                         </div>
                     </div>
                 </div>

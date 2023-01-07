@@ -407,13 +407,13 @@
             <div class="col-lg-12 col-md-12">
                 <h3>Đánh Giá</h3>
                 <div class="comment">
-                    <input type="text" name="" id="blog_cmment" class="input_comment"
+                    <input type="text" name="" id="blog_comment" class="input_comment"
                            value="Vui lòng nhập bình luận của bạn">
                     <button class="primary-btn">Đánh giá</button>
                 </div>
                 <div class="review_choose">
                     <div class="review_star">
-                        <input type="radio" name="star_radio" id="">
+                        <input type="radio" name="star_radio" id="1s">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -421,25 +421,25 @@
                         <i class="fa fa-star"></i>
                     </div>
                     <div class="review_star">
-                        <input type="radio" name="star_radio" id="">
+                        <input type="radio" name="star_radio" id="2s">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
                     <div class="review_star">
-                        <input type="radio" name="star_radio" id="">
+                        <input type="radio" name="star_radio" id="3s">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
                     <div class="review_star">
-                        <input type="radio" name="star_radio" id="">
+                        <input type="radio" name="star_radio" id="4s">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
                     <div class="review_star">
-                        <input type="radio" name="star_radio" id="">
+                        <input type="radio" name="star_radio" id="5s">
                         <i class="fa fa-star"></i>
                     </div>
                 </div>
