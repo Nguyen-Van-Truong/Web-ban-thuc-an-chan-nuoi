@@ -84,7 +84,6 @@ public class ProductService {
     }
 
     public static List<Product> getListProduct(int page, int category_id, List<Integer> characteristic_ids) {
-        System.out.println(characteristic_ids);
         int offset = (page - 1) * pageSize;  // Offset cho trang hien tai
         //neu co loai san pham
         if (category_id != -99)
@@ -127,7 +126,6 @@ public class ProductService {
         }
         listToString = listToString.substring(0, listToString.length() - 1);
         String finalListToString = listToString;
-        System.out.println(finalListToString + " !@3");
         return JDBiConnector.get().withHandle(handle -> {
             return handle.createQuery("select p.product_id,p.product_name,p.product_description,p.create_date,p.quantity,p.status from product as p\n" +
                             "where p.status != 0 AND p.product_id != :thisProductId AND p.product_id in (\n" +
@@ -217,6 +215,46 @@ public class ProductService {
         });
     }
 
+    public static List<Product> getNNewProducts(int n) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select * from product where status != 0  ORDER BY product_id DESC LIMIT :n")
+                    .bind("n", n)
+                    .mapToBean(Product.class)
+                    .stream().collect(Collectors.toList());
+        });
+    }
+    public static List<Product> getNBestSellingProducts(int n) {
+        return JDBiConnector.get().withHandle(handle -> {
+            // Join the order_detail, order, and product tables on the product_id and order_id columns
+            String sql = "SELECT p.*, SUM(od.quantity) as total_sold FROM product p "
+                    + "JOIN order_detail od ON p.product_id = od.product_id "
+                    + "JOIN `order` o ON od.order_id = o.order_id "
+                    + "WHERE o.status = 4 "
+                    + "GROUP BY p.product_id "
+                    + "HAVING p.status != 0 "
+                    + "ORDER BY total_sold DESC "
+                    + "LIMIT :n";
+            return handle.createQuery(sql)
+                    .bind("n", n)
+                    .mapToBean(Product.class)
+                    .stream().collect(Collectors.toList());
+        });
+    }
+    public static List<Product> getNBestAvgScoreProducts(int n) {
+        return JDBiConnector.get().withHandle(handle -> {
+            // Select the product_id and average score for each product and sort the results in descending order by average score
+            return handle.createQuery("SELECT p.*, AVG(r.score) as avg_score "
+                            + "FROM product p "
+                            + "JOIN review r ON p.product_id = r.product_id "
+                            + "GROUP BY p.product_id "
+                            + "ORDER BY avg_score DESC "
+                            + "LIMIT :n")
+                    .bind("n", n)
+                    .mapToBean(Product.class)
+                    .list();
+        });
+    }
+
     public static void main(String[] args) {
 //        System.out.println(getListProductFromCategory(1, -99, 2));
 //        System.out.println(getProductsFromCategory(-99,0));
@@ -227,6 +265,8 @@ public class ProductService {
 //        System.out.println(getProductsFromCategoryAndCharacteristic(5,listChar, 0));
 //        System.out.println(getProductsFromCharacteristic(listChar, 0));
 //        System.out.println(getProductFromProductId(1));
-        System.out.println(getNFeaturedProducts(5));
+//        System.out.println(getNFeaturedProducts(5));
+//        System.out.println(getNBestSellingProducts  (5));
+        System.out.println(getNBestAvgScoreProducts(3));
     }
 }

@@ -25,6 +25,15 @@ public class IndexController extends HttpServlet {
         List<Category> listAllCategory = CategoryService.getListCategory();
         request.setAttribute("ListAllCategory", listAllCategory);
 
+        List<Product> listNNewProducts = ProductService.getNNewProducts(6);
+        request.setAttribute("ListNNewProducts", listNNewProducts);
+
+        List<Product> listNBestSellingProducts = ProductService.getNBestSellingProducts(6);
+        request.setAttribute("ListNBestSellingProducts", listNBestSellingProducts);
+
+        List<Product> listNBestAvgScoreProducts = ProductService.getNBestAvgScoreProducts(6);
+        request.setAttribute("ListNBestAvgScoreProducts", listNBestAvgScoreProducts);
+
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
