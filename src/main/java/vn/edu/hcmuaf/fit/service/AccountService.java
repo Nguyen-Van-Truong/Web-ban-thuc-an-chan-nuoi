@@ -20,7 +20,8 @@ public class AccountService {
     static {
         users.put("admin", "admin");
         users.put("user", "user");
-        users.put("ti", "123");
+        users.put("truong123", "123");
+        users.put("in", "12345");
     }
 
     private AccountService() {
@@ -35,7 +36,7 @@ public class AccountService {
 
     public Account checkLogin(String username, String password) {
         List<Account> accounts = JDBiConnector.get().withHandle(h ->
-                h.createQuery("SELECT * FROM user WHERE username = ?")
+                h.createQuery("SELECT * FROM account WHERE name = ?")
                         .bind(0, username)
                         .mapToBean(Account.class)
                         .stream()
@@ -62,10 +63,26 @@ public class AccountService {
         }
     }
 
-    public boolean register(String username, String password, String confirm, String email, String phone, String address) {
-//        check register with username and password
-//        if(!password.equals(confirm))return false;
-//        return UserDao.getInstance().register(username, password, email, phone, address);
-        return false;
+    public  boolean registerUser(String username, String password, String email) {
+
+        int count = JDBiConnector.get().withHandle(h ->
+                h.createQuery("SELECT COUNT(*) FROM account WHERE name = ?")
+                        .bind(0, username)
+                        .mapTo(Integer.class)
+                        .findOnly()
+        );
+
+        if (count > 0)
+            return false;
+        int rowAffected = JDBiConnector.get().withHandle(h ->
+                h.createUpdate("INSERT INTO account SELECT (MAX(account_id)+1), ?, ?, ?, null, null, null,null, 1  FROM account")
+                        .bind(0, username)
+                        .bind(1, password)
+                        .bind(2, email)
+                        .execute()
+        );
+        return rowAffected > 0;
     }
+
+
 }

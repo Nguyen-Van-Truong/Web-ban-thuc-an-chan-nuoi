@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<%
+    String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,20 +65,29 @@
 <body>
 <div class="container-login100" style="background-image: url('img/login/background-login.jpg');">
     <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-        <form class="login100-form validate-form">
+        <form class="login100-form validate-form" action="/Web_ban_thuc_an_chan_nuoi_war/doSignUp" method="post">
 <span class="login100-form-title p-b-37">
 Đăng Kí
 </span>
+            <%
+                if (error != null) {
+            %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <%
+                }
+            %>
             <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-                <input class="input100" type="text" name="email" placeholder="email">
+                <input class="input100" type="text" name="email" value="<%= request.getParameter("email")!=null?request.getParameter("email"):"" %>" placeholder="Email">
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-                <input class="input100" type="text" name="username" placeholder="tài khoản">
+                <input class="input100" type="text" name="username" value="<%= request.getParameter("username")!=null?request.getParameter("username"):"" %>" placeholder="Tài khoản">
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
-                <input class="input100" type="password" name="pass" placeholder="mật khẩu">
+                <input class="input100" type="password" name="pass" placeholder="Mật khẩu">
                 <span class="focus-input100"></span>
             </div>
             <div class="container-login100-form-btn">
