@@ -168,19 +168,8 @@
                     <a href="./index"><img src="img/logo.png" alt=""/></a>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input
-                                    type="text"
-                                    placeholder="Bạn cần sản phẩm nào của chúng tôi"
-                            />
-                            <button type="submit" class="site-btn">TÌM KIẾM</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <%@ include file="/find_product.jsp" %>
+
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>

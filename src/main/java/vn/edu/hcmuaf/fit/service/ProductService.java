@@ -223,6 +223,7 @@ public class ProductService {
                     .stream().collect(Collectors.toList());
         });
     }
+
     public static List<Product> getNBestSellingProducts(int n) {
         return JDBiConnector.get().withHandle(handle -> {
             // Join the order_detail, order, and product tables on the product_id and order_id columns
@@ -240,6 +241,7 @@ public class ProductService {
                     .stream().collect(Collectors.toList());
         });
     }
+
     public static List<Product> getNBestAvgScoreProducts(int n) {
         return JDBiConnector.get().withHandle(handle -> {
             // Select the product_id and average score for each product and sort the results in descending order by average score
@@ -249,6 +251,17 @@ public class ProductService {
                             + "GROUP BY p.product_id "
                             + "ORDER BY avg_score DESC "
                             + "LIMIT :n")
+                    .bind("n", n)
+                    .mapToBean(Product.class)
+                    .list();
+        });
+    }
+
+    public static List<Product> getNProductLikeName(int n, String name) {
+        return JDBiConnector.get().withHandle(handle -> {
+            // Select all columns from the product table and filter the results based on the product_name column using the LIKE clause
+            String sql = "SELECT * FROM product WHERE product_name LIKE '%" + name + "%' LIMIT :n";
+            return handle.createQuery(sql)
                     .bind("n", n)
                     .mapToBean(Product.class)
                     .list();
@@ -267,6 +280,6 @@ public class ProductService {
 //        System.out.println(getProductFromProductId(1));
 //        System.out.println(getNFeaturedProducts(5));
 //        System.out.println(getNBestSellingProducts  (5));
-        System.out.println(getNBestAvgScoreProducts(3));
+        System.out.println(getNProductLikeName(3, "heo"));
     }
 }
