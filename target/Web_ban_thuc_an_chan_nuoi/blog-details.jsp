@@ -1,3 +1,6 @@
+<%@ page import="vn.edu.hcmuaf.fit.model.Blog" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.ContentBlog" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -203,9 +206,9 @@
           <div class="col-lg-12">
             <nav class="header__menu">
               <ul class="menu__list">
-                <li><a href="index.jsp">Trang Chủ</a></li>
+                <li><a href="IndexController">Trang Chủ</a></li>
                 <li><a href="./shop-grid">Sản phẩm</a></li>
-                <li><a href="blog.jsp">Tin Tức</a></li>
+                <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
                 <li><a href="contact.jsp">Liên Hệ</a></li>
               </ul>
             </nav>
@@ -245,81 +248,32 @@
     <section class="blog-details spad">
       <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-5 order-md-1 order-2>
-                <div class="blog__sidebar">
-                  <div class="blog__sidebar__search">
-                    <form action="#">
-                      <input type="text" placeholder="Tìm kiếm..." />
-                      <button type="submit">
-                        <span class="icon_search"></span>
-                      </button>
-                    </form>
-                  </div>
-                  <!-- <div class="blog__sidebar__item">
-                    <h4>Thể loại</h4>
-                    <ul>
-                      <li><a href="#">Tất cẩ</a></li>
-                      <li><a href="#">Gia Cầm (20)</a></li>
-                      <li><a href="#">Gia Súc (5)</a></li>
-                      <li><a href="#">Thủy Sản (9)</a></li>
-                      <li><a href="#">Khác (10)</a></li>
-                    </ul>
-                  </div> -->
-                  <div class="blog__sidebar__item">
-                    <h4>Tin tức gần đây</h4>
-                    <div class="blog__sidebar__recent">
-                      <a href="#" class="blog__sidebar__recent__item">
-                        <div class="blog__sidebar__recent__item__pic">
-                          <img src="img/images/tintuc3.jpg" alt="" />
-                        </div>
-                        <div class="blog__sidebar__recent__item__text">
-                          <h6>
-                            Tinh dầu thay thế kháng sinh <br />
-                            trong chăn nuôi heo
-                          </h6>
-                          <span>08/11/2022</span>
-                        </div>
-                      </a>
-                      <a href="#" class="blog__sidebar__recent__item">
-                        <div class="blog__sidebar__recent__item__pic">
-                          <img src="img/images/tintuc4.jpg" alt="" />
-                        </div>
-                        <div class="blog__sidebar__recent__item__text">
-                          <h6>
-                            Triển khai Tháng vệ sinh, khử trùng tiêu độc <br />
-                            môi trường chăn nuôi
-                          </h6>
-                          <span>07/11/2022</span>
-                        </div>
-                      </a>
-                      <a href="#" class="blog__sidebar__recent__item">
-                        <div class="blog__sidebar__recent__item__pic">
-                          <img src="img/images/tintuc5.jpg" alt="" />
-                        </div>
-                        <div class="blog__sidebar__recent__item__text">
-                          <h6>
-                            Quy trình kỹ thuật nuôi dê lấy sữa hiệu quả cao
-                          </h6>
-                          <span>04/11/2022</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-          <div class="col-lg-8 col-md-7 order-md-1 order-1">
+          <div class="col-lg-12 col-md-12 order-md-1 order-1">
             <div class="blog__details__text">
-              <img src="img/images/thumbnail1.jpg" alt="" />
+              <%
+                Blog blog = (Blog) request.getAttribute("blog");
+                List<ContentBlog> listContent = (List<ContentBlog>) request.getAttribute("listContent");
+              %>
 
-              <h3>
-                100% heo giống cụ kỵ của Hòa Phát được nhập khẩu trực tiếp từ Đan Mạch với các ưu điểm vượt trội về năng suất sinh sản, sinh trưởng mạnh, chất lượng thịt tối ưu.
-              </h3>
-              <p>
-                Heo giống Hòa Phát được nhập khẩu từ Công ty DanBred International của Đan Mạch. Đây là công ty đứng đầu thế giới về nguồn gen heo chất lượng cao.
 
-                Theo Công ty CP Phát triển Chăn nuôi Hòa Phát, heo giống được sinh ra và nuôi dưỡng trong hệ thống chuồng trại hiện đại, an toàn sinh học. Môi trường nuôi âm tính với các bệnh truyền nhiễm nguy hiểm như dịch bệnh tai xanh, viêm đa xoang Glasser…
+              <h1>
+                <%= blog.getTitle()%>
+              </h1>
+              <h6 style="margin-bottom: 50px">
+                <%= blog.getCreate_date()%>
+              </h6>
+              <%
+                for(ContentBlog contentBlog: listContent){
+              %>
+              <div style="display: flex; flex-direction: column">
+                <img src="<%= contentBlog.getUrl_image()%>" alt="" style="margin: auto ; padding: 50px" />
+                <p>
+                  <%= contentBlog.getParagrap()%>
+                </p>
+              </div>
 
-                Đảm bảo an toàn sinh học, heo giống cũng được tiêm chủng vacxin chất lượng đúng độ tuổi để đạt hiệu quả phòng bệnh cao nhất đối với các bệnh như còi cọc do Circo virus, suyễn heo Mycoplasma hyopneumoniae, được nuôi với nguồn dinh dưỡng từ thức ăn (cám) Hòa Phát…
-              </p>
+              <%}%>
+
             </div>
             <div class="blog__details__content">
               <div class="row">
@@ -362,164 +316,164 @@
    
     <!-- Blog Details Section End -->
 
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <h3>Bình Luận</h3>
-            <div class="comment">
-              <input type="text" name="" id="blog_cmment" class="input_comment" value="Vui lòng nhập bình luận của bạn">
-              <button class="primary-btn">Đăng bình luận</button>
-            </div>
+<%--    <section>--%>
+<%--      <div class="container">--%>
+<%--        <div class="row">--%>
+<%--          <div class="col-lg-12 col-md-12">--%>
+<%--            <h3>Bình Luận</h3>--%>
+<%--            <div class="comment">--%>
+<%--              <input type="text" name="" id="blog_cmment" class="input_comment" value="Vui lòng nhập bình luận của bạn">--%>
+<%--              <button class="primary-btn">Đăng bình luận</button>--%>
+<%--            </div>--%>
 
-            <div class="page_comment">
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-              </div>
+<%--            <div class="page_comment">--%>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-              </div>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-              </div>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-              </div>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-              </div>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-              </div>
-  
-              
-            </div>
-            
-          
-        </div>
-      </div>
-    </section>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--              </div>--%>
+<%--  --%>
+<%--              --%>
+<%--            </div>--%>
+<%--            --%>
+<%--          --%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </section>--%>
 
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <h3>Đánh Giá</h3>
-            <div class="comment">
-              <input type="text" name="" id="blog_cmment" class="input_comment" value="Vui lòng nhập bình luận của bạn">
-              <button class="primary-btn">Đánh giá</button>
-            </div>
-            <div class="review_choose">
-              <div class="review_star">
-                <input type="radio" name="star_radio" id="">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="review_star">
-                <input type="radio" name="star_radio" id="">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="review_star">
-                <input type="radio" name="star_radio" id="">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="review_star">
-                <input type="radio" name="star_radio" id="">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-              <div class="review_star">
-                <input type="radio" name="star_radio" id="">
-                <i class="fa fa-star"></i>
-              </div>
-            </div>
+<%--    <section>--%>
+<%--      <div class="container">--%>
+<%--        <div class="row">--%>
+<%--          <div class="col-lg-12 col-md-12">--%>
+<%--            <h3>Đánh Giá</h3>--%>
+<%--            <div class="comment">--%>
+<%--              <input type="text" name="" id="blog_cmment" class="input_comment" value="Vui lòng nhập bình luận của bạn">--%>
+<%--              <button class="primary-btn">Đánh giá</button>--%>
+<%--            </div>--%>
+<%--            <div class="review_choose">--%>
+<%--              <div class="review_star">--%>
+<%--                <input type="radio" name="star_radio" id="">--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--              </div>--%>
+<%--              <div class="review_star">--%>
+<%--                <input type="radio" name="star_radio" id="">--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--              </div>--%>
+<%--              <div class="review_star">--%>
+<%--                <input type="radio" name="star_radio" id="">--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--              </div>--%>
+<%--              <div class="review_star">--%>
+<%--                <input type="radio" name="star_radio" id="">--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--              </div>--%>
+<%--              <div class="review_star">--%>
+<%--                <input type="radio" name="star_radio" id="">--%>
+<%--                <i class="fa fa-star"></i>--%>
+<%--              </div>--%>
+<%--            </div>--%>
 
-            <div class="page_comment">
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-                <div class="star">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-              </div>
+<%--            <div class="page_comment">--%>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--                <div class="star">--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                </div>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-                <div class="star">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-              </div>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--                <div class="star">--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                </div>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-                <div class="star">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-              </div>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--                <div class="star">--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                </div>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-                <div class="star">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-              </div>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--                <div class="star">--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                </div>--%>
+<%--              </div>--%>
 
-              <div class="comments">
-                <p class="user_name">Lê Văn Chí</p>
-                <p class="content">Sẩn phẩm này rất tốt</p>
-                <div class="star">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-              </div>
-  
-            </div>
-            
-          
-        </div>
-      </div>
-    </section>
+<%--              <div class="comments">--%>
+<%--                <p class="user_name">Lê Văn Chí</p>--%>
+<%--                <p class="content">Sẩn phẩm này rất tốt</p>--%>
+<%--                <div class="star">--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                  <i class="fa fa-star"></i>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--  --%>
+<%--            </div>--%>
+<%--            --%>
+<%--          --%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </section>--%>
 
     <!-- Related Blog Section Begin -->
     <section class="related-blog spad">
@@ -532,63 +486,30 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="blog__item">
-              <div class="blog__item__pic">
-                <img src="img/images/thumbnail2.jpg" alt="" />
-              </div>
-              <div class="blog__item__text">
-                <ul>
-                  <li><i class="fa fa-calendar-o"></i> 04/11/2022</li>
-                  <li><i class="fa fa-comment-o"></i> 5</li>
-                </ul>
-                <h5><a href="#">Bản tin Thị trường Chăn nuôi ngày 04/11/2022</a></h5>
-                <p>
-                  Giá heo hơi bình quân cả nước ngày hôm nay là khoảng 54.000 đồng/kg.
 
-                  Tại miền Bắc, giá heo tiếp tục đà giảm do một số công ty lớn hạ mạnh giá heo biểu to để thoát hàng.
-                  Tại miền Trung và miền Nam, lực đóng ra miền Bắc chậm, số lượng heo tồn kho tăng lên nên
-                  giá heo tại khu vực này cũng chịu áp lực giá heo giảm trong ngắn hạn.
-                </p>
-              </div>
-            </div>
-          </div>
+          <%
+            List<Blog> listBlog = (List<Blog>) request.getAttribute("listNewBlog");
+            for(Blog oblog: listBlog){
+          %>
           <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="blog__item">
               <div class="blog__item__pic">
-                <img src="img/images/thumbnailGF.png" alt="" />
+                <a href="BlogDetails?blog_id=<%= oblog.getBlog_id()%>"><img src="<%= oblog.getUrl_image()%>" alt="" /></a>
               </div>
               <div class="blog__item__text">
                 <ul>
-                  <li><i class="fa fa-calendar-o"></i> 01/10/2022</li>
-                  <li><i class="fa fa-comment-o"></i> 5</li>
+                  <li><i class="fa fa-calendar-o"></i><%= oblog.getCreate_date()%></li>
                 </ul>
-                <h5><a href="#">Thực phẩm thủy hải sản GREENFEED tự hào kiến tạo giá trị Lành - Lạ - Ngon</a></h5>
+                <h5><a href="BlogDetails?blog_id=<%= oblog.getBlog_id()%>"><%= oblog.getTitle()%></a></h5>
                 <p>
-                  Bắt nguồn từ con giống khỏe mạnh, sản phẩm dinh dưỡng tối ưu, Ngành Thủy Hải Sản GREENFEED đã tạo ra dòng sản phẩm thương phẩm chất lượng cao đáp ứng nhu cầu của thị trường nội địa lẫn các yêu cầu, tiêu chuẩn khắc khe của thế giới.
+                  <%= oblog.getIntroduce()%>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="blog__item">
-              <div class="blog__item__pic">
-                <img src="img/images/tin-tuc1.jpg" alt="" />
-              </div>
-              <div class="blog__item__text">
-                <ul>
-                  <li>
-                    <i class="fa fa-calendar-o"></i>10/11/2022
-                  </li>
-                  <li><i class="fa fa-comment-o"></i> 5</li>
-                </ul>
-                <h5><a href="#">Tuyên bố của Hội đồng Gia cầm Quốc tế (International Poultry Council – IPC) về sử dụng kháng sinh và các nguyên tắc quản lý kháng sinh</a></h5>
-                <p>
-                  Sứ mệnh: IPC và các thành viên sẽ thúc đẩy việc sử dụng và quản lý có trách nhiệm các chất khánh khuẩn; nhằm bảo vệ sức khỏe và phúc lợi của đàn gia cầm, sản xuất thực phẩm an toàn, bảo đảm tính hiệu quả của các chất kháng khuẩn và tạo niềm tin với người tiêu dùng.
-                </p>
-              </div>
-            </div>
-          </div>
+
+
+          <%}%>
         </div>
       </div>
     </section>
