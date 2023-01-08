@@ -285,7 +285,8 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
+                    <a href="#" class="primary-btn" data-product-id="<%=p.getProduct_id()%>" onclick="addToCart(event)">THÊM
+                        VÀO GIỎ HÀNG</a>
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                         <li><b>Khả dụng</b> <span>Trong kho</span></li>
@@ -377,6 +378,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 <!-- Product Details Section End -->
 
@@ -489,6 +491,7 @@
 
             </div>
         </div>
+    </div>
 </section>
 
 <!-- Related Product Section Begin -->
@@ -533,6 +536,32 @@
 <!-- Footer Section Begin -->
 <div class="over_footer"></div>
 <!-- Footer Section End -->
+
+<script>
+    function addToCart(event) {
+        event.preventDefault();
+        console.log('Clicked addtocart!');
+
+        var productId = <%=p.getProduct_id()%>;
+        var quantity = $('.pro-qty input').val();
+
+        console.log(productId);
+        $.ajax({
+            url: '/Web_ban_thuc_an_chan_nuoi_war/ShoppingCart',
+            method: 'POST',
+            data: {
+                productId: productId,
+                quantity: quantity
+            },
+            success: function (response) {
+                console.log('Product added to cart!');
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error);
+            }
+        });
+    }
+</script>
 
 <!-- Js Plugins -->
 <script src="js/jquery-3.3.1.min.js"></script>

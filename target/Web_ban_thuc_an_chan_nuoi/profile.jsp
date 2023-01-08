@@ -70,15 +70,15 @@
         <ul>
             <li class="active"><a href="index">Trang chủ</a></li>
             <li>
-                <a href="./shop-grid.html">Sản phẩm</a>
+                <a href="./shop-grid">Sản phẩm</a>
                 <ul class="header__menu__dropdown one__lever">
                     <li>
                         <a href="./shop-grid.html">Thức ăn gia súc</a>
                         <ul class="header__menu__dropdown">
-                            <li><a href="./shop-grid.html">Thức ăn cho bò</a></li>
-                            <li><a href="./shop-grid.html">Thức ăn cho ngựa</a></li>
-                            <li><a href="./shop-grid.html">Thức ăn cho lợn</a></li>
-                            <li><a href="./shop-grid.html">Thức ăn cho trâu</a></li>
+                            <li><a href="shop-grid">Thức ăn cho bò</a></li>
+                            <li><a href="shop-grid">Thức ăn cho ngựa</a></li>
+                            <li><a href="shop-grid">Thức ăn cho lợn</a></li>
+                            <li><a href="shop-grid">Thức ăn cho trâu</a></li>
                         </ul>
                     </li>
                     <li>
@@ -173,7 +173,7 @@
                 <div class="header__cart">
                     <ul>
                         <li>
-                            <a href="shop-grid.html"><i class="fa fa-heart"></i> <span>1</span></a>
+                            <a href="shop-grid"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
                             <a href="shoping-cart.jsp"
@@ -195,7 +195,7 @@
                 <nav class="header__menu">
                     <ul class="menu__list">
                         <li><a href="index">Trang Chủ</a></li>
-                        <li><a href="./shop-grid.html">Sản phẩm</a></li>
+                        <li><a href="shop-grid">Sản phẩm</a></li>
                         <li><a href="blog.jsp">Tin Tức</a></li>
                         <li><a href="contact.jsp">Liên Hệ</a></li>
                     </ul>
@@ -226,10 +226,10 @@
                     <li>
                         <button class="menu__item" onclick="odered_click()">Đơn hàng đã giao</button>
                     </li>
-                    <li><a href="./shop-grid.html">
+                    <li><a href="./shop-grid">
                         <button class="menu__item">Sản phẩm yêu thích</button>
                     </a></li>
-                    <li><a href="./shop-grid.html">
+                    <li><a href="./shop-grid">
                         <button class="menu__item">Sản phẩm đã mua</button>
                     </a></li>
                     <li><a href="./admin.html">
