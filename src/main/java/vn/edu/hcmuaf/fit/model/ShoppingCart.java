@@ -22,6 +22,15 @@ public class ShoppingCart {
         }
     }
 
+    public CartItem getItem(int productId) {
+        for (CartItem item : getItems()) {
+            if (item.getProductId() == productId) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public void removeItem(int productId) {
         items.remove(productId);
     }
@@ -49,6 +58,7 @@ public class ShoppingCart {
     public List<CartItem> getItems() {
         return new ArrayList<>(items.values());
     }
+
     public void updateQuantity(int productId, int newQuantity) {
         for (CartItem item : getItems()) {
             if (item.getProductId() == productId) {

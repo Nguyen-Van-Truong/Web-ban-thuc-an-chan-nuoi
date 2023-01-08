@@ -27,7 +27,12 @@ public class ShoppingCartController extends HttpServlet {
         } else if ("remove".equals(action)) {
             int productId = Integer.parseInt(request.getParameter("productId"));
             remove(productId, request);
+        } else if ("updateQuantity".equals(action)) {
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            update(productId, quantity, request);
         }
+
         request.getSession().setMaxInactiveInterval(1800);
     }
 
@@ -40,6 +45,16 @@ public class ShoppingCartController extends HttpServlet {
             request.getSession().setAttribute("cart", cart);
         }
         cart.addItem(productId, quantity);
+    }
+
+    private void update(int productId, int quantity, HttpServletRequest request) {
+        ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+        if (cart != null) {
+            CartItem item = cart.getItem(productId);
+            if (item != null) {
+                item.setQuantity(quantity);
+            }
+        }
     }
 
     public void remove(int productId, HttpServletRequest request) {

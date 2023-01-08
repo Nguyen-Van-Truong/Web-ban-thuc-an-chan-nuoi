@@ -11,9 +11,13 @@ public class CartItem {
         this.productId = productId;
         this.quantity = quantity;
 
+        updateTotalCost();
+    }
+
+    public void updateTotalCost() {
         Product product = ProductService.getProductFromProductId(productId);
         if (product != null) {
-            totalCost = product.getOutPrice() * quantity;
+            totalCost = product.getOutPrice() * getQuantity();
         } else {
             totalCost = 0;
         }
@@ -29,14 +33,17 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        updateTotalCost();
     }
 
     public double getTotalCost() {
         return totalCost;
     }
+
     public String get1SrcImg() {
         return ProductService.get1SrcImg(this.getProductId());
     }
+
     @Override
     public String toString() {
         return "CartItem{" +

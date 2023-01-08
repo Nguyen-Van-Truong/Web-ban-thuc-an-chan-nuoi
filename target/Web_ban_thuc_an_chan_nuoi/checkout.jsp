@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.fit.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -34,180 +35,180 @@
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
-  <div class="humberger__menu__logo">
-    <a href="index.jsp"><img src="img/logo.png" alt="" /></a>
-  </div>
-  <div class="humberger__menu__cart">
-    <ul>
-      <li>
-        <a href="like"><i class="fa fa-heart"></i> <span>1</span></a>
-      </li>
-      <li>
-        <a href="cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
-      </li>
-    </ul>
-    <div class="header__cart__price">item: <span>$150.00</span></div>
-  </div>
-  <div class="humberger__menu__widget">
-    <div class="header__top__right__language">
-      <img src="img/language.png" alt="" />
-      <div>English</div>
-      <span class="arrow_carrot-down"></span>
-      <ul>
-        <li><a href="#">Spanis</a></li>
-        <li><a href="#">English</a></li>
-      </ul>
+    <div class="humberger__menu__logo">
+        <a href="index.jsp"><img src="img/logo.png" alt=""/></a>
     </div>
-    <div class="header__top__right__auth">
-      <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
-    </div>
-  </div>
-  <nav class="humberger__menu__nav mobile-menu">
-    <ul>
-      <li class="active"><a href="index.jsp">Trang chủ</a></li>
-      <li>
-        <a href="./shop-grid">Sản phẩm</a>
-        <ul class="header__menu__dropdown one__lever">
-          <li>
-            <a href="./shop-grid.html">Thức ăn gia súc</a>
-            <ul class="header__menu__dropdown">
-              <li><a href="./shop-grid.html">Thức ăn cho bò</a></li>
-              <li><a href="./shop-grid.html">Thức ăn cho ngựa</a></li>
-              <li><a href="./shop-grid.html">Thức ăn cho lợn</a></li>
-              <li><a href="./shop-grid.html">Thức ăn cho trâu</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="./shop-grid.html">Thức ăn gai cầm</a>
-            <ul class="header__menu__dropdown">
-              <li><a href="./shop-grid.html">Thức ăn gia súc</a></li>
-              <li><a href="./shop-grid.html">Thức ăn gai cầm</a></li>
-              <li><a href="./shop-grid.html">Thức ăn thủy sản</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="./shop-grid.html">Thức ăn thủy sản</a>
-            <ul class="header__menu__dropdown">
-              <li><a href="./shop-grid.html">Thức ăn cho tôm</a></li>
-              <li><a href="./shop-grid.html">Thức ăn cho cá</a></li>
-              <li><a href="./shop-grid.html">Thức ăn cho mực</a></li>
-            </ul>
-          </li>
+    <div class="humberger__menu__cart">
+        <ul>
+            <li>
+                <a href="like"><i class="fa fa-heart"></i> <span>1</span></a>
+            </li>
+            <li>
+                <a href="cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+            </li>
         </ul>
-      </li>
-      <li><a href="blog.jsp">Tin Tức</a></li>
-      <li><a href="contact.jsp">Liên Hệ</a></li>
-    </ul>
-  </nav>
-  <div id="mobile-menu-wrap"></div>
-  <div class="header__top__right__social">
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-linkedin"></i></a>
-    <a href="#"><i class="fa fa-pinterest-p"></i></a>
-  </div>
-  <div class="humberger__menu__contact">
-    <ul>
-      <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-      <li>Free Shipping for all Order of $99</li>
-    </ul>
-  </div>
+        <div class="header__cart__price">item: <span>$150.00</span></div>
+    </div>
+    <div class="humberger__menu__widget">
+        <div class="header__top__right__language">
+            <img src="img/language.png" alt=""/>
+            <div>English</div>
+            <span class="arrow_carrot-down"></span>
+            <ul>
+                <li><a href="#">Spanis</a></li>
+                <li><a href="#">English</a></li>
+            </ul>
+        </div>
+        <div class="header__top__right__auth">
+            <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
+        </div>
+    </div>
+    <nav class="humberger__menu__nav mobile-menu">
+        <ul>
+            <li class="active"><a href="index.jsp">Trang chủ</a></li>
+            <li>
+                <a href="./shop-grid">Sản phẩm</a>
+                <ul class="header__menu__dropdown one__lever">
+                    <li>
+                        <a href="./shop-grid.html">Thức ăn gia súc</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="./shop-grid.html">Thức ăn cho bò</a></li>
+                            <li><a href="./shop-grid.html">Thức ăn cho ngựa</a></li>
+                            <li><a href="./shop-grid.html">Thức ăn cho lợn</a></li>
+                            <li><a href="./shop-grid.html">Thức ăn cho trâu</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./shop-grid.html">Thức ăn gai cầm</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="./shop-grid.html">Thức ăn gia súc</a></li>
+                            <li><a href="./shop-grid.html">Thức ăn gai cầm</a></li>
+                            <li><a href="./shop-grid.html">Thức ăn thủy sản</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./shop-grid.html">Thức ăn thủy sản</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a href="./shop-grid.html">Thức ăn cho tôm</a></li>
+                            <li><a href="./shop-grid.html">Thức ăn cho cá</a></li>
+                            <li><a href="./shop-grid.html">Thức ăn cho mực</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="blog.jsp">Tin Tức</a></li>
+            <li><a href="contact.jsp">Liên Hệ</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-menu-wrap"></div>
+    <div class="header__top__right__social">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+    </div>
+    <div class="humberger__menu__contact">
+        <ul>
+            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+            <li>Free Shipping for all Order of $99</li>
+        </ul>
+    </div>
 </div>
 <!-- Humberger End -->
 
 <!-- Header Section Begin -->
 <header class="header">
     <div class="header__top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-9 col-md-9">
-            <div class="header__top__left">
-              <ul>
-                <li><i class="fa fa-envelope"></i>animalfeed@gmail.com</li>
-                <li>
-                  Miễn phí giao hàng cho tất cả đơn hàng có giá trị từ
-                  2,000,000 vnđ
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3">
-            <div class="header__top__right">
-              <div class="header__top__right__social">
-                <a href="https://www.facebook.com/"
-                  ><i class="fa fa-facebook"></i
-                ></a>
-                <a href="https://twitter.com/"
-                  ><i class="fa fa-twitter"></i
-                ></a>
-                <a href="https://www.instagram.com/"
-                  ><i class="fa fa-instagram"></i
-                ></a>
-              </div>
-              <div class="header__top__right__language">
-                <img src="img/language.png" alt="" />
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                  <li><a href="#">Spanis</a></li>
-                  <li><a href="#">English</a></li>
-                </ul>
-              </div>
-              <div class="header__top__right__auth">
-                <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
-              </div>
-                <div class="header__top__right__auth">
-                    <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9">
+                    <div class="header__top__left">
+                        <ul>
+                            <li><i class="fa fa-envelope"></i>animalfeed@gmail.com</li>
+                            <li>
+                                Miễn phí giao hàng cho tất cả đơn hàng có giá trị từ
+                                2,000,000 vnđ
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__top__right">
+                        <div class="header__top__right__social">
+                            <a href="https://www.facebook.com/"
+                            ><i class="fa fa-facebook"></i
+                            ></a>
+                            <a href="https://twitter.com/"
+                            ><i class="fa fa-twitter"></i
+                            ></a>
+                            <a href="https://www.instagram.com/"
+                            ><i class="fa fa-instagram"></i
+                            ></a>
+                        </div>
+                        <div class="header__top__right__language">
+                            <img src="img/language.png" alt=""/>
+                            <div>English</div>
+                            <span class="arrow_carrot-down"></span>
+                            <ul>
+                                <li><a href="#">Spanis</a></li>
+                                <li><a href="#">English</a></li>
+                            </ul>
+                        </div>
+                        <div class="header__top__right__auth">
+                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
+                        </div>
+                        <div class="header__top__right__auth">
+                            <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="header__logo">
-            <a href="index.jsp"><img src="img/logo.png" alt="" /></a>
-          </div>
-        </div>
-          <%@ include file="/find_product.jsp" %>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="header__logo">
+                    <a href="index.jsp"><img src="img/logo.png" alt=""/></a>
+                </div>
+            </div>
+            <%@ include file="/find_product.jsp" %>
 
-          <div class="col-lg-3">
-          <div class="header__cart">
-            <ul>
-              <li>
-                <a href="shop-grid.html"><i class="fa fa-heart"></i> <span>1</span></a>
-              </li>
-              <li>
-                <a href="shoping-cart.jsp"
-                  ><i class="fa fa-shopping-bag"></i> <span>3</span></a
-                >
-              </li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-          </div>
+            <div class="col-lg-3">
+                <div class="header__cart">
+                    <ul>
+                        <li>
+                            <a href="shop-grid.html"><i class="fa fa-heart"></i> <span>1</span></a>
+                        </li>
+                        <li>
+                            <a href="ShoppingCart"
+                            ><i class="fa fa-shopping-bag"></i> <span>3</span></a
+                            >
+                        </li>
+                    </ul>
+                    <div class="header__cart__price">item: <span>$150.00</span></div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="humberger__open">
-        <i class="fa fa-bars"></i>
-      </div>
+        <div class="humberger__open">
+            <i class="fa fa-bars"></i>
+        </div>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <nav class="header__menu">
-            <ul class="menu__list">
-              <li><a href="index.jsp">Trang Chủ</a></li>
-              <li><a href="./shop-grid">Sản Phẩm</a></li>
-              <li><a href="blog.jsp">Tin Tức</a></li>
-              <li><a href="contact.jsp">Liên Hệ</a></li>
-            </ul>
-          </nav>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="header__menu">
+                    <ul class="menu__list">
+                        <li><a href="index.jsp">Trang Chủ</a></li>
+                        <li><a href="./shop-grid">Sản Phẩm</a></li>
+                        <li><a href="blog.jsp">Tin Tức</a></li>
+                        <li><a href="contact.jsp">Liên Hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 <!-- Header Section End -->
 
 <!-- Hero Section Begin -->
@@ -324,14 +325,26 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="checkout__order">
                             <h4>Đơn hàng của bạn</h4>
-                            <div class="checkout__order__products">Các sản phẩm <span>Tổng cộng</span></div>
+                            <div class="checkout__order__products">Các sản phẩm</div>
                             <ul>
-                                <li>Cám gà đẻ thương phẩm <span> 279,000 đ</span></li>
-                                <li>Hỗn hợp cho heo siêu <span>289,000 đ</span></li>
-                                <li>Hỗn hợp cho gà thịt 5302 <span>209,000 đ</span></li>
+                                <%
+                                    ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+                                    if (cart != null) {
+                                        List<CartItem> items = cart.getItems();
+                                        for (CartItem item : items) {
+                                            Product product = ProductService.getProductFromProductId(item.getProductId());
+                                %>
+                                <li><%=product.getProduct_name()%>
+                                    <span>  số lượng:<%=item.getQuantity()%>, tổng:<%=item.getTotalCost()%></span></li>
+                                <%
+                                        }
+                                    }
+                                    double totalCost = 0;
+                                    if (cart != null)
+                                        totalCost = cart.getTotalCost();%>
                             </ul>
-                            <div class="checkout__order__subtotal">Tổng phụ <span>777,000 đ</span></div>
-                            <div class="checkout__order__total">Tổng cộng <span>777,000 đ</span></div>
+                            <div class="checkout__order__subtotal">Tổng phụ <span>0 đ</span></div>
+                            <div class="checkout__order__total">Tổng cộng <span><%=totalCost%> đ</span></div>
                             <div class="checkout__input__checkbox">
                                 <label for="acc-or">
                                     Tạo một tài khoản?

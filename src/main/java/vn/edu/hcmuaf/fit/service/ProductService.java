@@ -40,6 +40,16 @@ public class ProductService {
         });
     }
 
+    public static String getNameProductFromProductId(int productId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT product_name FROM product WHERE product_id = ? AND status != 0 ")
+                    .bind(0, productId)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("sản phẩm không tìm thấy");
+        });
+    }
+
     public static List<String> getAllImgFromProductId(int productId) {
         return JDBiConnector.get().withHandle(handle -> {
             return handle.createQuery("SELECT src_img FROM productimage WHERE product_id = :productId AND status != 0")
@@ -280,6 +290,7 @@ public class ProductService {
 //        System.out.println(getProductFromProductId(1));
 //        System.out.println(getNFeaturedProducts(5));
 //        System.out.println(getNBestSellingProducts  (5));
-        System.out.println(getNProductLikeName(3, "heo"));
+//        System.out.println(getNProductLikeName(3, "heo"));
+        System.out.println(getNameProductFromProductId(2));
     }
 }

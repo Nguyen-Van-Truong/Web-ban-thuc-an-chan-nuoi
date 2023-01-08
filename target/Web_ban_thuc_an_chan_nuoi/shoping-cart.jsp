@@ -182,7 +182,7 @@
                             <a href="shop-grid.html"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
-                            <a href="shoping-cart.jsp"
+                            <a href="ShoppingCart"
                             ><i class="fa fa-shopping-bag"></i> <span>3</span></a
                             >
                         </li>
@@ -269,12 +269,21 @@
                             </td>
                             <td class="shoping__cart__quantity">
                                 <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="<%=item.getQuantity()%>">
+                                    <div class="pro-qty2">
+                                        <span class="dec qtybtn"
+                                              onclick="increaseDecrease_Quantity(event,<%=item.getProductId()%>,-1)"
+                                              style="width: 35px;font-size: 16px;color: #6f6f6f;cursor: pointer;display: inline-block;">-</span>
+                                        <input type="text" class="qty_text p<%=product.getProduct_id()%>"
+                                               onkeyup="updateQuantity(event,<%=item.getProductId()%>)"
+                                               value="<%=item.getQuantity()%>"
+                                               style="width: 35px;font-size: 16px;color: #6f6f6f;display: inline-block;color: white">
+                                        <span class="inc qtybtn"
+                                              onclick="increaseDecrease_Quantity(event,<%=item.getProductId()%>,+1)"
+                                              style="width: 35px;font-size: 16px;color: #6f6f6f;cursor: pointer;display: inline-block;">+</span>
                                     </div>
                                 </div>
                             </td>
-                            <td class="shoping__cart__total">
+                            <td class="shoping__cart__total ">
                                 <%=item.getTotalCost()%> đ
                             </td>
                             <td class="shoping__cart__item__close" onclick="removeItem(event,<%=item.getProductId()%>)">
@@ -293,9 +302,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="shoping__cart__btns">
-                    <a href="shop-grid" class="primary-btn cart-btn">TIẾP TỤC MUA SẮM</a>
-                    <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                        CẬP NHẬT GIỎ HÀNG</a>
+                    <a href="shop-grid" class="primary-btn cart-btn">TIẾP TỤC MUA
+                        SẮM</a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -313,8 +321,13 @@
                 <div class="shoping__checkout">
                     <h5>Tổng số giỏ hàng</h5>
                     <ul>
-                        <li>Tổng phụ<span>777,000 đ</span></li>
-                        <li>Tổng cộng <span>777,000 đ</span></li>
+                        <%
+                            double totalCostCart = 0;
+                            if (cart != null)
+                                totalCostCart = cart.getTotalCost();
+                        %>
+                        <li>Tổng phụ<span>0 đ</span></li>
+                        <li>Tổng cộng <span><%=totalCostCart%> đ</span></li>
                     </ul>
                     <a href="checkout.jsp" class="primary-btn">TIẾN HÀNH ĐẶT HÀNG</a>
                 </div>
@@ -327,24 +340,77 @@
 <!-- Footer Section Begin -->
 <div class="over_footer"></div>
 <!-- Footer Section End -->
+
+
 <script>
     function removeItem(event, productId) {
         event.preventDefault();
 
-        // Send an AJAX request to remove the item from the cart
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                // Remove the <td> element from the DOM if the item was successfully removed
                 event.target.parentElement.parentElement.remove();
             }
         };
         xhttp.open("POST", "/Web_ban_thuc_an_chan_nuoi_war/ShoppingCart", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send("action=remove&productId=" + productId);
+    };
+
+
+</script>
+<script>
+    var proQty = $('.pro-qty2');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
+    });
+
+    function updateQuantity(event, productId) {
+
+        event.preventDefault();
+        console.log("onchange")
+        var qtyText = document.querySelector('.p' + productId);
+        var quantity = qtyText.value;
+        console.log(quantity);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+        };
+        xhttp.open("POST", "/Web_ban_thuc_an_chan_nuoi_war/ShoppingCart", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("action=updateQuantity&productId=" + productId + "&quantity=" + quantity);
     }
 
-
+    function increaseDecrease_Quantity(event, productId, upOrDown) {
+        event.preventDefault();
+        console.log("onchange")
+        var qtyText = document.querySelector('.p' + productId);
+        let value = parseInt(qtyText.value);
+        let upOrDown1 = parseInt(upOrDown);
+        let quantity = value + upOrDown1;
+        console.log(quantity);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+        };
+        xhttp.open("POST", "/Web_ban_thuc_an_chan_nuoi_war/ShoppingCart", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("action=updateQuantity&productId=" + productId + "&quantity=" + quantity);
+    }
 </script>
 
 <!-- Js Plugins -->
