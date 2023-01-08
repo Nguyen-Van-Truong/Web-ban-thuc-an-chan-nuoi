@@ -19,7 +19,19 @@ public class ShoppingCartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("productId"));
+        String action = request.getParameter("action");
+        System.out.println(action);
+        if ("add".equals(action)) {
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            add(request, productId);
+        } else if ("remove".equals(action)) {
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            remove(productId, request);
+        }
+        request.getSession().setMaxInactiveInterval(1800);
+    }
+
+    private static void add(HttpServletRequest request, int productId) {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
@@ -28,8 +40,13 @@ public class ShoppingCartController extends HttpServlet {
             request.getSession().setAttribute("cart", cart);
         }
         cart.addItem(productId, quantity);
-
-        request.getSession().setMaxInactiveInterval(1800);
-
     }
+
+    public void remove(int productId, HttpServletRequest request) {
+        ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+        if (cart != null) {
+            cart.removeItem(productId);
+        }
+    }
+
 }

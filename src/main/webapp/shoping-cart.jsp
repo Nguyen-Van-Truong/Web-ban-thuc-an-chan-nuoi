@@ -277,7 +277,7 @@
                             <td class="shoping__cart__total">
                                 <%=item.getTotalCost()%> đ
                             </td>
-                            <td class="shoping__cart__item__close">
+                            <td class="shoping__cart__item__close" onclick="removeItem(event,<%=item.getProductId()%>)">
                                 <span class="icon_close"></span>
                             </td>
                         </tr>
@@ -285,8 +285,6 @@
                                 }
                             }
                         %>
-
-
                         </tbody>
                     </table>
                 </div>
@@ -330,7 +328,23 @@
 <div class="over_footer"></div>
 <!-- Footer Section End -->
 <script>
+    function removeItem(event, productId) {
+        event.preventDefault();
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                event.target.parentElement.parentElement.remove();
+            }
+        };
+        xhttp.open("POST", "/Web_ban_thuc_an_chan_nuoi_war/ShoppingCart", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("action=remove&productId=" + productId);
+    }
+
+
 </script>
+
 <!-- Js Plugins -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

@@ -540,18 +540,17 @@
 <script>
     function addToCart(event) {
         event.preventDefault();
-        console.log('Clicked addtocart!');
 
         var productId = <%=p.getProduct_id()%>;
         var quantity = $('.pro-qty input').val();
 
-        console.log(productId);
         $.ajax({
             url: '/Web_ban_thuc_an_chan_nuoi_war/ShoppingCart',
             method: 'POST',
             data: {
                 productId: productId,
-                quantity: quantity
+                quantity: quantity,
+                action: "add",
             },
             success: function (response) {
                 console.log('Product added to cart!');
