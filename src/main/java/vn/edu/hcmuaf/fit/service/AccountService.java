@@ -24,7 +24,7 @@ public class AccountService {
         users.put("in", "12345");
     }
 
-    private AccountService() {
+    public AccountService() {
     }
 
     public static AccountService getInstance() {
@@ -82,6 +82,23 @@ public class AccountService {
                         .execute()
         );
         return rowAffected > 0;
+    }
+
+    public Account findNameAndEmail(String username, String email){
+        List<Account> accounts = JDBiConnector.get().withHandle(h ->
+                h.createQuery("SELECT * FROM account WHERE email = ? AND name = ?")
+                        .bind(0, email)
+                        .bind(1, username)
+                        .mapToBean(Account.class)
+                        .stream()
+                        .collect(Collectors.toList())
+        );
+        if (accounts.size() != 1) return null;
+        Account account = accounts.get(0);
+        if (
+                !account.getEmail().equals(email) ||
+                        !account.getName().equals(username)) return null;
+        return account;
     }
 
 

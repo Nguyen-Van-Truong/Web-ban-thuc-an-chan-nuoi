@@ -103,6 +103,11 @@
                     Đăng Kí
                 </a>
             </div>
+            <div class="text-center">
+                <a href="forgot.jsp" class="txt2 hov1">
+                    Quên mật khẩu?
+                </a>
+            </div>
         </form>
     </div>
 </div>
