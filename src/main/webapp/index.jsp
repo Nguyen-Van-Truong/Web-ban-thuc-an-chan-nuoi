@@ -1,6 +1,8 @@
 <%@ page import="vn.edu.hcmuaf.fit.model.Category" %>
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.Blog" %>
+<%@ page import="vn.edu.hcmuaf.fit.service.BlogService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -100,7 +102,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="blog.jsp">Tin Tức</a></li>
+            <li><a href="BlogController">Tin Tức</a></li>
             <li><a href="contact.jsp">Liên Hệ</a></li>
         </ul>
     </nav>
@@ -168,19 +170,8 @@
                     <a href="./index"><img src="img/logo.png" alt=""/></a>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                        <form action="#">
-                            <input
-                                    type="text"
-                                    placeholder="Bạn cần sản phẩm nào của chúng tôi"
-                            />
-                            <button type="submit" class="site-btn">TÌM KIẾM</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <%@ include file="/find_product.jsp" %>
+
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
@@ -188,7 +179,7 @@
                             <a href="shop-grid"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
-                            <a href="shoping-cart.jsp"
+                            <a href="ShoppingCart"
                             ><i class="fa fa-shopping-bag"></i> <span>3</span></a
                             >
                         </li>
@@ -205,10 +196,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <nav class="header__menu">
-                    <ul class="menu__list">
+                    <ul class="menu__list" style="z-index: 99">
                         <li class="active"><a href="./index">Trang Chủ</a></li>
                         <li><a href="./shop-grid">Sản phẩm</a></li>
-                        <li><a href="blog.jsp">Tin Tức</a></li>
+                        <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
                         <li><a href="contact.jsp">Liên Hệ</a></li>
                     </ul>
                 </nav>
@@ -223,7 +214,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="hero__item set-bg" data-setbg="img/images/banner.jpg">
+                <div class="hero__item set-bg" data-setbg="img/images/banner.jpg" style="margin-top: 17px">
                     <div class="hero__text">
                         <span>Thức ăn chăn nuôi</span>
                         <h2>Từ Thiên Nhiên<br/>100% Chất Lượng</h2>
@@ -500,73 +491,33 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="blog">
+            <%
+                List<Blog> listBlog = (List<Blog>) request.getAttribute("listBlog");
+                for (Blog blog: listBlog){ %>
             <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="blog-details.jsp">
+                <a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="img/images/thumbnail1.jpg" alt=""/>
+                            <img src="<%= blog.getUrl_image() %>" alt=""/>
                         </div>
                         <div class="blog__item__text">
                             <ul>
-                                <li><i class="fa fa-calendar-o"></i> 27/07/2022</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
+                                <li><i class="fa fa-calendar-o"></i> <%=  blog.getCreate_date() %></li>
                             </ul>
-                            <h5><a href="blog-details.jsp">Hòa Phát nhập khẩu 100% heo giống từ Đan Mạch</a></h5>
-                            <p>
-                                100% heo giống cụ kỵ của Hòa Phát được nhập khẩu trực tiếp từ Đan Mạch với các ưu điểm
-                                vượt trội về năng suất sinh sản, sinh trưởng mạnh, chất lượng thịt tối ưu.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="blog-details.jsp">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/images/thumbnail2.jpg" alt=""/>
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> 04/11/2022</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="blog-details.jsp">Bản tin Thị trường Chăn nuôi ngày 04/11/2022</a></h5>
-                            <p>
-                                Giá heo hơi bình quân cả nước ngày hôm nay là khoảng 54.000 đồng/kg.
 
-                                Tại miền Bắc, giá heo tiếp tục đà giảm do một số công ty lớn hạ mạnh giá heo biểu to để
-                                thoát hàng.
-                                Tại miền Trung và miền Nam, lực đóng ra miền Bắc chậm, số lượng heo tồn kho tăng lên nên
-                                giá heo tại khu vực này cũng chịu áp lực giá heo giảm trong ngắn hạn.
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <a href="blog-details.jsp">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="img/images/thumbnailGF.png" alt=""/>
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> 01/10/2022</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="blog-details.jsp">Thực phẩm thủy hải sản GREENFEED tự hào kiến tạo giá trị
-                                Lành - Lạ - Ngon</a></h5>
+                            <h5><a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>">"<%=  blog.getTitle() %>"</a></h5>
+
                             <p>
-                                Bắt nguồn từ con giống khỏe mạnh, sản phẩm dinh dưỡng tối ưu, Ngành Thủy Hải Sản
-                                GREENFEED đã tạo ra dòng sản phẩm thương phẩm chất lượng cao đáp ứng nhu cầu của thị
-                                trường nội địa lẫn các yêu cầu, tiêu chuẩn khắc khe của thế giới.
+                                <%=
+                                    blog.getIntroduce()
+                                %>
                             </p>
                         </div>
                     </div>
                 </a>
             </div>
+        <% } %>
         </div>
     </div>
 </section>
@@ -586,5 +537,8 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/over_common_part.js"></script>
+
+
 </body>
 </html>
+

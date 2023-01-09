@@ -189,7 +189,7 @@
                             <a href="shop-grid.jsp"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
-                            <a href="shoping-cart.jsp"
+                            <a href="ShoppingCart"
                             ><i class="fa fa-shopping-bag"></i> <span>3</span></a
                             >
                         </li>

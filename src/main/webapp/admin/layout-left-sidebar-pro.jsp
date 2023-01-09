@@ -76,34 +76,23 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
                     <li class="active">
-                        <a class="has-arrow" href="admin/index.html">
-                            <i class="icon nalika-home icon-wrap"></i>
-                            <span class="mini-click-non">Thương mại điện tử</span>
+                        <a class="has-arrow" href="product-list.jsp">
+                            <span class="mini-click-non">Quản lý sản phẩm</span>
                         </a>
-                        <ul class="submenu-angle" aria-expanded="true">
-                            <li><a title="Dashboard v.1" href="index.jsp"><span class="mini-sub-pro">Bảng thống kê</span></a></li>
-                            <li><a title="Product List" href="product-list.jsp"><span class="mini-sub-pro">Danh sách sản phẩm</span></a></li>
-                            <li><a title="Product Edit" href="product-edit.jsp"><span class="mini-sub-pro">Chỉnh sửa sản phẩm</span></a></li>
-                            <li><a title="Product Detail" href="product-detail.jsp"><span class="mini-sub-pro">Chi tiết sản phẩm</span></a></li>
-                            <li><a title="Product Cart" href="product-cart.jsp"><span class="mini-sub-pro">Giỏ hàng</span></a></li>
-                            <li><a title="Product Payment" href="product-payment.jsp"><span class="mini-sub-pro">Thanh toán</span></a></li>
-                        </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.jsp" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
-                        <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="Inbox" href="mailbox.jsp"><span class="mini-sub-pro">Inbox</span></a></li>
-                        </ul>
+                        <a class="has-arrow" href="order-list.jsp" aria-expanded="false">
+                            <span class="mini-click-non">Đơn hàng</span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="mailbox.jsp" aria-expanded="false"><i class="icon nalika-pie-chart icon-wrap"></i> <span class="mini-click-non">Miscellaneous</span></a>
-                        <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="File Manager" href="file-manager.jsp"><span class="mini-sub-pro">File Manager</span></a></li>
-                            <li><a title="Blog" href="blog.jsp"><span class="mini-sub-pro">Blog</span></a></li>
-                            <li><a title="Blog Details" href="blog-details.jsp"><span class="mini-sub-pro">Blog Details</span></a></li>
-                            <li><a title="404 Page" href="404.html"><span class="mini-sub-pro">404 Page</span></a></li>
-                            <li><a title="500 Page" href="500.html"><span class="mini-sub-pro">500 Page</span></a></li>
-                        </ul>
+                        <a class="has-arrow" href="AccountlistController?pageNumber=1" aria-expanded="false">
+                            <span class="mini-click-non">Tài khoản</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="blog-list.jsp" aria-expanded="false">
+                            <span class="mini-click-non">Bài viết</span>
+                        </a>
                     </li>
                 </ul>
             </nav>

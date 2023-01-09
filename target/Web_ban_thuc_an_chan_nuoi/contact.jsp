@@ -173,29 +173,8 @@
               <a href="index"><img src="img/logo.png" alt="" /></a>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="hero__search">
-              <div class="hero__search__form">
-                <form action="#">
-                  <input
-                    type="text"
-                    placeholder="Bạn cần sản phẩm nào của chúng tôi"
-                  />
-                  <button type="submit" class="site-btn">TÌM KIẾM</button>
-                </form>
-              </div>
+          <%@ include file="/find_product.jsp" %>
 
-              <!-- <div class="hero__search__phone">
-                        <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
-                            <span>support 24/7 time</span>
-                        </div>
-                    </div> -->
-            </div>
-          </div>
           <div class="col-lg-3">
             <div class="header__cart">
               <ul>
@@ -203,7 +182,7 @@
                   <a href="shop-grid"><i class="fa fa-heart"></i> <span>1</span></a>
                 </li>
                 <li>
-                  <a href="shoping-cart.jsp"
+                  <a href="ShoppingCart"
                     ><i class="fa fa-shopping-bag"></i> <span>3</span></a
                   >
                 </li>

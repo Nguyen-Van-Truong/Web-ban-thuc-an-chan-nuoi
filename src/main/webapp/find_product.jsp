@@ -32,17 +32,55 @@
 
 <div class="col-lg-6">
     <div class="hero__search">
-        <div class="hero__search__form">
+        <div class="hero__search__form" style="position: relative">
             <form action="#">
-                <input
-                        type="text"
-                        placeholder="Bạn cần sản phẩm nào của chúng tôi"
-                />
-                <button type="submit" class="site-btn">TÌM KIẾM</button>
+                <input type="text" id="search-bar" placeholder="Bạn cần sản phẩm nào của chúng tôi"/>
+                <button type="submit" class="site-btn" onclick="searchResult(event)">TÌM KIẾM</button>
             </form>
+            <ul class="search-results"
+                style="position: fixed;border: 1px solid #ddd;background-color: rgba(238,238,238,1);color: #333;list-style-type:none ">
+                <%--                danh sach san pham--%>
+            </ul>
         </div>
     </div>
 </div>
+
+<script>
+    // Listen for keyup events on the search bar
+    console.log("hello");
+
+    $('#search-bar').keyup(searchResult);
+
+    function searchResult(event) {
+        event.preventDefault();
+        var searchBarValue = $('#search-bar').val();
+        console.log(searchBarValue);
+        // Send an AJAX request to the server
+        $.ajax({
+            url: '/Web_ban_thuc_an_chan_nuoi_war/SearchController',
+            data: {q: searchBarValue},
+            success: function (results) {
+                // Clear the current search results
+                $('.search-results').empty();
+
+                // Loop through the results and add them to the search results dropdown
+                for (var i = 0; i < results.length; i++) {
+                    $('.search-results').append(
+                        '<li style="border: 1px solid #ddd;background-color: #eee;color: #333;">' +
+                        '<a href="shop-detail?productId=' + results[i].product_id + '">' +
+                        results[i].product_name +
+                        '</a>' +
+                        '</li>'
+                    );
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error);
+            }
+        });
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 </body>
 </html>
