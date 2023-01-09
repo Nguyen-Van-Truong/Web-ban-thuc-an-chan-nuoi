@@ -18,7 +18,11 @@ import java.util.List;
 public class CheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+        if (cart == null) {
+            System.out.println("chua co san pham trong gio hang");
+            response.sendRedirect("ShoppingCart");
+        }
         List<Transport> transports = CheckoutService.getAllTransport();
         request.setAttribute("Transports", transports);
 
@@ -27,36 +31,33 @@ public class CheckoutController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+
         String address = request.getParameter("address");
         String currentDate = request.getParameter("currentDate");
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String transportIdString = request.getParameter("transport");
         int transportId = 0;
-        ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
-        if (cart == null) {
-            System.out.println("chua co san pham trong gio hang");
-            response.sendRedirect("ShoppingCart");
-        } else {
-            if (transportIdString != null) {
-                transportId = Integer.parseInt(transportIdString);
-            }
-            boolean successCheckout = true;
-            try {
-                if (successCheckout &= CheckoutService.createOrder(currentDate, address, phoneNumber, transportId, 2)) {
-                    List<CartItem> items = cart.getItems();
-                    for (CartItem item : items) {
-                        Product product = ProductService.getProductFromProductId(item.getProductId());
-                        successCheckout &= CheckoutService.createOrderDetail(item.getProductId(), item.getQuantity(), product.getOutPrice());
-                    }
+
+        if (transportIdString != null) {
+            transportId = Integer.parseInt(transportIdString);
+        }
+        boolean successCheckout = true;
+        try {
+            if (successCheckout &= CheckoutService.createOrder(currentDate, address, phoneNumber, transportId, 2)) {
+                List<CartItem> items = cart.getItems();
+                for (CartItem item : items) {
+                    Product product = ProductService.getProductFromProductId(item.getProductId());
+                    successCheckout &= CheckoutService.createOrderDetail(item.getProductId(), item.getQuantity(), product.getOutPrice());
                 }
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
             }
-            if (successCheckout) {
-                request.getSession().setAttribute("cart", null);
-                System.out.println("dat hang thanh cong");
-            }
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        if (successCheckout) {
+            request.getSession().setAttribute("cart", null);
+            System.out.println("dat hang thanh cong");
         }
         response.sendRedirect("ShoppingCart");
 

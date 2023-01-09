@@ -329,7 +329,13 @@
                         <li>Tổng phụ<span>0 đ</span></li>
                         <li>Tổng cộng <span><%=totalCostCart%> đ</span></li>
                     </ul>
+                    <%if (cart != null) {%>
                     <a href="Checkout" class="primary-btn">TIẾN HÀNH ĐẶT HÀNG</a>
+                    <%
+                        } else {
+
+                        }
+                    %>
                 </div>
             </div>
         </div>
