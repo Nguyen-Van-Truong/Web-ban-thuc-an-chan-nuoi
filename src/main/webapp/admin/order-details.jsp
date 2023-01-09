@@ -1,7 +1,10 @@
+<%@ page import="vn.edu.hcmuaf.fit.model.bean.Account" %>
 <%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.OrdersDetails" %>
+<%@ page import="vn.edu.hcmuaf.fit.service.AccountService" %>
+<%@ page import="com.mysql.cj.x.protobuf.MysqlxCrud" %>
 <%@ page import="vn.edu.hcmuaf.fit.model.Orders" %>
-<%@ page import="vn.edu.hcmuaf.fit.service.OrdersService" %>
-<%@ page import="vn.edu.hcmuaf.fit.service.AccountService" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: ledan
   Date: 01/09/2023
@@ -15,12 +18,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Danh sách sản phẩm | Admin - Chăn nuôi</title>
+    <title>Product Edit | Nalika - Material Admin Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="#">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
@@ -129,81 +132,112 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex">
-                <h1 style="margin: 45px auto; color: white">TRANG QUẢN LÝ ĐƠN HÀNG</h1>
+                <h1 style="margin: 45px auto; color: white;">CHI TIẾT ĐƠN HÀNG</h1>
             </div>
         </div>
     </div>
-    <div class="product-status mg-b-30">
+
+    <!-- Single pro tab start-->
+    <div class="single-product-tab-area mg-b-30">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="product-status-wrap">
-                        <h4>Danh sách đơn hàng</h4>
+                        <h4>Thông tin đơn hàng</h4>
+                        <div style="display: flex; justify-content: space-around ;width: 100%;">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                <div class="review-content-section">
+                                    <%
+                                        Orders orders = (Orders) request.getAttribute("orders");
+                                    %>
+                                    <div class="input-group mg-b-pro-edt" style="width: 100%">
+                                        <label  style="color: white">Tên khách hàng</label>
+                                        <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= AccountService.getFullname(orders.getAccount_id())%>">
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt" style="width: 100%">
+                                        <label  style="color: white">Ngày mua hàng</label>
+                                        <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= orders.getCreate_date()%>">
+                                    </div>
+
+
+                                    <div class="input-group mg-b-pro-edt" style="width: 100%">
+                                        <label  style="color: white">Địa chỉ</label>
+                                        <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= orders.getAddress()%>">
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="review-content-section">
+                                    <div class="input-group mg-b-pro-edt" style="width: 100%; display: flex; flex-direction: column">
+                                        <label  style="color: white">Trạng thái đơn hàng</label>
+                                        <%
+                                            String status = "" ;
+                                            String classs = "";
+                                            switch (orders.getStatuss()){
+                                                case 0: status = "Chưa xác nhận"; classs = "y-setting"; break;
+                                                case 1: status = "Đã xác nhận"; classs = "g-setting"; break;
+                                                case 2: status = "Đang giao hàng"; classs = "b-setting"; break;
+                                                case 3: status = "Đã giao hàng"; classs = "gr-setting"; break;
+                                                case 4: status = "Bị hủy"; classs = "r-setting"; break;
+                                            }
+                                        %>
+                                        <button class="<%= classs%>" style=" width: 100%"><%= status%></button>
+                                    </div>
+                                    <div class="input-group mg-b-pro-edt" style="width: 100%">
+                                        <label  style="color: white">Cập nhật trạng thái đơn hàng</label>
+                                        <form action="" method="post" style="display: flex">
+                                            <select  name="select" style="background-color: #0c1923; color: white; margin: 5px auto 70px; font-size: 18px; border-radius: 5px; flex: 1;">
+                                                <option value="0">Chưa xác nhận</option>
+                                                <option value="1">Đã xác nhận</option>
+                                                <option value="2">Đang giao hàng</option>
+                                                <option value="3">Đã giao hàng</option>
+                                                <option value="4">Bị hủy</option>
+                                                <option selected value="5">none</option>
+                                            </select>
+                                            <button style="padding: 5px; background-color:#0B792F; font-size: 18px; height: 45px; margin-left: 10px; border-radius: 5px">Lưu thay đổi</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        <h4>Danh sách hàng hóa</h4>
 
                         <table>
                             <tr>
-                                <th>Ảnh đại diện</th>
-                                <th>Tên khách hàng</th>
-                                <th>Trạng thái</th>
-                                <th>Ngày tạo hóa đơn</th>
-                                <th>Tổng tiền</th>
-                                <th>Tùy chọn</th>
+                                <th>Ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
                             </tr>
-
                             <%
-                                List<Orders> listOrders = (List<Orders>) request.getAttribute("listOrders");
-                                for(Orders orders: listOrders){
+                                List<OrdersDetails> ordersDetailsList = (List<OrdersDetails>) request.getAttribute("listOrdersDetails");
+                                for(OrdersDetails ordersDetails: ordersDetailsList){
                             %>
+
                             <tr>
-                                <td><img src="<%= AccountService.getAvatar(orders.getAccount_id())%>" alt="" style="width: 50px; height: 50px; border-radius: 25px;"/></td>
-                                <td><%= AccountService.getFullname(orders.getAccount_id())%></td>
-                                <td>
-                                    <%
-                                        String status = "" ;
-                                        String classs = "";
-                                        switch (orders.getStatuss()){
-                                            case 0: status = "Chưa xác nhận"; classs = "y-setting"; break;
-                                            case 1: status = "Đã xác nhận"; classs = "g-setting"; break;
-                                            case 2: status = "Đang giao hàng"; classs = "b-setting"; break;
-                                            case 3: status = "Đã giao hàng"; classs = "gr-setting"; break;
-                                            case 4: status = "Bị hủy"; classs = "r-setting"; break;
-                                        }
-                                    %>
-                                    <button class="<%= classs%>"><%= status%></button>
-                                </td>
-                                <td><%= orders.getCreate_date()%></td>
-                                <td><%= orders.getTotal_price()%>vnd</td>
-                                <td>
-                                    <a href="OrdersDetail?orders_id=<%=orders.getOrders_id()%>">
-                                        <button data-toggle="tooltip" title="Chi tiết và cập nhật" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    </a>
-                                </td>
+                                <td><img src="xxxxxxxxxxxxxxxxxx" alt="" style="width: 50px; height: 50px;"/></td>
+                                <td>//////////////////////////////</td>
+                                <td><%= ordersDetails.getQuantity()%></td>
+                                <td><%= ordersDetails.totalAmount()%> vnd</td>
                             </tr>
-
                             <%}%>
-
-
-
-
                         </table>
-                        <div class="custom-pagination">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="footer-copyright-area">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer-copy-right">
-                        <p>Copyright © 2022 <a href="https://colorlib.com/wp/templates/">Chăn nuôi</a> Đã đăng kí bản quyền.</p>
+                        <p>Copyright © 2018 <a href="https://colorlib.com/wp/templates/">Colorlib</a> All rights reserved.</p>
                     </div>
                 </div>
             </div>
@@ -252,12 +286,16 @@
 <script src="js/calendar/moment.min.js"></script>
 <script src="js/calendar/fullcalendar.min.js"></script>
 <script src="js/calendar/fullcalendar-active.js"></script>
+<!-- tab JS
+    ============================================ -->
+<script src="js/tab.js"></script>
 <!-- plugins JS
     ============================================ -->
 <script src="js/plugins.js"></script>
 <!-- main JS
     ============================================ -->
 <script src="js/main.js"></script>
+
 </body>
 
 </html>

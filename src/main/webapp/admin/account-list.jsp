@@ -134,7 +134,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex">
-        <h1 style="margin: 20px auto; color: white">TRANG QUẢN LÝ TÀI KHOẢN</h1>
+        <h1 style="margin: 45px auto; color: white">TRANG QUẢN LÝ TÀI KHOẢN</h1>
       </div>
     </div>
   </div>
@@ -156,7 +156,7 @@
                 for(Account account: listAccount){
               %>
               <tr>
-                <td><img src="<%= account.getAvatar_url()%>" alt="" style="width: 50px; height: 50px"/></td>
+                <td><img src="<%= account.getAvatar_url()%>" alt="" style="width: 50px; height: 50px; border-radius: 25px;"/></td>
                 <td><%= account.getFull_name()%></td>
                 <%
                   String status = "";

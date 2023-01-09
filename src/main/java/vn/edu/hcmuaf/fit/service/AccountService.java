@@ -109,8 +109,29 @@ public class AccountService {
         });
     }
 
+    public static String getFullname(int account_id){
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select full_name FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("");
+        });
+    }
+
+    public static String getAvatar(int account_id){
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select avatar_url FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("");
+        });
+    }
+
 
     public static void main(String[] args) {
-        System.out.println(AccountService.getOneAccount(5));
+
+        System.out.println(AccountService.getAvatar(5));
     }
 }
