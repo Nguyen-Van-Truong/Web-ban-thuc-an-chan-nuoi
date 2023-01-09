@@ -18,7 +18,7 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Blog> listBlog = BlogService.getNBlogFrom(3, 0);
-        for (Blog blog: listBlog){
+        for (Blog blog : listBlog) {
             blog.setIntroduce(BlogService.getIntroduce(blog.getBlog_id()));
             blog.setUrl_image(BlogService.getUrl_image(blog.getBlog_id()));
         }
