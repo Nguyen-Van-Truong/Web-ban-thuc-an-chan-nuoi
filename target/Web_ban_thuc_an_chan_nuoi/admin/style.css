@@ -25,7 +25,7 @@ html, body {height: 100%; font-family: 'Roboto', sans-serif;font-weight:400;back
 .alignleft {float:left;margin-right:15px;margin-bottom: 15px}
 .alignright {float:right;margin-left:15px;margin-bottom: 15px}
 .aligncenter {display:block;margin:0 auto 15px}
-a:focus {outline:0px solid}
+a:focus {outline:0 solid}
 img {max-width:100%;height:auto}
 .fix {overflow:hidden}
 p {margin:0 0 15px;}
@@ -158,7 +158,7 @@ body {}
 	font-size:16px;
 	color:#fff;
 	font-weight:400;
-	margin: 10px 0px 15px 0px;
+	margin: 10px 0px 15px 0;
 }
 ul.dtl-social{
 	display: flex;
@@ -1257,15 +1257,31 @@ ul.two-part-sp li{
 .custom-pagination ul.pagination{
 	margin-bottom: 0px;
 }
-.product-status-wrap .pd-setting {
+.product-status-wrap .g-setting {
     border: none;
     color: #fff;
     padding: 5px 15px;
     font-size: 15px;
-    background: #24caa1;
+    background: #a2a2a2;
     border-radius: 3px;
 }
-.product-status-wrap .ps-setting {
+.product-status-wrap .gr-setting {
+	border: none;
+	color: #fff;
+	padding: 5px 15px;
+	font-size: 15px;
+	background: #24caa1;
+	border-radius: 3px;
+}
+.product-status-wrap .y-setting {
+	border: none;
+	color: #fff;
+	padding: 5px 15px;
+	font-size: 15px;
+	background: #d09e00;
+	border-radius: 3px;
+}
+.product-status-wrap .b-setting {
     border: none;
     color: #fff;
     padding: 5px 15px;
@@ -1273,7 +1289,7 @@ ul.two-part-sp li{
     background: #2eb7f3;
     border-radius: 3px;
 }
-.product-status-wrap .ds-setting {
+.product-status-wrap .r-setting {
     border: none;
     color: #fff;
     padding: 5px 15px;
@@ -3666,4 +3682,14 @@ th.fc-day-header.fc-widget-header {
 	background:#152036;
 	border-color: #152036;
 	color:#fff;
+}
+
+
+.white_text {
+	color: white !important;
+}
+
+.char {
+	display: flex;
+	flex-wrap: wrap;
 }
