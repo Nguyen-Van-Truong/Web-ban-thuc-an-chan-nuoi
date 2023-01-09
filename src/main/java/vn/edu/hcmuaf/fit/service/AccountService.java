@@ -101,5 +101,17 @@ public class AccountService {
         return account;
     }
 
+    public  boolean changePassword(String username, String password, String newpassword) {
+
+        int rowAffected = JDBiConnector.get().withHandle(h ->
+                h.createUpdate("UPDATE account SET password = ? WHERE name = ? AND password = ?")
+                        .bind(0, newpassword)
+                        .bind(1, username)
+                        .bind(2, password)
+                        .execute()
+        );
+        return rowAffected > 0;
+    }
+
 
 }
