@@ -9,26 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name = "LoadProductsAJax_index", value = "/LoadProductsAJax_index")
-public class LoadProductsAJax_index extends HttpServlet {
+@WebServlet(name = "ShopDetailController", value = "/shop-detail")
+public class ShopDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String productId = request.getParameter("productId");
+        Product product = ProductService.getProductFromProductId(Integer.parseInt(productId));
+        request.setAttribute("current-product", product);
 
-        // Get the printwriter object to write the response
-        PrintWriter out = response.getWriter();
 
-        // Get the page number from the request
-        int page = 1;
-        String pageParam = request.getParameter("page");
-        if (pageParam != null) {
-            page = Integer.parseInt(pageParam);
-        }
-
-        // Write the response
+        request.getRequestDispatcher("shop-details.jsp").forward(request, response);
 
     }
 

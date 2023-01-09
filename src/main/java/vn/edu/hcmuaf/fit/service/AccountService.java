@@ -1,8 +1,8 @@
 package vn.edu.hcmuaf.fit.service;
 
 
-import vn.edu.hcmuaf.fit.model.bean.Account;
 import vn.edu.hcmuaf.fit.db.JDBiConnector;
+import vn.edu.hcmuaf.fit.model.bean.Account;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -34,6 +34,45 @@ public class AccountService {
         return instance;
     }
 
+    public static void updateStatus(int account_id, int status) {
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE account SET role = ? WHERE account_id = ?")
+                    .bind(0, status)
+                    .bind(1, account_id)
+                    .execute();
+        });
+    }
+
+    public static Account getOneAccount(int account_id) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select * FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapToBean(Account.class)
+                    .findFirst()
+                    .orElse(new Account());
+        });
+    }
+
+    public static List<Account> getNAccount(int n, int offset) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT account_id,full_name, avatar_url ,role FROM account Limit :n OFFSET :offset")
+                    .bind("n", n)
+                    .bind("offset", offset)
+                    .mapToBean(Account.class)
+                    .stream()
+                    .collect(Collectors.toList());
+        });
+    }
+
+    public static int countAccount() {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT COUNT(*) AS soluong FROM account")
+                    .mapTo(Integer.class)
+                    .findFirst()
+                    .orElse(0);
+        });
+    }
+
     public Account checkLogin(String username, String password) {
         List<Account> accounts = JDBiConnector.get().withHandle(h ->
                 h.createQuery("SELECT * FROM account WHERE name = ?")
@@ -63,7 +102,7 @@ public class AccountService {
         }
     }
 
-    public  boolean registerUser(String username, String password, String email) {
+    public boolean registerUser(String username, String password, String email) {
 
         int count = JDBiConnector.get().withHandle(h ->
                 h.createQuery("SELECT COUNT(*) FROM account WHERE name = ?")
@@ -84,7 +123,7 @@ public class AccountService {
         return rowAffected > 0;
     }
 
-    public Account findNameAndEmail(String username, String email){
+    public Account findNameAndEmail(String username, String email) {
         List<Account> accounts = JDBiConnector.get().withHandle(h ->
                 h.createQuery("SELECT * FROM account WHERE email = ? AND name = ?")
                         .bind(0, email)
@@ -101,7 +140,7 @@ public class AccountService {
         return account;
     }
 
-    public  boolean changePassword(String username, String password, String newpassword) {
+    public boolean changePassword(String username, String password, String newpassword) {
 
         int rowAffected = JDBiConnector.get().withHandle(h ->
                 h.createUpdate("UPDATE account SET password = ? WHERE name = ? AND password = ?")

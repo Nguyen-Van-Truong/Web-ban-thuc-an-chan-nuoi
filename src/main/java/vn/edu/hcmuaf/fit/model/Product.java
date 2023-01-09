@@ -1,10 +1,9 @@
 package vn.edu.hcmuaf.fit.model;
 
-import vn.edu.hcmuaf.fit.db.JDBiConnector;
 import vn.edu.hcmuaf.fit.service.ProductService;
 
 import java.io.Serializable;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class Product implements Serializable {
     private int product_id;
@@ -78,8 +77,28 @@ public class Product implements Serializable {
         return ProductService.get1SrcImg(this.getProduct_id());
     }
 
+    public List<String> getAllSrcImg() {
+        return ProductService.getAllImgFromProductId(this.getProduct_id());
+    }
+
     public Integer getOutPrice() {
         return ProductService.getOutPrice(this.getProduct_id());
+    }
+
+    public List<Integer> getAllCategoryIds() {
+        return ProductService.getAllCategoryIdsFromProductId(this.getProduct_id());
+    }
+
+    public List<Product> getNRelatedProducts(int n) {
+        return ProductService.getNRelatedProducts(n, getAllCategoryIds(), this.getProduct_id());
+    }
+
+    public String toStringListCate(List<Integer> listCate) {
+        String resultListIntToString = "";
+        for (Integer i : listCate) {
+            resultListIntToString += " c" + i;
+        }
+        return resultListIntToString;
     }
 
     @Override

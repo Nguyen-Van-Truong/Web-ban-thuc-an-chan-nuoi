@@ -28,7 +28,6 @@ public class Account implements Serializable {
         this.email = email;
     }
 
-
     public int getId() {
         return id;
     }
@@ -71,7 +70,6 @@ public class Account implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
                 '}';
     }
 }

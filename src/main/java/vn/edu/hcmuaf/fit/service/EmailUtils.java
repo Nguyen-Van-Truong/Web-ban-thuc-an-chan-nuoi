@@ -12,13 +12,13 @@ public class EmailUtils {
     public static void send(Email email) throws Exception {
         Properties prop = new Properties();
 
-        prop.put("mail.smtp.host","smtp.gmail.com");
-        prop.put("mail.smtp.port","587");
-        prop.put("mail.smtp.auth","true");
-        prop.put("mail.smtp.starttls.enable","true");
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
 
-        Session session = Session.getInstance(prop, new Authenticator(){
-            protected PasswordAuthentication getPasswordAuthentication(){
+        Session session = Session.getInstance(prop, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email.getFrom(), email.getFromPassword());
             }
         });
@@ -34,7 +34,7 @@ public class EmailUtils {
             Transport.send(message);
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
 
             throw e;

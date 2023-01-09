@@ -66,37 +66,37 @@
                 <span class="login100-form-title p-b-37">
                    Đăng Nhập
                 </span>
-<%--            <form action="/Web_ban_thuc_an_chan_nuoi_war/doLogin" method="post">--%>
-                <%
-                    if (error != null) {
-                %>
-                <div class="alert alert-danger" role="alert">
-                    <%= error %>
-                </div>
-                <%
-                    }
-                %>
-                <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-                    <input class="input100" type="text"
-                           value="<%= request.getParameter("username")!=null?request.getParameter("username"):"" %>"
-                           name="username" placeholder="Tài khoản">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
-                    <input class="input100" type="password" name="pass" placeholder="Mật khẩu">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Đăng Nhập
-                    </button>
-                </div>
-                <div class="text-center p-t-57 p-b-20">
+            <%--            <form action="/Web_ban_thuc_an_chan_nuoi_war/doLogin" method="post">--%>
+            <%
+                if (error != null) {
+            %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <%
+                }
+            %>
+            <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
+                <input class="input100" type="text"
+                       value="<%= request.getParameter("username")!=null?request.getParameter("username"):"" %>"
+                       name="username" placeholder="Tài khoản">
+                <span class="focus-input100"></span>
+            </div>
+            <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
+                <input class="input100" type="password" name="pass" placeholder="Mật khẩu">
+                <span class="focus-input100"></span>
+            </div>
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn">
+                    Đăng Nhập
+                </button>
+            </div>
+            <div class="text-center p-t-57 p-b-20">
 
                      <span class="txt1">
                     </span>
-                </div>
-<%--            </form>--%>
+            </div>
+            <%--            </form>--%>
             <div class="text-center">
                 Chưa có tài khoản?
                 <a href="sign-up.jsp" class="txt2 hov1">

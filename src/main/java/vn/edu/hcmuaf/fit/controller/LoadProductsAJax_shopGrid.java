@@ -3,9 +3,11 @@ package vn.edu.hcmuaf.fit.controller;
 import vn.edu.hcmuaf.fit.model.Product;
 import vn.edu.hcmuaf.fit.service.ProductService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -65,7 +67,7 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
                     "      </ul>\n" +
                     "    </div>\n" +
                     "    <div class=\"product__item__text\">\n" +
-                    "      <h6><a href=\"shop-details.jsp\">" + p.getProduct_name() + "\n" +
+                    "      <h6><a href=\"shop-detail?productId=" + p.getProduct_id() + "\">" + p.getProduct_name() + "\n" +
                     "      </a></h6>\n" +
                     "      <h5>" + p.getOutPrice() + "\n" +
                     "      </h5>\n" +
@@ -80,8 +82,4 @@ public class LoadProductsAJax_shopGrid extends HttpServlet {
 
     }
 
-    protected void loadCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        out.println("ga");
-    }
 }

@@ -3,10 +3,8 @@ package vn.edu.hcmuaf.fit.controller;
 
 import vn.edu.hcmuaf.fit.model.Category;
 import vn.edu.hcmuaf.fit.model.Characteristic;
-import vn.edu.hcmuaf.fit.model.Product;
 import vn.edu.hcmuaf.fit.service.CategoryService;
 import vn.edu.hcmuaf.fit.service.CharacteristicService;
-import vn.edu.hcmuaf.fit.service.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +24,11 @@ public class ShopGridController extends HttpServlet {
         List<Characteristic> listCharacteristic = CharacteristicService.getListCharacteristic();
         request.setAttribute("ListCharacteristic", listCharacteristic);
 
+        String categoryIdId = request.getParameter("categoryId");
+        if (categoryIdId != null) {
+            Category category = CategoryService.getCategoryFromCategoryId(Integer.parseInt(categoryIdId));
+            request.setAttribute("current-category", category);
+        }
         request.getRequestDispatcher("shop-grid.jsp").forward(request, response);
     }
 

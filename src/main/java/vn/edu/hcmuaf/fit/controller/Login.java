@@ -3,11 +3,13 @@ package vn.edu.hcmuaf.fit.controller;
 import vn.edu.hcmuaf.fit.model.bean.Account;
 import vn.edu.hcmuaf.fit.service.AccountService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "Login", value = "/doLogin")
 public class Login extends HttpServlet {
@@ -23,13 +25,14 @@ public class Login extends HttpServlet {
         String password = request.getParameter("pass");
 
         Account account = AccountService.getInstance().checkLogin(username, password);
-        if (account==null){
+        if (account == null) {
             request.setAttribute("error", "Tài khoản hoặc mật khẩu không đúng");
-            request.getRequestDispatcher("login.jsp").forward(request,response);
-        }else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
             HttpSession session = request.getSession(true);
+            System.out.println(account.getName() + " dang nhap thanh cong");
             session.setAttribute("auth", account);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index");
         }
     }
 }

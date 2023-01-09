@@ -24,6 +24,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -36,13 +37,21 @@
             <artifactId>jdbi3-core</artifactId>
             <version>3.34.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-
     </dependencies>
+
+
     <build>
         <finalName>Web_ban_thuc_an_chan_nuoi</finalName>
     </build>

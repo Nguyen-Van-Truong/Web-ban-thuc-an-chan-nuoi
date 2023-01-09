@@ -9,8 +9,5 @@
         <module name="Web_ban_thuc_an_chan_nuoi" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Web_ban_thuc_an_chan_nuoi" target="15" />
-    </bytecodeTargetLevel>
   </component>
 </project>
