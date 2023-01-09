@@ -281,7 +281,11 @@
                     <div class="product__details__quantity">
                         <div class="quantity">
                             <div class="pro-qty">
+                                <span class="dec qtybtn"
+                                      style="width: 35px;font-size: 16px;color: #6f6f6f;cursor: pointer;display: inline-block;">-</span>
                                 <input type="text" value="1">
+                                <span class="inc qtybtn"
+                                      style="width: 35px;font-size: 16px;color: #6f6f6f;cursor: pointer;display: inline-block;">+</span>
                             </div>
                         </div>
                     </div>
@@ -562,6 +566,24 @@
     }
 </script>
 
+<script>
+    var proQty = $('.pro-qty');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
+    });
+</script>
 <!-- Js Plugins -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

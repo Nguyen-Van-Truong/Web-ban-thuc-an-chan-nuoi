@@ -356,9 +356,8 @@
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send("action=remove&productId=" + productId);
     };
-
-
 </script>
+
 <script>
     var proQty = $('.pro-qty2');
     proQty.on('click', '.qtybtn', function () {

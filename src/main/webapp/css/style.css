@@ -1740,7 +1740,7 @@ ol {
     margin-right: 6px;
 }
 
-.pro-qty2 {
+.pro-qty {
     width: 140px;
     height: 50px;
     display: inline-block;
@@ -1750,7 +1750,7 @@ ol {
     margin-bottom: 5px;
 }
 
-.pro-qty2 input {
+.pro-qty input {
     height: 100%;
     width: 100%;
     font-size: 16px;
@@ -1761,7 +1761,7 @@ ol {
     text-align: center;
 }
 
-.pro-qty2 .qtybtn {
+.pro-qty .qtybtn {
     width: 35px;
     font-size: 16px;
     color: #6f6f6f;
