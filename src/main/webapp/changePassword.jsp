@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Đăng kí</title>
+    <title>Đổi mật khẩu</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -65,9 +65,9 @@
 <body>
 <div class="container-login100" style="background-image: url('img/login/background-login.jpg');">
     <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-        <form class="login100-form validate-form" action="/Web_ban_thuc_an_chan_nuoi_war/doSignUp" method="post">
+        <form class="login100-form validate-form" action="/Web_ban_thuc_an_chan_nuoi_war/doChangePassword" method="post">
 <span class="login100-form-title p-b-37">
-Đăng Kí
+Đổi mật khẩu
 </span>
             <%
                 if (error != null) {
@@ -79,31 +79,25 @@
                 }
             %>
             <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-                <input class="input100" type="text" name="email" value="<%= request.getParameter("email")!=null?request.getParameter("email"):"" %>" placeholder="Email">
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
                 <input class="input100" type="text" name="username" value="<%= request.getParameter("username")!=null?request.getParameter("username"):"" %>" placeholder="Tài khoản">
                 <span class="focus-input100"></span>
             </div>
             <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
-                <input class="input100" type="password" name="pass" placeholder="Mật khẩu">
+                <input class="input100" type="password" name="pass" placeholder="Mật khẩu cũ">
+                <span class="focus-input100"></span>
+            </div>
+            <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
+                <input class="input100" type="password" name="passnew" placeholder="Mật khẩu mới">
                 <span class="focus-input100"></span>
             </div>
             <div class="container-login100-form-btn">
                 <button class="login100-form-btn">
-                    Đăng kí
+                    Thay đổi
                 </button>
             </div>
             <div class="text-center p-t-57 p-b-20">
 <span class="txt1">
 </span>
-            </div>
-            <div class="text-center">
-                Đã có tài khoản?
-                <a href="login.jsp" class="txt2 hov1">
-                    Đăng Nhập
-                </a>
             </div>
         </form>
     </div>

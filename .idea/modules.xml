@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Web-ban-thuc-an-chan-nuoi.iml" filepath="$PROJECT_DIR$/.idea/Web-ban-thuc-an-chan-nuoi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Web_ban_thuc_an_chan_nuoi/Web_ban_thuc_an_chan_nuoi.iml" filepath="$PROJECT_DIR$/Web_ban_thuc_an_chan_nuoi/Web_ban_thuc_an_chan_nuoi.iml" />
+    </modules>
+  </component>
+</project>

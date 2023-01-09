@@ -218,7 +218,9 @@
                         <button class="menu__item" onclick="profile_click()">Hồ Sơ</button>
                     </li>
                     <li>
-                        <button class="menu__item" onclick="password_click()">Đổi mật khẩu</button>
+                        <a href="./changePassword.jsp">
+                         <button class="menu__item" onclick="password_click()">Đổi mật khẩu</button>
+                        </a>
                     </li>
                     <li>
                         <button class="menu__item" onclick="oder_click()">Đơn hàng đang giao</button>
@@ -437,25 +439,25 @@
 
     </div>
 
-    <div id="password">
-        <form action="">
-            <div>
-                <label for="old_pass">Nhập mật khẩu cũ</label>
-                <input type="text" name="old_pass" id="">
-            </div>
-            <div>
-                <label for="new_pass">Mật khẩu mới</label>
-                <input type="text" name="new_pass" id="">
-            </div>
-            <div>
-                <label for="new_pass-retypr">Nhập lại mật khẩu mới</label>
-                <input type="text" name="new_pass-retype" id="">
-            </div>
-            <div>
-                <button id="btn">Lưu thay đổi</button>
-            </div>
-        </form>
-    </div>
+<%--    <div id="password">--%>
+<%--        <form action="">--%>
+<%--            <div>--%>
+<%--                <label for="old_pass">Nhập mật khẩu cũ</label>--%>
+<%--                <input type="text" name="old_pass" id="">--%>
+<%--            </div>--%>
+<%--            <div>--%>
+<%--                <label for="new_pass">Mật khẩu mới</label>--%>
+<%--                <input type="text" name="new_pass" id="">--%>
+<%--            </div>--%>
+<%--            <div>--%>
+<%--                <label for="new_pass-retypr">Nhập lại mật khẩu mới</label>--%>
+<%--                <input type="text" name="new_pass-retype" id="">--%>
+<%--            </div>--%>
+<%--            <div>--%>
+<%--                <button id="btn">Lưu thay đổi</button>--%>
+<%--            </div>--%>
+<%--        </form>--%>
+<%--    </div>--%>
 </div>
 </div>
 </div>
