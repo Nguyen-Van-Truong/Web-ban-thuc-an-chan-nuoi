@@ -1,4 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.model.*" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -244,82 +246,54 @@
         </div>
         <div class="checkout__form">
             <h4>Chi tiết thanh toán</h4>
-            <form action="#">
+            <form action="/Web_ban_thuc_an_chan_nuoi_war/Checkout" method="post">
                 <div class="row">
                     <div class="col-lg-8 col-md-6">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Tên<span>*</span></p>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="checkout__input">
-                                    <p>Họ<span>*</span></p>
-                                    <input type="text">
-                                </div>
-                            </div>
-                        </div>
                         <div class="checkout__input">
-                            <p>Quốc gia<span>*</span></p>
-                            <input type="text">
+                            <p>Tên<span>*</span></p>
+                            <input type="text" value="" readonly>
                         </div>
                         <div class="checkout__input">
                             <p>Địa chỉ<span>*</span></p>
-                            <input type="text" placeholder="Street Address" class="checkout__input__add">
-                            <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                            <input type="text" placeholder="Địa chỉ nhận hàng" class="checkout__input__add"
+                                   name="address" value="">
                         </div>
                         <div class="checkout__input">
-                            <p>Thị trấn / Thành phố<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input">
-                            <p>Quận / Thị xã <span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input">
-                            <p>Mã bưu điện <span>*</span></p>
-                            <input type="text">
+                            <p>Ngày tạo<span>*</span></p>
+                            <%
+                                Date currentDate = new Date();
+                                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                                String dateString = formatter.format(currentDate);
+                            %>
+                            <input type="text" name="currentDate" placeholder="dd/mm/yyyy" value="<%=dateString%>" readonly>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Điện thoại<span>*</span></p>
-                                    <input type="text">
+                                    <input type="text" name="phoneNumber">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Email<span>*</span></p>
-                                    <input type="text">
+                                    <input type="text" name="email">
                                 </div>
                             </div>
                         </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="acc">
-                                Tạo một tài khoản?
-                                <input type="checkbox" id="acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <p>Tạo tài khoản bằng cách nhập thông tin bên dưới. Nếu bạn là khách hàng cũ, vui lòng đăng nhập
-                            ở đầu trang</p>
                         <div class="checkout__input">
-                            <p>Mật khẩu tài khoản<span>*</span></p>
-                            <input type="text">
-                        </div>
-                        <div class="checkout__input__checkbox">
-                            <label for="diff-acc">
-                                Gửi đến một địa chỉ khác?
-                                <input type="checkbox" id="diff-acc">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div class="checkout__input">
-                            <p>Ghi chú đặt hàng<span>*</span></p>
-                            <input type="text"
-                                   placeholder="Notes about your order, e.g. special notes for delivery.">
+                            <p>Phương thức vận chuyển<span>*</span></p>
+                            <select name="transport">
+                                <%
+                                    List<Transport> transports = (List<Transport>) request.getAttribute("Transports");
+                                    for (Transport tran : transports) {
+                                %>
+                                <option value="<%=tran.getTransportId()%>"><%=tran.getName()%>
+                                </option>
+                                <%
+                                    }
+                                %>
+                            </select>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
