@@ -85,7 +85,7 @@
                             <span class="mini-click-non">Đơn hàng</span></a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="account-list.jsp" aria-expanded="false">
+                        <a class="has-arrow" href="AccountlistController?pageNumber=1" aria-expanded="false">
                             <span class="mini-click-non">Tài khoản</span>
                         </a>
                     </li>
