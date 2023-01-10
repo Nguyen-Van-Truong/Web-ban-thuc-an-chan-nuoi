@@ -10,7 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 @WebServlet(name = "ProductCreate", value = "/ProductCreate")
@@ -33,12 +35,19 @@ public class ProductCreate extends HttpServlet {
         String productStatus = request.getParameter("productStatus");
         String productCategory = request.getParameter("productCategory");
         String productDesc = request.getParameter("productDesc");
-
+        String[] selectedValues = request.getParameterValues("productCharistic");
+//        Part filePart = request.getPart("img");
+//        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+//        System.out.println("srcimg:" + fileName);
+        for (String s : selectedValues) {
+            System.out.println("cha:" + s);
+        }
         System.out.println(productName);
         System.out.println(productPrice);
         System.out.println(productStatus);
         System.out.println(productDesc);
         System.out.println(productCategory);
+
 
         request.getRequestDispatcher("admin/product-create.jsp").forward(request, response);
 

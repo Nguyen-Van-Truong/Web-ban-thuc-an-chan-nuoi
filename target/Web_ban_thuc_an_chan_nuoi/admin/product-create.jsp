@@ -151,6 +151,7 @@
                                                             %>
                                                             <li style="padding: 20px;"><input
                                                                     value="<%=cha.getCharistic_id()%>"
+                                                                    name="productCharistic"
                                                                     type="checkbox"><%=cha.getName()%>
                                                             </li>
                                                             <%}%>
