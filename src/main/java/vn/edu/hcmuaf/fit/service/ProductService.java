@@ -281,25 +281,39 @@ public class ProductService {
         });
     }
 
-    public static boolean createProduct(String productName, String product_description, String quantity, int status) throws ParseException {
-
+    public static boolean createProduct(String productName, String productDesc, String productQuantity, String productPrice, String productStatus, String productCategory, String[] selectedValues) {
         int maxProductId = JDBiConnector.get().withHandle(h ->
                 h.createQuery("SELECT MAX(product_id) FROM product")
                         .mapTo(Integer.class)
                         .findOnly()
         );
-
+        int maxCateId = JDBiConnector.get().withHandle(h ->
+                h.createQuery("SELECT MAX(id) FROM product_category")
+                        .mapTo(Integer.class)
+                        .findOnly()
+        );
+        int quantity = Integer.parseInt(productQuantity);
+        int status = Integer.parseInt(productStatus);
+        int cate = Integer.parseInt(productCategory);
         int rowsAffected = JDBiConnector.get().withHandle(h ->
                 h.createUpdate("INSERT INTO product (product_id,product_name, product_description, quantity, `status`)\n" +
                                 "VALUES (:product_id,:product_name,:product_description,:quantity,:status)")
                         .bind("product_id", maxProductId + 1)  // Increment the maximum order_id by 1
-                        .bind("productName", productName)
-                        .bind("product_description", product_description)
+                        .bind("product_name", productName)
+                        .bind("product_description", productDesc)
                         .bind("quantity", quantity)
                         .bind("status", status)
                         .execute()
         );
-        return rowsAffected > 0;
+        int rowsCate = JDBiConnector.get().withHandle(h ->
+                h.createUpdate("INSERT INTO product_category (id,category_id,product_id)\n" +
+                                "VALUES (:id,:categoryId,:product_id)")
+                        .bind("product_id", maxProductId + 1)  // Increment the maximum order_id by 1
+                        .bind("categoryId", cate)
+                        .bind("id", maxCateId+1)
+                        .execute()
+        );
+        return rowsAffected > 0 && rowsCate > 0;
     }
 
     public static void main(String[] args) {
@@ -315,6 +329,9 @@ public class ProductService {
 //        System.out.println(getNFeaturedProducts(5));
 //        System.out.println(getNBestSellingProducts  (5));
 //        System.out.println(getNProductLikeName(3, "heo"));
-        System.out.println(getNameProductFromProductId(2));
+//        System.out.println(getNameProductFromProductId(2));
+        System.out.println(createProduct("an cho meo", "mota", "50", "50000", "1", "5", null));
     }
+
+
 }

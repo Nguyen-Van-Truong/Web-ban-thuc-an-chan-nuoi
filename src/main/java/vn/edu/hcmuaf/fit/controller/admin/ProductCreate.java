@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.model.Category;
 import vn.edu.hcmuaf.fit.model.Characteristic;
 import vn.edu.hcmuaf.fit.service.CategoryService;
 import vn.edu.hcmuaf.fit.service.CharacteristicService;
+import vn.edu.hcmuaf.fit.service.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,13 +33,11 @@ public class ProductCreate extends HttpServlet {
 
         String productName = request.getParameter("productName");
         String productPrice = request.getParameter("productPrice");
+        String productQuantity = request.getParameter("productQuantity");
         String productStatus = request.getParameter("productStatus");
         String productCategory = request.getParameter("productCategory");
         String productDesc = request.getParameter("productDesc");
         String[] selectedValues = request.getParameterValues("productCharistic");
-//        Part filePart = request.getPart("img");
-//        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-//        System.out.println("srcimg:" + fileName);
         for (String s : selectedValues) {
             System.out.println("cha:" + s);
         }
@@ -48,7 +47,10 @@ public class ProductCreate extends HttpServlet {
         System.out.println(productDesc);
         System.out.println(productCategory);
 
-
+        boolean createP = ProductService.createProduct(productName, productDesc, productQuantity, productPrice, productStatus, productCategory, selectedValues);
+        if (createP) {
+            System.out.println("tao san pham thanh cong");
+        }
         request.getRequestDispatcher("admin/product-create.jsp").forward(request, response);
 
     }
