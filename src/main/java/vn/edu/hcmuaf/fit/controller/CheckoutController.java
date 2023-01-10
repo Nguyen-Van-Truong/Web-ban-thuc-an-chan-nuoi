@@ -25,11 +25,12 @@ public class CheckoutController extends HttpServlet {
         if (cart == null) {
             System.out.println("chua co san pham trong gio hang");
             response.sendRedirect("ShoppingCart");
-        }
-        List<Transport> transports = CheckoutService.getAllTransport();
-        request.setAttribute("Transports", transports);
+        } else {
+            List<Transport> transports = CheckoutService.getAllTransport();
+            request.setAttribute("Transports", transports);
 
-        request.getRequestDispatcher("checkout.jsp").forward(request, response);
+            request.getRequestDispatcher("checkout.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -49,7 +50,10 @@ public class CheckoutController extends HttpServlet {
         boolean successCheckout = true;
         try {
             Account acc = (Account) request.getSession().getAttribute("currentAccount");
-            if (successCheckout &= CheckoutService.createOrder(acc.getAccount_id(), currentDate, address, phoneNumber, transportId, 2)) {
+            Integer account_id = null;
+            if (acc != null)
+                account_id = acc.getAccount_id();
+            if (successCheckout &= CheckoutService.createOrder(account_id, currentDate, address, phoneNumber, transportId, 2)) {
                 List<CartItem> items = cart.getItems();
                 for (CartItem item : items) {
                     Product product = ProductService.getProductFromProductId(item.getProductId());

@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.service;
 
 import vn.edu.hcmuaf.fit.db.JDBiConnector;
+import vn.edu.hcmuaf.fit.model.Order;
+import vn.edu.hcmuaf.fit.model.OrderDetail;
 import vn.edu.hcmuaf.fit.model.Product;
 import vn.edu.hcmuaf.fit.model.Transport;
 
@@ -8,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CheckoutService {
 
@@ -21,7 +24,7 @@ public class CheckoutService {
         });
     }
 
-    public static boolean createOrder(int accountId, String currentDate, String address, String phoneNumber, int transportId, int status) throws ParseException {
+    public static boolean createOrder(Integer accountId, String currentDate, String address, String phoneNumber, int transportId, int status) throws ParseException {
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = inputFormat.parse(currentDate);
@@ -48,6 +51,7 @@ public class CheckoutService {
         return rowsAffected > 0;
     }
 
+
     public static boolean createOrderDetail(int productId, int quantity, int outPrice) {
         int maxOrderId = JDBiConnector.get().withHandle(h ->
                 h.createQuery("SELECT MAX(order_id) FROM `order`")
@@ -72,10 +76,31 @@ public class CheckoutService {
         return rowsAffected > 0;
     }
 
+    public static List<Order> getAllOrderFromAccountId(int accountId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT order_id,account_id,date,address,phonenumber,status,transport_id " +
+                            "FROM `order` WHERE `order`.account_id = :accountId\n")
+                    .bind("accountId", accountId)
+                    .mapToBean(Order.class)
+                    .stream().collect(Collectors.toList());
+        });
+    }
+
+    public static List<OrderDetail> getAllOrderDetailFromOrderId(int orderId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT order_detail_id,order_id,product_id,quantity,in_price,out_price " +
+                            "FROM order_detail WHERE order_id = :orderId")
+                    .bind("orderId", orderId)
+                    .mapToBean(OrderDetail.class)
+                    .stream().collect(Collectors.toList());
+        });
+    }
 
     public static void main(String[] args) throws ParseException {
-        System.out.println(createOrder(7, "9/1/2023", "tphcm", "0765366824", 1, 2));
+//        System.out.println(createOrder(7, "9/1/2023", "tphcm", "0765366824", 1, 2));
 //        System.out.println(createOrderDetail(1,10,20000));
+        System.out.println(getAllOrderFromAccountId(7));
+        System.out.println(getAllOrderDetailFromOrderId(30));
 
     }
 }

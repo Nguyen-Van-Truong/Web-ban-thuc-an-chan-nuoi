@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.model;
 
-import java.util.Date;
+import vn.edu.hcmuaf.fit.service.CheckoutService;
+
+import java.util.List;
 
 public class Order {
     private int orderId;
@@ -19,6 +21,29 @@ public class Order {
         this.phoneNumber = phoneNumber;
         this.status = status;
         this.transportId = transportId;
+    }
+
+    public Order() {
+    }
+
+    public int totalCost() {
+        int result = 0;
+        List<OrderDetail> orderDetails = getAllOrderDetail();
+        for (OrderDetail od : orderDetails) {
+            result += (od.getQuantity() * od.getOutPrice());
+        }
+        return result;
+    }
+    public String toStringOrderDetails() {
+        String result = "";
+        List<OrderDetail> orderDetails = getAllOrderDetail();
+        for (OrderDetail od : orderDetails) {
+            result += od.getNameProduct()+" giá:"+od.getOutPrice()+" số lượng"+od.getQuantity();
+        }
+        return result;
+    }
+    public List<OrderDetail> getAllOrderDetail() {
+        return CheckoutService.getAllOrderDetailFromOrderId(getOrderId());
     }
 
     public int getOrderId() {

@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.fit.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -203,18 +204,9 @@
                         </a>
                     </li>
                     <li>
-                        <button class="menu__item" onclick="oder_click()">Đơn hàng đang giao</button>
+                        <button class="menu__item" onclick="oder_click()">Lịch sử mua hàng</button>
                     </li>
-                    <li>
-                        <button class="menu__item" onclick="odered_click()">Đơn hàng đã giao</button>
-                    </li>
-                    <li><a href="./shop-grid">
-                        <button class="menu__item">Sản phẩm yêu thích</button>
-                    </a></li>
-                    <li><a href="./shop-grid">
-                        <button class="menu__item">Sản phẩm đã mua</button>
-                    </a></li>
-                    <li><a href="./admin.html">
+                    <li><a href="./admin/index.jsp">
                         <button class="menu__item">Admin</button>
                     </a></li>
 
@@ -222,21 +214,21 @@
                 </ul>
             </div>
             <div class="col-lg-9 col-md-7">
-                <div class="profile" id="profile">
+                <div class="profile" id="profile_account">
                     <div class="left__profile">
                         <form action="/Web_ban_thuc_an_chan_nuoi_war/Profile" method="post">
                             <div class="user__name profile__item">
-                                <label >Họ và tên</label>
+                                <label>Họ và tên</label>
                                 <input type="text" name="fullnameOfUser" value="<%=account.getFullname()%>">
                             </div>
                             <div class="email profile__item">
-                                <label >Địa chỉ email</label>
+                                <label>Địa chỉ email</label>
                                 <input type="text" name="emailAddress" value="<%=account.getEmail()%>">
                             </div>
                             <div class="phone__number  profile__item"
                             >
-                                <label >Số điện thoại</label>
-                                <input type="text" name="phoneNumber"value="<%=account.getPhonenumber()%>">
+                                <label>Số điện thoại</label>
+                                <input type="text" name="phoneNumber" value="<%=account.getPhonenumber()%>">
                             </div>
                             <div class="birthay  profile__item">
                                 <label for="birthday">Ngày sinh:</label>
@@ -264,127 +256,31 @@
                         <tr>
                             <th>Mã Đơn Hàng</th>
                             <th>Ngày mua hàng</th>
-                            <th>Số lượng hàng hóa</th>
-                            <th>Tổng Tiền</th>
-                            <th>Chi tiết đơn hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Chi tiết</th>
                         </tr>
-
+                        <%
+                            List<Order> orderList = (List<Order>) request.getAttribute("OrderList");
+                            for (Order o : orderList) {
+                        %>
                         <tr>
-                            <td>003876</td>
-                            <td>6/11/2020</td>
-                            <td>20</td>
-                            <td>2,000,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
+                            <td><%=o.getOrderId()%>
+                            </td>
+                            <td><%=o.getDate()%>
+                            </td>
+                            <td><%=o.totalCost()%> đ</td>
+                            <td>
+                                <%
+                                    List<OrderDetail> orderDetails = o.getAllOrderDetail();
+                                    for (OrderDetail od : orderDetails) {
+                                %>
+                                <%=od.getNameProduct()%>, giá:<%=od.getOutPrice()%>, số lượng:<%=od.getQuantity()%>
+                                <br/>
+                                <%}%>
+                            </td>
 
-                        <tr>
-                            <td>231892</td>
-                            <td>8/10/2021</td>
-                            <td>45</td>
-                            <td>3,499,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
                         </tr>
-
-                        <tr>
-                            <td>126871</td>
-                            <td>29/12/2021</td>
-                            <td>25</td>
-                            <td>4,199,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-
-
-                        <tr>
-                            <td>908124</td>
-                            <td>12/1/2022</td>
-                            <td>50</td>
-                            <td>25,000,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-
-                        <tr>
-                            <td>123456</td>
-                            <td>22/2/2022</td>
-                            <td>35</td>
-                            <td>5,399,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-                    </table>
-
-                </div>
-                <div id="odered">
-                    <table>
-                        <tr>
-                            <th>Mã Đơn Hàng</th>
-                            <th>Ngày mua hàng</th>
-                            <th>Số lượng hàng hóa</th>
-                            <th>Tổng Tiền</th>
-                            <th>Chi tiết đơn hàng</th>
-                        </tr>
-
-                        <tr>
-                            <td>003876</td>
-                            <td>6/11/2020</td>
-                            <td>20</td>
-                            <td>2,000,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-
-                        <tr>
-                            <td>231892</td>
-                            <td>8/10/2021</td>
-                            <td>45</td>
-                            <td>3,499,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-
-                        <tr>
-                            <td>126871</td>
-                            <td>29/12/2021</td>
-                            <td>25</td>
-                            <td>4,199,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-
-
-                        <tr>
-                            <td>908124</td>
-                            <td>12/1/2022</td>
-                            <td>50</td>
-                            <td>25,000,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-
-                        <tr>
-                            <td>273612</td>
-                            <td>22/2/2022</td>
-                            <td>35</td>
-                            <td>5,399,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-                        <tr>
-                            <td>132635</td>
-                            <td>22/2/2022</td>
-                            <td>25</td>
-                            <td>1,199,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-                        <tr>
-                            <td>891723</td>
-                            <td>20/5/2022</td>
-                            <td>30</td>
-                            <td>4,599,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-                        <tr>
-                            <td>711820</td>
-                            <td>22/8/2022</td>
-                            <td>15</td>
-                            <td>2,229,000đ</td>
-                            <td><a href="">xem chi tiết</a></td>
-                        </tr>
-
-
+                        <%}%>
                     </table>
 
                 </div>
@@ -430,7 +326,7 @@
 <script src="js/over_common_part.js"></script>
 
 <script>
-    const id_list = ["profile", "oder", "odered", "password"];
+    const id_list = ["profile_account", "oder"];
 
     function hideadd() {
         for (var i = 0; i < id_list.length; i++) {
@@ -440,7 +336,7 @@
 
     function profile_click() {
         hideadd();
-        document.getElementById('profile').style.display = "flex"
+        document.getElementById('profile_account').style.display = "flex"
     }
 
     function oder_click() {
@@ -448,15 +344,6 @@
         document.getElementById('oder').style.display = "flex"
     }
 
-    function odered_click() {
-        hideadd();
-        document.getElementById('odered').style.display = "flex"
-    }
-
-    function password_click() {
-        hideadd();
-        document.getElementById('password').style.display = "block"
-    }
 </script>
 </body>
 </html>

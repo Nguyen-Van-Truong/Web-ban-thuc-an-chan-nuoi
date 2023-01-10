@@ -181,8 +181,8 @@ public class AccountService {
 
     public static void main(String[] args) {
 //        System.out.println(getAvatar(7));
-//        System.out.println(checkLogin("truongpro2002", "123456789"));
-//        System.out.println(updateInfoUser("thanh123", "DOCHITHANH2","thanh2@gmail.com","999","12-1-2003"));
+//        System.out.println(checkLogin("truongpro2002", "123"));
+        System.out.println(updateInfoUser("truongpro2002", "Nguyen Van Truong","truong1@gmail.com","99999","11-1-2002"));
     }
 
 }
