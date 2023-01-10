@@ -52,14 +52,11 @@
         <div class="header__top__right__auth">
             <a href="login.jsp"><i class="fa fa-user"></i>Đăng nhập</a>
         </div>
-        <div class="header__top__right__auth">
-            <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
-        </div>
         <%
         } else {
         %>
         <div class="header__top__right__auth">
-            <a href="profile.jsp">
+            <a href="Profile">
                 <img style="width: 30px;height: 25px" src="<%=account.getAvatar()%>" alt="">
                 <%=account.getName()%>
             </a>

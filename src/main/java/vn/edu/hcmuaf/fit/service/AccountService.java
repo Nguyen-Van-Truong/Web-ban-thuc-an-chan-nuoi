@@ -88,7 +88,7 @@ public class AccountService {
 
     public static Account checkLogin(String username, String password) {
         List<Account> accounts = JDBiConnector.get().withHandle(h ->
-                h.createQuery("SELECT account_id, name, password, email, role FROM account WHERE name = ?")
+                h.createQuery("SELECT account_id, name, password, email,birthday,address,phonenumber,avatar, role FROM account WHERE name = ?")
                         .bind(0, username)
                         .mapToBean(Account.class)
                         .stream()

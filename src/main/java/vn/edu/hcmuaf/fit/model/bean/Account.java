@@ -9,6 +9,10 @@ public class Account implements Serializable {
     private String name;
     private String password;
     private String email;
+    private String birthday;
+    private String address;
+    private String phonenumber;
+    private String avatar;
     private int role;
 
     public Account(int account_id, String name, String password, String email, int role) {
@@ -19,11 +23,51 @@ public class Account implements Serializable {
         this.role = role;
     }
 
+    public Account(int account_id, String name, String password, String email, String birthday, String address, String phonenumber, String avatar, int role) {
+        this.account_id = account_id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.birthday = birthday;
+        this.address = address;
+        this.phonenumber = phonenumber;
+        this.avatar = avatar;
+        this.role = role;
+    }
+
     public Account() {
     }
 
     public String getAvatar() {
         return AccountService.getAvatar(getAccount_id());
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getEmail() {
@@ -77,6 +121,10 @@ public class Account implements Serializable {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", address='" + address + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", role=" + role +
                 '}';
     }
