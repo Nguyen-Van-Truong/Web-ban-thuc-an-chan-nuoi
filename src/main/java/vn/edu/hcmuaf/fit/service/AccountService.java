@@ -179,10 +179,73 @@ public class AccountService {
         return rowAffected > 0;
     }
 
+
+    public static List<Account> getNAccount(int n, int offset){
+        return JDBiConnector.get().withHandle(handle -> {
+           return handle.createQuery("SELECT account_id,full_name, avatar_url ,role FROM account Limit :n OFFSET :offset")
+                   .bind("n", n)
+                   .bind("offset", offset)
+                   .mapToBean(Account.class)
+                   .stream()
+                   .collect(Collectors.toList());
+        });
+    }
+
+    public static int countAccount(){
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT COUNT(*) AS soluong FROM account")
+                    .mapTo(Integer.class)
+                    .findFirst()
+                    .orElse(0);
+        });
+    }
+
+    public static void updateStatus(int account_id, int status){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE account SET role = ? WHERE account_id = ?")
+                    .bind(0, status)
+                    .bind(1, account_id)
+                    .execute();
+        });
+    }
+
+    public static Account getOneAccount(int account_id){
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select * FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapToBean(Account.class)
+                    .findFirst()
+                    .orElse(new Account());
+        });
+    }
+
+    public static String getFullname(int account_id){
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select full_name FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("");
+        });
+    }
+
+    public static String getAvatar(int account_id){
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select avatar_url FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("");
+        });
+    }
+
+
     public static void main(String[] args) {
-//        System.out.println(getAvatar(7));
+        System.out.println(getAvatar(7));
 //        System.out.println(checkLogin("truongpro2002", "123"));
         System.out.println(updateInfoUser("truongpro2002", "Nguyen Van Truong","truong1@gmail.com","99999","11-1-2002"));
+
+        System.out.println(AccountService.getAvatar(5));
     }
 
 }

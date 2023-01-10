@@ -109,7 +109,7 @@
                                                     Account account = (Account) request.getAttribute("account");
                                                 %>
                                                 <div class="input-group mg-b-pro-edt" style="width: 100%; display: flex">
-                                                    <img src="<%= account.getAvatar_url()%>" style="margin: auto; width: 400px; height: 400px; border-radius: 5px; margin-bottom: 50px;">
+                                                    <img src="<%= account.getAvatar_url()%>" style="margin: auto; width: 300px; height: 300px; border-radius: 100px; margin-bottom: 50px;">
                                                 </div>
 
                                                 <div style="display: flex; justify-content: space-around">
@@ -152,7 +152,7 @@
                                                         <input name="pageNumber" type="text" value="<%= request.getAttribute("pageNow")%>" style="display: none;">
                                                         <input name="account_id" type="text" value="<%= account.getAccount_id()%>" style="display: none;">
 
-                                                        <h3 style="color: white; padding: 10px; margin: 30px 20px">Cập nhật trạng thái tài khoản</h3>
+                                                        <h3 style="color: white; padding: 10px; margin: 30px 20px">Cập nhật quyền tài khoản</h3>
                                                         <select name="select" class="form-control pro-edt-select form-control-primary" style="margin: 0px 30px; margin-bottom: 70px; background-color: #0c1923">
                                                             <%
                                                                 String[] selected = new String[3];
