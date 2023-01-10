@@ -88,7 +88,7 @@ public class AccountService {
 
     public static Account checkLogin(String username, String password) {
         List<Account> accounts = JDBiConnector.get().withHandle(h ->
-                h.createQuery("SELECT account_id, name, password, email,birthday,address,phonenumber,avatar, role FROM account WHERE name = ?")
+                h.createQuery("SELECT * FROM account WHERE name = ?")
                         .bind(0, username)
                         .mapToBean(Account.class)
                         .stream()
@@ -165,9 +165,24 @@ public class AccountService {
         return rowAffected > 0;
     }
 
+    public static boolean updateInfoUser(String username, String fullnameOfUser, String email, String phone, String birth) {
+
+        int rowAffected = JDBiConnector.get().withHandle(h ->
+                h.createUpdate("UPDATE account SET fullname = ?, email = ?, phonenumber = ?, birthday = ?  WHERE name = ?")
+                        .bind(0, fullnameOfUser)
+                        .bind(1, email)
+                        .bind(2, phone)
+                        .bind(3, birth)
+                        .bind(4, username)
+                        .execute()
+        );
+        return rowAffected > 0;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(getAvatar(7));
-        System.out.println(checkLogin("truongpro2002", "123456789"));
+//        System.out.println(checkLogin("truongpro2002", "123456789"));
+//        System.out.println(updateInfoUser("thanh123", "DOCHITHANH2","thanh2@gmail.com","999","12-1-2003"));
     }
 
 }

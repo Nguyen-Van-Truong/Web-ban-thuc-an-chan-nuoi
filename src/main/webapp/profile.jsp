@@ -224,49 +224,31 @@
             <div class="col-lg-9 col-md-7">
                 <div class="profile" id="profile">
                     <div class="left__profile">
-                        <div class="user__name profile__item">
-                            <label for="">Tên tài khoản</label>
-                            <input type="text" name="" value="<%=account.getName()%>">
-                            <a href=""> Thay đổi</a>
-                        </div>
-                        <div class="email profile__item">
-                            <label for="">Địa chỉ email</label>
-                            <input type="text" name="" value="<%=account.getEmail()%>">
-                            <a href="">Thay đổi</a>
-                        </div>
-                        <div class="phone__number  profile__item"
-                        >
-                            <label for="">Số điện thoại</label>
-                            <input type="text" name="" id="" value="<%=account.getPhonenumber()%>">
-                            <a href="">Thay đổi</a>
-                        </div>
-                        <div class="birthay  profile__item">
-                            <!--                      <label for="">Ngày sinh</label>-->
-                            <!--                      <select name="day" id="">-->
-                            <!--                        <option value="1">1</option>-->
-                            <!--                        <option value="2">2</option>-->
-                            <!--                        <option value="3">3</option>-->
-                            <!--                      </select>-->
-                            <!--                      <select name="month" id="">-->
-                            <!--                        <option value="1">Tháng 1</option>-->
-                            <!--                        <option value="2">Tháng 2</option>-->
-                            <!--                        <option value="3">Tháng 3</option>-->
-                            <!--                      </select>-->
-                            <!--                      <select name="years" id="">-->
-                            <!--                        <option value="2015">2015</option>-->
-                            <!--                        <option value="2017">2016</option>-->
-                            <!--                        <option value="2016">2017</option>-->
-                            <!--                      </select>-->
-                            <form action="/profile.jsp">
+                        <form action="/Web_ban_thuc_an_chan_nuoi_war/Profile" method="post">
+                            <div class="user__name profile__item">
+                                <label >Họ và tên</label>
+                                <input type="text" name="fullnameOfUser" value="<%=account.getFullname()%>">
+                            </div>
+                            <div class="email profile__item">
+                                <label >Địa chỉ email</label>
+                                <input type="text" name="emailAddress" value="<%=account.getEmail()%>">
+                            </div>
+                            <div class="phone__number  profile__item"
+                            >
+                                <label >Số điện thoại</label>
+                                <input type="text" name="phoneNumber"value="<%=account.getPhonenumber()%>">
+                            </div>
+                            <div class="birthay  profile__item">
                                 <label for="birthday">Ngày sinh:</label>
                                 <input type="text" id="birthday" name="birthday" value="<%=account.getBirthday()%>">
 
-                            </form>
-
-                            <a href="">Thay đổi</a>
-
-                        </div>
-
+                            </div>
+                            <div class="container-login100-form-btn" style="float: right; margin-right: 5px">
+                                <button class="login100-form-btn">
+                                    Cập nhật
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="right__profile">
                         <div style="display: flex; flex-direction: column;">
