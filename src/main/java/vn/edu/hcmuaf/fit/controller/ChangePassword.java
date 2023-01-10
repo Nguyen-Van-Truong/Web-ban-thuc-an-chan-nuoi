@@ -28,6 +28,7 @@ public class ChangePassword extends HttpServlet {
             request.setAttribute("error", "Tài khoản hoặc mật khẩu không đúng");
             request.getRequestDispatcher("changePassword.jsp").forward(request,response);
         }else {
+            request.getSession().setAttribute("currentAccount", null);
             response.sendRedirect("login.jsp");
         }
     }

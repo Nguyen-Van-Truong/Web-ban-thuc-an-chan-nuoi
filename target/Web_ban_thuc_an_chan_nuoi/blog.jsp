@@ -1,5 +1,5 @@
-<%@ page import="vn.edu.hcmuaf.fit.model.Blog" %>
 <%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -135,36 +135,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="https://www.facebook.com/"
-                            ><i class="fa fa-facebook"></i
-                            ></a>
-                            <a href="https://twitter.com/"
-                            ><i class="fa fa-twitter"></i
-                            ></a>
-                            <a href="https://www.instagram.com/"
-                            ><i class="fa fa-instagram"></i
-                            ></a>
-                        </div>
-                        <div class="header__top__right__language">
-                            <img src="img/language.png" alt=""/>
-                            <div>English</div>
-                            <span class="arrow_carrot-down"></span>
-                            <ul>
-                                <li><a href="#">Spanis</a></li>
-                                <li><a href="#">English</a></li>
-                            </ul>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
-                        </div>
-                    </div>
-                </div>
+                <%@ include file="/header_top_right.jsp" %>
             </div>
         </div>
     </div>
@@ -184,9 +155,13 @@
                             <a href="shop-grid"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
-                            <a href="ShoppingCart"
-                            ><i class="fa fa-shopping-bag"></i> <span>3</span></a
-                            >
+                            <%
+                                ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+                                int cartSize = 0;
+                                if (cart != null)
+                                    cartSize = cart.getItems().size();
+                            %>
+                            <a href="ShoppingCart"><i class="fa fa-shopping-bag"></i> <span><%=cartSize%></span></a>
                         </li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -256,11 +231,11 @@
                         <div class="blog__sidebar__recent">
                             <%
                                 List<Blog> listNewBlog = (List<Blog>) request.getAttribute("listNewBlog");
-                                for(Blog blog: listNewBlog){
+                                for (Blog blog : listNewBlog) {
                             %>
                             <a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
-                                    <img src="<%= blog.getUrl_image()%> " alt="" style="width: 100px; height: 100px;" />
+                                    <img src="<%= blog.getUrl_image()%> " alt="" style="width: 100px; height: 100px;"/>
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
                                     <h6>
@@ -269,29 +244,29 @@
                                     <span><%= blog.getCreate_date()%></span>
                                 </div>
                             </a>
-<%--                            <a href="blog-details.jsp" class="blog__sidebar__recent__item">--%>
-<%--                                <div class="blog__sidebar__recent__item__pic">--%>
-<%--                                    <img src="img/images/tintuc4.jpg" alt=""/>--%>
-<%--                                </div>--%>
-<%--                                <div class="blog__sidebar__recent__item__text">--%>
-<%--                                    <h6>--%>
-<%--                                        Triển khai Tháng vệ sinh, khử trùng tiêu độc <br/>--%>
-<%--                                        môi trường chăn nuôi--%>
-<%--                                    </h6>--%>
-<%--                                    <span>07/11/2022</span>--%>
-<%--                                </div>--%>
-<%--                            </a>--%>
-<%--                            <a href="blog-details.jsp" class="blog__sidebar__recent__item">--%>
-<%--                                <div class="blog__sidebar__recent__item__pic">--%>
-<%--                                    <img src="img/images/tintuc5.jpg" alt=""/>--%>
-<%--                                </div>--%>
-<%--                                <div class="blog__sidebar__recent__item__text">--%>
-<%--                                    <h6>--%>
-<%--                                        Quy trình kỹ thuật nuôi dê lấy sữa hiệu quả cao--%>
-<%--                                    </h6>--%>
-<%--                                    <span>04/11/2022</span>--%>
-<%--                                </div>--%>
-<%--                            </a>--%>
+                            <%--                            <a href="blog-details.jsp" class="blog__sidebar__recent__item">--%>
+                            <%--                                <div class="blog__sidebar__recent__item__pic">--%>
+                            <%--                                    <img src="img/images/tintuc4.jpg" alt=""/>--%>
+                            <%--                                </div>--%>
+                            <%--                                <div class="blog__sidebar__recent__item__text">--%>
+                            <%--                                    <h6>--%>
+                            <%--                                        Triển khai Tháng vệ sinh, khử trùng tiêu độc <br/>--%>
+                            <%--                                        môi trường chăn nuôi--%>
+                            <%--                                    </h6>--%>
+                            <%--                                    <span>07/11/2022</span>--%>
+                            <%--                                </div>--%>
+                            <%--                            </a>--%>
+                            <%--                            <a href="blog-details.jsp" class="blog__sidebar__recent__item">--%>
+                            <%--                                <div class="blog__sidebar__recent__item__pic">--%>
+                            <%--                                    <img src="img/images/tintuc5.jpg" alt=""/>--%>
+                            <%--                                </div>--%>
+                            <%--                                <div class="blog__sidebar__recent__item__text">--%>
+                            <%--                                    <h6>--%>
+                            <%--                                        Quy trình kỹ thuật nuôi dê lấy sữa hiệu quả cao--%>
+                            <%--                                    </h6>--%>
+                            <%--                                    <span>04/11/2022</span>--%>
+                            <%--                                </div>--%>
+                            <%--                            </a>--%>
 
                             <%}%>
                         </div>
@@ -302,193 +277,192 @@
                 <div class="row">
                     <%
                         List<Blog> listBlog = (List<Blog>) request.getAttribute("listBlog");
-                        for(Blog blog: listBlog){
+                        for (Blog blog : listBlog) {
                     %>
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                                <div class="blog__item">
-                                                    <div class="blog__item__pic">
-                                                        <img src="<%= blog.getUrl_image()%>" alt=""/>
-                                                    </div>
-                                                    <div class="blog__item__text">
-                                                        <ul>
-                                                            <li><i class="fa fa-calendar-o"></i> <%= blog.getCreate_date()%></li>
-                                                        </ul>
-                                                        <h5><a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>"><%= blog.getTitle()%></a></h5>
-                                                        <p>
-                                                           <%= blog.getIntroduce()%>
-                                                        </p>
-                                                        <a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>" class="blog__btn"
-                                                        >Đọc thêm <span class="arrow_right"></span
-                                                        ></a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <div class="blog__item">
+                            <div class="blog__item__pic">
+                                <img src="<%= blog.getUrl_image()%>" alt=""/>
+                            </div>
+                            <div class="blog__item__text">
+                                <ul>
+                                    <li><i class="fa fa-calendar-o"></i> <%= blog.getCreate_date()%>
+                                    </li>
+                                </ul>
+                                <h5><a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>"><%= blog.getTitle()%>
+                                </a></h5>
+                                <p>
+                                    <%= blog.getIntroduce()%>
+                                </p>
+                                <a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>" class="blog__btn"
+                                >Đọc thêm <span class="arrow_right"></span
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
 
                     <%}%>
 
 
-<%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
-<%--                        <div class="blog__item">--%>
-<%--                            <div class="blog__item__pic">--%>
-<%--                                <img src="img/images/thumbnail1.jpg" alt=""/>--%>
-<%--                            </div>--%>
-<%--                            <div class="blog__item__text">--%>
-<%--                                <ul>--%>
-<%--                                    <li><i class="fa fa-calendar-o"></i> 27/07/2022</li>--%>
-<%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
-<%--                                </ul>--%>
-<%--                                <h5><a href="blog-details.jsp">Hòa Phát nhập khẩu 100% heo giống từ Đan Mạch</a></h5>--%>
-<%--                                <p>--%>
-<%--                                    100% heo giống cụ kỵ của Hòa Phát được nhập khẩu trực tiếp từ Đan Mạch với các ưu--%>
-<%--                                    điểm vượt trội về năng suất sinh sản, sinh trưởng mạnh, chất lượng thịt tối ưu.--%>
-<%--                                </p>--%>
-<%--                                <a href="blog-details.jsp" class="blog__btn"--%>
-<%--                                >Đọc thêm <span class="arrow_right"></span--%>
-<%--                                ></a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
-<%--                        <div class="blog__item">--%>
-<%--                            <div class="blog__item__pic">--%>
-<%--                                <img src="img/images/thumbnail2.jpg" alt=""/>--%>
-<%--                            </div>--%>
-<%--                            <div class="blog__item__text">--%>
-<%--                                <ul>--%>
-<%--                                    <li><i class="fa fa-calendar-o"></i> 04/11/2022</li>--%>
-<%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
-<%--                                </ul>--%>
-<%--                                <h5><a href="blog-details.jsp">Bản tin Thị trường Chăn nuôi ngày 04/11/2022</a></h5>--%>
-<%--                                <p>--%>
-<%--                                    Giá heo hơi bình quân cả nước ngày hôm nay là khoảng 54.000 đồng/kg.--%>
+                    <%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
+                    <%--                        <div class="blog__item">--%>
+                    <%--                            <div class="blog__item__pic">--%>
+                    <%--                                <img src="img/images/thumbnail1.jpg" alt=""/>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="blog__item__text">--%>
+                    <%--                                <ul>--%>
+                    <%--                                    <li><i class="fa fa-calendar-o"></i> 27/07/2022</li>--%>
+                    <%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
+                    <%--                                </ul>--%>
+                    <%--                                <h5><a href="blog-details.jsp">Hòa Phát nhập khẩu 100% heo giống từ Đan Mạch</a></h5>--%>
+                    <%--                                <p>--%>
+                    <%--                                    100% heo giống cụ kỵ của Hòa Phát được nhập khẩu trực tiếp từ Đan Mạch với các ưu--%>
+                    <%--                                    điểm vượt trội về năng suất sinh sản, sinh trưởng mạnh, chất lượng thịt tối ưu.--%>
+                    <%--                                </p>--%>
+                    <%--                                <a href="blog-details.jsp" class="blog__btn"--%>
+                    <%--                                >Đọc thêm <span class="arrow_right"></span--%>
+                    <%--                                ></a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
+                    <%--                        <div class="blog__item">--%>
+                    <%--                            <div class="blog__item__pic">--%>
+                    <%--                                <img src="img/images/thumbnail2.jpg" alt=""/>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="blog__item__text">--%>
+                    <%--                                <ul>--%>
+                    <%--                                    <li><i class="fa fa-calendar-o"></i> 04/11/2022</li>--%>
+                    <%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
+                    <%--                                </ul>--%>
+                    <%--                                <h5><a href="blog-details.jsp">Bản tin Thị trường Chăn nuôi ngày 04/11/2022</a></h5>--%>
+                    <%--                                <p>--%>
+                    <%--                                    Giá heo hơi bình quân cả nước ngày hôm nay là khoảng 54.000 đồng/kg.--%>
 
-<%--                                    Tại miền Bắc, giá heo tiếp tục đà giảm do một số công ty lớn hạ mạnh giá heo biểu to--%>
-<%--                                    để thoát hàng.--%>
-<%--                                    Tại miền Trung và miền Nam, lực đóng ra miền Bắc chậm, số lượng heo tồn kho tăng lên--%>
-<%--                                    nên--%>
-<%--                                    giá heo tại khu vực này cũng chịu áp lực giá heo giảm trong ngắn hạn.--%>
-<%--                                </p>--%>
-<%--                                <a href="blog-details.jsp" class="blog__btn"--%>
-<%--                                >Đọc thêm <span class="arrow_right"></span--%>
-<%--                                ></a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
-<%--                        <div class="blog__item">--%>
-<%--                            <div class="blog__item__pic">--%>
-<%--                                <img src="img/images/thumbnailGF.png" alt=""/>--%>
-<%--                            </div>--%>
-<%--                            <div class="blog__item__text">--%>
-<%--                                <ul>--%>
-<%--                                    <li><i class="fa fa-calendar-o"></i> 01/10/2022</li>--%>
-<%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
-<%--                                </ul>--%>
-<%--                                <h5><a href="blog-details.jsp">Thực phẩm thủy hải sản GREENFEED tự hào kiến tạo giá trị--%>
-<%--                                    Lành - Lạ - Ngon</a></h5>--%>
-<%--                                <p>--%>
-<%--                                    Bắt nguồn từ con giống khỏe mạnh, sản phẩm dinh dưỡng tối ưu, Ngành Thủy Hải Sản--%>
-<%--                                    GREENFEED đã tạo ra dòng sản phẩm thương phẩm chất lượng cao đáp ứng nhu cầu của thị--%>
-<%--                                    trường nội địa lẫn các yêu cầu, tiêu chuẩn khắc khe của thế giới.--%>
-<%--                                </p>--%>
-<%--                                <a href="blog-details.jsp" class="blog__btn"--%>
-<%--                                >Đọc thêm<span class="arrow_right"></span--%>
-<%--                                ></a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
-<%--                        <div class="blog__item">--%>
-<%--                            <div class="blog__item__pic">--%>
-<%--                                <img src="img/images/tin-tuc1.jpg" alt=""/>--%>
-<%--                            </div>--%>
-<%--                            <div class="blog__item__text">--%>
-<%--                                <ul>--%>
-<%--                                    <li>--%>
-<%--                                        <i class="fa fa-calendar-o"></i>10/11/2022--%>
-<%--                                    </li>--%>
-<%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
-<%--                                </ul>--%>
-<%--                                <h5><a href="blog-details.jsp">Tuyên bố của Hội đồng Gia cầm Quốc tế (International--%>
-<%--                                    Poultry Council – IPC) về sử dụng kháng sinh và các nguyên tắc quản lý kháng--%>
-<%--                                    sinh</a></h5>--%>
-<%--                                <p>--%>
-<%--                                    Sứ mệnh: IPC và các thành viên sẽ thúc đẩy việc sử dụng và quản lý có trách nhiệm--%>
-<%--                                    các chất khánh khuẩn; nhằm bảo vệ sức khỏe và phúc lợi của đàn gia cầm, sản xuất--%>
-<%--                                    thực phẩm an toàn, bảo đảm tính hiệu quả của các chất kháng khuẩn và tạo niềm tin--%>
-<%--                                    với người tiêu dùng.--%>
-<%--                                </p>--%>
-<%--                                <a href="blog-details.jsp" class="blog__btn"--%>
-<%--                                >Đọc thêm<span class="arrow_right"></span--%>
-<%--                                ></a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
-<%--                        <div class="blog__item">--%>
-<%--                            <div class="blog__item__pic">--%>
-<%--                                <img src="img/images/tintuc2.jpg" alt=""/>--%>
-<%--                            </div>--%>
-<%--                            <div class="blog__item__text">--%>
-<%--                                <ul>--%>
-<%--                                    <li>--%>
-<%--                                        <i class="fa fa-calendar-o"></i>14/07/2022--%>
-<%--                                    </li>--%>
-<%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
-<%--                                </ul>--%>
-<%--                                <h5>--%>
-<%--                                    <a href="blog-details.jsp"--%>
-<%--                                    >Hòa Phát cung cấp gần 200.000 con heo trong 6 tháng đầu năm</a--%>
-<%--                                    >--%>
-<%--                                </h5>--%>
-<%--                                <p>--%>
-<%--                                    6 tháng đầu năm, sản lượng heo tiêu thụ các loại đạt gần 200.000 con heo thịt thương--%>
-<%--                                    phẩm, heo giống… ngang bằng so với cùng kì năm ngoái.--%>
-<%--                                </p>--%>
-<%--                                <a href="blog-details.jsp" class="blog__btn"--%>
-<%--                                >Đọc thêm<span class="arrow_right"></span--%>
-<%--                                ></a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
-<%--                        <div class="blog__item">--%>
-<%--                            <div class="blog__item__pic">--%>
-<%--                                <img src="img/images/tintuc6.jpg" alt=""/>--%>
-<%--                            </div>--%>
-<%--                            <div class="blog__item__text">--%>
-<%--                                <ul>--%>
-<%--                                    <li>--%>
-<%--                                        <i class="fa fa-calendar-o"></i>03/10/2022--%>
-<%--                                    </li>--%>
-<%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
-<%--                                </ul>--%>
-<%--                                <h5><a href="blog-details.jsp">Kỹ sư trẻ về làng nuôi gà kiếm tiền tỉ</a></h5>--%>
-<%--                                <p>--%>
-<%--                                    Chán cảnh sống ngột ngạt, gò bó ở thành thị, chàng kỹ sư CNTT bỏ Thủ đô về quê lập--%>
-<%--                                    nghiệp bằng cách chăn gà, nuôi lợn, thả cá, trồng rau. Sau gần 10 năm, anh đã thành--%>
-<%--                                    ông chủ của 5 nghìn con gà, gần 100 con lợn và ao cá rộng gần 1ha.--%>
-<%--                                </p>--%>
-<%--                                <a href="blog-details.jsp" class="blog__btn"--%>
-<%--                                >Đọc thêm <span class="arrow_right"></span--%>
-<%--                                ></a>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-
-
-
-
+                    <%--                                    Tại miền Bắc, giá heo tiếp tục đà giảm do một số công ty lớn hạ mạnh giá heo biểu to--%>
+                    <%--                                    để thoát hàng.--%>
+                    <%--                                    Tại miền Trung và miền Nam, lực đóng ra miền Bắc chậm, số lượng heo tồn kho tăng lên--%>
+                    <%--                                    nên--%>
+                    <%--                                    giá heo tại khu vực này cũng chịu áp lực giá heo giảm trong ngắn hạn.--%>
+                    <%--                                </p>--%>
+                    <%--                                <a href="blog-details.jsp" class="blog__btn"--%>
+                    <%--                                >Đọc thêm <span class="arrow_right"></span--%>
+                    <%--                                ></a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
+                    <%--                        <div class="blog__item">--%>
+                    <%--                            <div class="blog__item__pic">--%>
+                    <%--                                <img src="img/images/thumbnailGF.png" alt=""/>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="blog__item__text">--%>
+                    <%--                                <ul>--%>
+                    <%--                                    <li><i class="fa fa-calendar-o"></i> 01/10/2022</li>--%>
+                    <%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
+                    <%--                                </ul>--%>
+                    <%--                                <h5><a href="blog-details.jsp">Thực phẩm thủy hải sản GREENFEED tự hào kiến tạo giá trị--%>
+                    <%--                                    Lành - Lạ - Ngon</a></h5>--%>
+                    <%--                                <p>--%>
+                    <%--                                    Bắt nguồn từ con giống khỏe mạnh, sản phẩm dinh dưỡng tối ưu, Ngành Thủy Hải Sản--%>
+                    <%--                                    GREENFEED đã tạo ra dòng sản phẩm thương phẩm chất lượng cao đáp ứng nhu cầu của thị--%>
+                    <%--                                    trường nội địa lẫn các yêu cầu, tiêu chuẩn khắc khe của thế giới.--%>
+                    <%--                                </p>--%>
+                    <%--                                <a href="blog-details.jsp" class="blog__btn"--%>
+                    <%--                                >Đọc thêm<span class="arrow_right"></span--%>
+                    <%--                                ></a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
+                    <%--                        <div class="blog__item">--%>
+                    <%--                            <div class="blog__item__pic">--%>
+                    <%--                                <img src="img/images/tin-tuc1.jpg" alt=""/>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="blog__item__text">--%>
+                    <%--                                <ul>--%>
+                    <%--                                    <li>--%>
+                    <%--                                        <i class="fa fa-calendar-o"></i>10/11/2022--%>
+                    <%--                                    </li>--%>
+                    <%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
+                    <%--                                </ul>--%>
+                    <%--                                <h5><a href="blog-details.jsp">Tuyên bố của Hội đồng Gia cầm Quốc tế (International--%>
+                    <%--                                    Poultry Council – IPC) về sử dụng kháng sinh và các nguyên tắc quản lý kháng--%>
+                    <%--                                    sinh</a></h5>--%>
+                    <%--                                <p>--%>
+                    <%--                                    Sứ mệnh: IPC và các thành viên sẽ thúc đẩy việc sử dụng và quản lý có trách nhiệm--%>
+                    <%--                                    các chất khánh khuẩn; nhằm bảo vệ sức khỏe và phúc lợi của đàn gia cầm, sản xuất--%>
+                    <%--                                    thực phẩm an toàn, bảo đảm tính hiệu quả của các chất kháng khuẩn và tạo niềm tin--%>
+                    <%--                                    với người tiêu dùng.--%>
+                    <%--                                </p>--%>
+                    <%--                                <a href="blog-details.jsp" class="blog__btn"--%>
+                    <%--                                >Đọc thêm<span class="arrow_right"></span--%>
+                    <%--                                ></a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
+                    <%--                        <div class="blog__item">--%>
+                    <%--                            <div class="blog__item__pic">--%>
+                    <%--                                <img src="img/images/tintuc2.jpg" alt=""/>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="blog__item__text">--%>
+                    <%--                                <ul>--%>
+                    <%--                                    <li>--%>
+                    <%--                                        <i class="fa fa-calendar-o"></i>14/07/2022--%>
+                    <%--                                    </li>--%>
+                    <%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
+                    <%--                                </ul>--%>
+                    <%--                                <h5>--%>
+                    <%--                                    <a href="blog-details.jsp"--%>
+                    <%--                                    >Hòa Phát cung cấp gần 200.000 con heo trong 6 tháng đầu năm</a--%>
+                    <%--                                    >--%>
+                    <%--                                </h5>--%>
+                    <%--                                <p>--%>
+                    <%--                                    6 tháng đầu năm, sản lượng heo tiêu thụ các loại đạt gần 200.000 con heo thịt thương--%>
+                    <%--                                    phẩm, heo giống… ngang bằng so với cùng kì năm ngoái.--%>
+                    <%--                                </p>--%>
+                    <%--                                <a href="blog-details.jsp" class="blog__btn"--%>
+                    <%--                                >Đọc thêm<span class="arrow_right"></span--%>
+                    <%--                                ></a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-6 col-md-6 col-sm-6">--%>
+                    <%--                        <div class="blog__item">--%>
+                    <%--                            <div class="blog__item__pic">--%>
+                    <%--                                <img src="img/images/tintuc6.jpg" alt=""/>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="blog__item__text">--%>
+                    <%--                                <ul>--%>
+                    <%--                                    <li>--%>
+                    <%--                                        <i class="fa fa-calendar-o"></i>03/10/2022--%>
+                    <%--                                    </li>--%>
+                    <%--                                    <li><i class="fa fa-comment-o"></i> 5</li>--%>
+                    <%--                                </ul>--%>
+                    <%--                                <h5><a href="blog-details.jsp">Kỹ sư trẻ về làng nuôi gà kiếm tiền tỉ</a></h5>--%>
+                    <%--                                <p>--%>
+                    <%--                                    Chán cảnh sống ngột ngạt, gò bó ở thành thị, chàng kỹ sư CNTT bỏ Thủ đô về quê lập--%>
+                    <%--                                    nghiệp bằng cách chăn gà, nuôi lợn, thả cá, trồng rau. Sau gần 10 năm, anh đã thành--%>
+                    <%--                                    ông chủ của 5 nghìn con gà, gần 100 con lợn và ao cá rộng gần 1ha.--%>
+                    <%--                                </p>--%>
+                    <%--                                <a href="blog-details.jsp" class="blog__btn"--%>
+                    <%--                                >Đọc thêm <span class="arrow_right"></span--%>
+                    <%--                                ></a>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
 
 
                     <div class="col-lg-12">
                         <div class="product__pagination blog__pagination">
                             <%
                                 int blogSize = (int) request.getAttribute("blogSize");
-                                for(int i = 1; i <= blogSize; i++){
+                                for (int i = 1; i <= blogSize; i++) {
                             %>
-                            <a href="BlogController?pageNumber=<%= i%>"><%= i%></a>
+                            <a href="BlogController?pageNumber=<%= i%>"><%= i%>
+                            </a>
                             <%}%>
                         </div>
                     </div>

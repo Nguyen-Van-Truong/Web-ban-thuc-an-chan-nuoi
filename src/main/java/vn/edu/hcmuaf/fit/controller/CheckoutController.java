@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.model.CartItem;
 import vn.edu.hcmuaf.fit.model.Product;
 import vn.edu.hcmuaf.fit.model.ShoppingCart;
 import vn.edu.hcmuaf.fit.model.Transport;
+import vn.edu.hcmuaf.fit.model.bean.Account;
 import vn.edu.hcmuaf.fit.service.CheckoutService;
 import vn.edu.hcmuaf.fit.service.ProductService;
 
@@ -24,11 +25,12 @@ public class CheckoutController extends HttpServlet {
         if (cart == null) {
             System.out.println("chua co san pham trong gio hang");
             response.sendRedirect("ShoppingCart");
-        }
-        List<Transport> transports = CheckoutService.getAllTransport();
-        request.setAttribute("Transports", transports);
+        } else {
+            List<Transport> transports = CheckoutService.getAllTransport();
+            request.setAttribute("Transports", transports);
 
-        request.getRequestDispatcher("checkout.jsp").forward(request, response);
+            request.getRequestDispatcher("checkout.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -47,7 +49,11 @@ public class CheckoutController extends HttpServlet {
         }
         boolean successCheckout = true;
         try {
-            if (successCheckout &= CheckoutService.createOrder(currentDate, address, phoneNumber, transportId, 2)) {
+            Account acc = (Account) request.getSession().getAttribute("currentAccount");
+            Integer account_id = null;
+            if (acc != null)
+                account_id = acc.getAccount_id();
+            if (successCheckout &= CheckoutService.createOrder(account_id, currentDate, address, phoneNumber, transportId, 2)) {
                 List<CartItem> items = cart.getItems();
                 for (CartItem item : items) {
                     Product product = ProductService.getProductFromProductId(item.getProductId());

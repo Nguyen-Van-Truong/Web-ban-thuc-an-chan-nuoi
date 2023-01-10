@@ -27,6 +27,19 @@ public class AccountService {
     public AccountService() {
     }
 
+    public static String getAvatar(int accountId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            // Select the avatar column from the account table where the account_id column matches the provided accountId
+            String sql = "SELECT avatar FROM account WHERE account_id = ?";
+            return handle.createQuery(sql)
+                    .bind(0, accountId)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("img/images/img_default/img_not_found.png");
+        });
+    }
+
+
     public static AccountService getInstance() {
         if (instance == null) {
             instance = new AccountService();
@@ -55,7 +68,7 @@ public class AccountService {
 
     public static List<Account> getNAccount(int n, int offset) {
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT account_id,full_name, avatar_url ,role FROM account Limit :n OFFSET :offset")
+            return handle.createQuery("SELECT account_id,fullname, avatar ,role FROM account Limit :n OFFSET :offset")
                     .bind("n", n)
                     .bind("offset", offset)
                     .mapToBean(Account.class)
@@ -73,7 +86,7 @@ public class AccountService {
         });
     }
 
-    public Account checkLogin(String username, String password) {
+    public static Account checkLogin(String username, String password) {
         List<Account> accounts = JDBiConnector.get().withHandle(h ->
                 h.createQuery("SELECT * FROM account WHERE name = ?")
                         .bind(0, username)
@@ -152,5 +165,37 @@ public class AccountService {
         return rowAffected > 0;
     }
 
+    public static boolean updateInfoUser(String username, String fullnameOfUser, String email, String phone, String birth) {
+
+        int rowAffected = JDBiConnector.get().withHandle(h ->
+                h.createUpdate("UPDATE account SET fullname = ?, email = ?, phonenumber = ?, birthday = ?  WHERE name = ?")
+                        .bind(0, fullnameOfUser)
+                        .bind(1, email)
+                        .bind(2, phone)
+                        .bind(3, birth)
+                        .bind(4, username)
+                        .execute()
+        );
+        return rowAffected > 0;
+    }
+
+    public static String getFullname(int account_id) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select fullname FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("");
+        });
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(getAvatar(7));
+//        System.out.println(checkLogin("truongpro2002", "123"));
+        System.out.println(updateInfoUser("truongpro2002", "Nguyen Van Truong", "truong1@gmail.com", "99999", "11-1-2002"));
+
+        System.out.println(AccountService.getAvatar(5));
+    }
 
 }

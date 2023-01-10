@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller;
 
+import vn.edu.hcmuaf.fit.model.ShoppingCart;
 import vn.edu.hcmuaf.fit.model.bean.Account;
 import vn.edu.hcmuaf.fit.service.AccountService;
 
@@ -29,9 +30,13 @@ public class Login extends HttpServlet {
             request.setAttribute("error", "Tài khoản hoặc mật khẩu không đúng");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            HttpSession session = request.getSession(true);
+
+            request.getSession().setAttribute("currentAccount", account);
+
+            Account sysoutAccount = (Account) request.getSession().getAttribute("currentAccount");
+            System.out.println(sysoutAccount);
+
             System.out.println(account.getName() + " dang nhap thanh cong");
-            session.setAttribute("auth", account);
             response.sendRedirect("index");
         }
     }

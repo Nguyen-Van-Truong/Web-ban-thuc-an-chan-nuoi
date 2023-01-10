@@ -1,10 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="vn.edu.hcmuaf.fit.service.ProductService" %>
-<%@ page import="vn.edu.hcmuaf.fit.model.Category" %>
-<%@ page import="vn.edu.hcmuaf.fit.model.Characteristic" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.*" %>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -103,7 +101,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="blog.jsp">Tin Tức</a></li>
+            <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
             <li><a href="contact.jsp">Liên Hệ</a></li>
         </ul>
     </nav>
@@ -139,36 +137,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="https://www.facebook.com/"
-                            ><i class="fa fa-facebook"></i
-                            ></a>
-                            <a href="https://twitter.com/"
-                            ><i class="fa fa-twitter"></i
-                            ></a>
-                            <a href="https://www.instagram.com/"
-                            ><i class="fa fa-instagram"></i
-                            ></a>
-                        </div>
-                        <div class="header__top__right__language">
-                            <img src="img/language.png" alt=""/>
-                            <div>English</div>
-                            <span class="arrow_carrot-down"></span>
-                            <ul>
-                                <li><a href="#">Spanis</a></li>
-                                <li><a href="#">English</a></li>
-                            </ul>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
-                        </div>
-                    </div>
-                </div>
+                <%@ include file="/header_top_right.jsp" %>
             </div>
         </div>
     </div>
@@ -189,9 +158,13 @@
                             <a href="shop-grid.jsp"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
-                            <a href="ShoppingCart"
-                            ><i class="fa fa-shopping-bag"></i> <span>3</span></a
-                            >
+                            <%
+                                ShoppingCart current_cart = (vn.edu.hcmuaf.fit.model.ShoppingCart) request.getSession().getAttribute("cart");
+                                int cartSize = 0;
+                                if (current_cart != null)
+                                    cartSize = current_cart.getItems().size();
+                            %>
+                            <a href="ShoppingCart"><i class="fa fa-shopping-bag"></i> <span><%=cartSize%></span></a>
                         </li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -209,7 +182,7 @@
                     <ul class="menu__list">
                         <li><a href="index">Trang Chủ</a></li>
                         <li class="active"><a href="./shop-grid">Sản Phẩm</a></li>
-                        <li><a href="blog.jsp">Tin Tức</a></li>
+                        <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
                         <li><a href="contact.jsp">Liên Hệ</a></li>
                     </ul>
                 </nav>

@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.fit.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -99,7 +100,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="blog.jsp">Tin Tức</a></li>
+            <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
             <li><a href="contact.jsp">Liên Hệ</a></li>
         </ul>
     </nav>
@@ -135,28 +136,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="https://www.facebook.com/"
-                            ><i class="fa fa-facebook"></i
-                            ></a>
-                            <a href="https://twitter.com/"
-                            ><i class="fa fa-twitter"></i
-                            ></a>
-                            <a href="https://www.instagram.com/"
-                            ><i class="fa fa-instagram"></i
-                            ></a>
-                        </div>
-
-                        <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
-                        </div>
-                    </div>
-                </div>
+                <%@ include file="/header_top_right.jsp" %>
             </div>
         </div>
     </div>
@@ -181,7 +161,7 @@
                             >
                         </li>
                     </ul>
-<!--                    <div class="header__cart__price">item: <span>$150.00</span></div>-->
+                    <!--                    <div class="header__cart__price">item: <span>$150.00</span></div>-->
                 </div>
             </div>
         </div>
@@ -196,7 +176,7 @@
                     <ul class="menu__list">
                         <li><a href="index">Trang Chủ</a></li>
                         <li><a href="shop-grid">Sản phẩm</a></li>
-                        <li><a href="blog.jsp">Tin Tức</a></li>
+                        <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
                         <li><a href="contact.jsp">Liên Hệ</a></li>
                     </ul>
                 </nav>
@@ -210,29 +190,23 @@
         <div class="row">
             <div class="col-lg-3 col-md-5">
                 <div class="img-left">
-                    <img src="./img/avatar.jpg" alt="" class="img__user">
-                    <p>Nguyễn Thị Hoa Hồng</p>
+                    <img src="<%=account.getAvatar()%>" alt="" class="img__user">
+                    <p><%=account.getName()%>
+                    </p>
                 </div>
                 <ul class="menu">
                     <li>
                         <button class="menu__item" onclick="profile_click()">Hồ Sơ</button>
                     </li>
                     <li>
-                        <button class="menu__item" onclick="password_click()">Đổi mật khẩu</button>
+                        <a href="/Web_ban_thuc_an_chan_nuoi_war/changePassword.jsp">
+                            <button class="menu__item" onclick="password_click()">Đổi mật khẩu</button>
+                        </a>
                     </li>
                     <li>
-                        <button class="menu__item" onclick="oder_click()">Đơn hàng đang giao</button>
+                        <button class="menu__item" onclick="oder_click()">Lịch sử mua hàng</button>
                     </li>
-                    <li>
-                        <button class="menu__item" onclick="odered_click()">Đơn hàng đã giao</button>
-                    </li>
-                    <li><a href="./shop-grid">
-                        <button class="menu__item">Sản phẩm yêu thích</button>
-                    </a></li>
-                    <li><a href="./shop-grid">
-                        <button class="menu__item">Sản phẩm đã mua</button>
-                    </a></li>
-                    <li><a href="./admin.html">
+                    <li><a href="./admin/index.jsp">
                         <button class="menu__item">Admin</button>
                     </a></li>
 
@@ -240,225 +214,99 @@
                 </ul>
             </div>
             <div class="col-lg-9 col-md-7">
-                <div class="profile" id="profile">
+                <div class="profile" id="profile_account">
                     <div class="left__profile">
-                        <div class="user__name profile__item">
-                            <label for="">Tên tài khoản</label>
-                            <input type="text" name="" id="" value="Nguyển Thị Hoa Hồng">
-                            <a href=""> Thay đổi</a>
-                        </div>
-                        <div class="email profile__item">
-                            <label for="">Địa chỉ email</label>
-                            <input type="text" name="" id="" value="aimailfeed@gmail.com">
-                            <a href="">Thay đổi</a>
-                        </div>
-                        <div class="phone__number  profile__item"
-                        ">
-                        <label for="">Số điện thoại</label>
-                        <input type="text" name="" id="" value="*********999">
-                        <a href="">Thay đổi</a>
+                        <form action="/Web_ban_thuc_an_chan_nuoi_war/Profile" method="post">
+                            <div class="user__name profile__item">
+                                <label>Họ và tên</label>
+                                <input type="text" name="fullnameOfUser" value="<%=account.getFullname()%>">
+                            </div>
+                            <div class="email profile__item">
+                                <label>Địa chỉ email</label>
+                                <input type="text" name="emailAddress" value="<%=account.getEmail()%>">
+                            </div>
+                            <div class="phone__number  profile__item"
+                            >
+                                <label>Số điện thoại</label>
+                                <input type="text" name="phoneNumber" value="<%=account.getPhonenumber()%>">
+                            </div>
+                            <div class="birthay  profile__item">
+                                <label for="birthday">Ngày sinh:</label>
+                                <input type="text" id="birthday" name="birthday" value="<%=account.getBirthday()%>">
+
+                            </div>
+                            <div class="container-login100-form-btn" style="float: right; margin-right: 5px">
+                                <button class="login100-form-btn">
+                                    Cập nhật
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="gender  profile__item"
-                    ">
-                    <label for=""> Giới tính</label>
-                    <input type="radio" name="gender">
-                    <label for=""> Nam</label>
-                    <input type="radio" name="gender">
-                    <label for=""> Nữ</label>
-                    <input type="radio" name="gender">
-                    <label for="">Khác</label>
-                    <a href="">Thay đổi</a>
+                    <div class="right__profile">
+                        <div style="display: flex; flex-direction: column;">
+                            <img src="<%=account.getAvatar()%>" alt=""
+                                 style="width: 200px; border-radius: 200px; margin: auto;">
+                            <input type="file" name="image__user" id="image__user" value="Chọn ảnh"
+                                   style="width: 98px; margin: 10px auto;">
+                        </div>
+                    </div>
+                </div>
+                <div id="oder">
+                    <table>
+                        <tr>
+                            <th>Mã Đơn Hàng</th>
+                            <th>Ngày mua hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                        <%
+                            List<Order> orderList = (List<Order>) request.getAttribute("OrderList");
+                            for (Order o : orderList) {
+                        %>
+                        <tr>
+                            <td><%=o.getOrderId()%>
+                            </td>
+                            <td><%=o.getDate()%>
+                            </td>
+                            <td><%=o.totalCost()%> đ</td>
+                            <td>
+                                <%
+                                    List<OrderDetail> orderDetails = o.getAllOrderDetail();
+                                    for (OrderDetail od : orderDetails) {
+                                %>
+                                <%=od.getNameProduct()%>, giá:<%=od.getOutPrice()%>, số lượng:<%=od.getQuantity()%>
+                                <br/>
+                                <%}%>
+                            </td>
+
+                        </tr>
+                        <%}%>
+                    </table>
 
                 </div>
-                <div class="birthay  profile__item"
-                ">
-                <!--                      <label for="">Ngày sinh</label>-->
-                <!--                      <select name="day" id="">-->
-                <!--                        <option value="1">1</option>-->
-                <!--                        <option value="2">2</option>-->
-                <!--                        <option value="3">3</option>-->
-                <!--                      </select>-->
-                <!--                      <select name="month" id="">-->
-                <!--                        <option value="1">Tháng 1</option>-->
-                <!--                        <option value="2">Tháng 2</option>-->
-                <!--                        <option value="3">Tháng 3</option>-->
-                <!--                      </select>-->
-                <!--                      <select name="years" id="">-->
-                <!--                        <option value="2015">2015</option>-->
-                <!--                        <option value="2017">2016</option>-->
-                <!--                        <option value="2016">2017</option>-->
-                <!--                      </select>-->
-                <form action="/profile.jsp">
-                    <label for="birthday">Ngày sinh:</label>
-                    <input type="date" id="birthday" name="birthday">
 
-                </form>
-
-                <a href="">Thay đổi</a>
-
-            </div>
-
-        </div>
-        <div class="right__profile">
-            <div style="display: flex; flex-direction: column;">
-                <img src="./img/avatar.jpg" alt="" style="width: 200px; border-radius: 200px; margin: auto;">
-                <input type="file" name="image__user" id="image__user" value="Chọn ảnh"
-                       style="width: 98px; margin: 10px auto;">
+                <%--    <div id="password">--%>
+                <%--        <form action="">--%>
+                <%--            <div>--%>
+                <%--                <label for="old_pass">Nhập mật khẩu cũ</label>--%>
+                <%--                <input type="text" name="old_pass" id="">--%>
+                <%--            </div>--%>
+                <%--            <div>--%>
+                <%--                <label for="new_pass">Mật khẩu mới</label>--%>
+                <%--                <input type="text" name="new_pass" id="">--%>
+                <%--            </div>--%>
+                <%--            <div>--%>
+                <%--                <label for="new_pass-retypr">Nhập lại mật khẩu mới</label>--%>
+                <%--                <input type="text" name="new_pass-retype" id="">--%>
+                <%--            </div>--%>
+                <%--            <div>--%>
+                <%--                <button id="btn">Lưu thay đổi</button>--%>
+                <%--            </div>--%>
+                <%--        </form>--%>
+                <%--    </div>--%>
             </div>
         </div>
     </div>
-    <div id="oder">
-        <table>
-            <tr>
-                <th>Mã Đơn Hàng</th>
-                <th>Ngày mua hàng</th>
-                <th>Số lượng hàng hóa</th>
-                <th>Tổng Tiền</th>
-                <th>Chi tiết đơn hàng</th>
-            </tr>
-
-            <tr>
-                <td>003876</td>
-                <td>6/11/2020</td>
-                <td>20</td>
-                <td>2,000,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-            <tr>
-                <td>231892</td>
-                <td>8/10/2021</td>
-                <td>45</td>
-                <td>3,499,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-            <tr>
-                <td>126871</td>
-                <td>29/12/2021</td>
-                <td>25</td>
-                <td>4,199,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-
-            <tr>
-                <td>908124</td>
-                <td>12/1/2022</td>
-                <td>50</td>
-                <td>25,000,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-            <tr>
-                <td>123456</td>
-                <td>22/2/2022</td>
-                <td>35</td>
-                <td>5,399,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-        </table>
-
-    </div>
-    <div id="odered">
-        <table>
-            <tr>
-                <th>Mã Đơn Hàng</th>
-                <th>Ngày mua hàng</th>
-                <th>Số lượng hàng hóa</th>
-                <th>Tổng Tiền</th>
-                <th>Chi tiết đơn hàng</th>
-            </tr>
-
-            <tr>
-                <td>003876</td>
-                <td>6/11/2020</td>
-                <td>20</td>
-                <td>2,000,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-            <tr>
-                <td>231892</td>
-                <td>8/10/2021</td>
-                <td>45</td>
-                <td>3,499,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-            <tr>
-                <td>126871</td>
-                <td>29/12/2021</td>
-                <td>25</td>
-                <td>4,199,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-
-            <tr>
-                <td>908124</td>
-                <td>12/1/2022</td>
-                <td>50</td>
-                <td>25,000,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-            <tr>
-                <td>273612</td>
-                <td>22/2/2022</td>
-                <td>35</td>
-                <td>5,399,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-            <tr>
-                <td>132635</td>
-                <td>22/2/2022</td>
-                <td>25</td>
-                <td>1,199,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-            <tr>
-                <td>891723</td>
-                <td>20/5/2022</td>
-                <td>30</td>
-                <td>4,599,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-            <tr>
-                <td>711820</td>
-                <td>22/8/2022</td>
-                <td>15</td>
-                <td>2,229,000đ</td>
-                <td><a href="">xem chi tiết</a></td>
-            </tr>
-
-
-        </table>
-
-    </div>
-
-    <div id="password">
-        <form action="">
-            <div>
-                <label for="old_pass">Nhập mật khẩu cũ</label>
-                <input type="text" name="old_pass" id="">
-            </div>
-            <div>
-                <label for="new_pass">Mật khẩu mới</label>
-                <input type="text" name="new_pass" id="">
-            </div>
-            <div>
-                <label for="new_pass-retypr">Nhập lại mật khẩu mới</label>
-                <input type="text" name="new_pass-retype" id="">
-            </div>
-            <div>
-                <button id="btn">Lưu thay đổi</button>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-</div>
 </div>
 
 
@@ -478,7 +326,7 @@
 <script src="js/over_common_part.js"></script>
 
 <script>
-    const id_list = ["profile", "oder", "odered", "password"];
+    const id_list = ["profile_account", "oder"];
 
     function hideadd() {
         for (var i = 0; i < id_list.length; i++) {
@@ -488,7 +336,7 @@
 
     function profile_click() {
         hideadd();
-        document.getElementById('profile').style.display = "flex"
+        document.getElementById('profile_account').style.display = "flex"
     }
 
     function oder_click() {
@@ -496,15 +344,6 @@
         document.getElementById('oder').style.display = "flex"
     }
 
-    function odered_click() {
-        hideadd();
-        document.getElementById('odered').style.display = "flex"
-    }
-
-    function password_click() {
-        hideadd();
-        document.getElementById('password').style.display = "block"
-    }
 </script>
 </body>
 </html>
