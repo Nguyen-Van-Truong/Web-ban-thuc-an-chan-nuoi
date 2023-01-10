@@ -23,6 +23,7 @@ public class Blog implements Serializable {
         this.is_use = is_use;
     }
 
+
     public void setBlog_id(int blog_id){
         this.blog_id = blog_id;
     }

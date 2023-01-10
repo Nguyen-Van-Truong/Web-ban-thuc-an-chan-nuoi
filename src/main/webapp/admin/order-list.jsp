@@ -139,7 +139,6 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="product-status-wrap">
                         <h4>Danh sách đơn hàng</h4>
-
                         <table>
                             <tr>
                                 <th>Ảnh đại diện</th>
@@ -188,9 +187,12 @@
                         </table>
                         <div class="custom-pagination">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <%
+                                    int pageSize = (int) request.getAttribute("pageSize");
+                                    for(int i = 1; i <= pageSize; i++){
+                                %>
+                                <li class="page-item"><a class="page-link" href="LoadOrdersList?pageNumber=<%=i%>"><%=i%></a></li>
+                                <%}%>
                             </ul>
                         </div>
                     </div>

@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Orders implements Serializable {
 
@@ -13,6 +14,8 @@ public class Orders implements Serializable {
     private int transport_id;
     private int total_price;
     private int statuss;
+
+    private List<OrdersDetails> ordersDetailsList;
 
     public Orders(int orders_id, int account_id, Date create_date, String address, String phone_number, int transport_id, int total_price, int statuss) {
         this.orders_id = orders_id;
@@ -92,4 +95,6 @@ public class Orders implements Serializable {
     public void setStatuss(int statuss) {
         this.statuss = statuss;
     }
+
+
 }

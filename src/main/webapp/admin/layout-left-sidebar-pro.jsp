@@ -90,7 +90,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="blog-list.jsp" aria-expanded="false">
+                        <a class="has-arrow" href="LoadBlogList?pageNumber=1" aria-expanded="false">
                             <span class="mini-click-non">Bài viết</span>
                         </a>
                     </li>

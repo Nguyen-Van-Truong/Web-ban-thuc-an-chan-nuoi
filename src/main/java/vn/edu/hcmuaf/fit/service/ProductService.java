@@ -42,6 +42,16 @@ public class ProductService {
         });
     }
 
+    public static String getProductName(int productId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("SELECT product_name FROM product WHERE product_id = ? AND status = 1 ")
+                    .bind(0, productId)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("");
+        });
+    }
+
     public static int getTotalNumberOfProducts() {
         return JDBiConnector.get().withHandle(handle -> {
             return handle.createQuery("select count(*) from product")
@@ -80,7 +90,7 @@ public class ProductService {
         });
     }
     public static void main(String[] args) {
-        System.out.println(getTotalNumberOfProductsFromCategoryId(12));
+        System.out.println(getProductName(1));
 
     }
 }

@@ -49,6 +49,15 @@ public class OrdersService {
         });
     }
 
+    public static void setStatus(int orders_id, int statuss){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE orders SET statuss = ? WHERE orders_id = ?")
+                    .bind(0, statuss)
+                    .bind(1,orders_id)
+                    .execute();
+        });
+    }
+
 
     public static void main(String[] args) {
         System.out.println(OrdersService.getOrdersDetailsList(1));

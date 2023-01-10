@@ -11,7 +11,7 @@ public class BlogService {
 
     public static List<Blog> getNBlogFrom(int n, int off){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("select blog_id, title, create_date FROM blog  limit :n OFFSET :offset")
+            return handle.createQuery("select blog_id, title, create_date, is_use FROM blog  limit :n OFFSET :offset")
                     .bind("n", n)
                     .bind("offset", off)
                     .mapToBean(Blog.class)
@@ -75,7 +75,7 @@ public class BlogService {
 
     public static List<ContentBlog> getListContent(int blog_id){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT url_image, paragrap FROM content_blog WHERE blog_id = ?")
+            return handle.createQuery("SELECT serial, url_image, paragrap FROM content_blog WHERE blog_id = ?")
                     .bind(0, blog_id)
                     .mapToBean(ContentBlog.class)
                     .stream().collect(Collectors.toList());
@@ -83,12 +83,47 @@ public class BlogService {
     }
 
 
+    public static void setStatus(int blog_id, int status){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE blog SET is_use = ? WHERE blog_id = ?")
+                    .bind(0,status)
+                    .bind(1,blog_id)
+                    .execute();
+        });
+    }
+    public static void updateBlogTitle(int blog_id, String title){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE blog SET title = ? WHERE blog_id = ?")
+                    .bind(0,title)
+                    .bind(1,blog_id)
+                    .execute();
+        });
+    }
+
+
+    public static void updateBlog(Blog blog){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE blog SET title = ? WHERE blog_id = ?")
+                    .bind(0,blog.getTitle())
+                    .bind(1, blog.getBlog_id())
+                    .execute();
+        });
+    }
+    public static void updateContentBlog(int serial, String url_image, String paragrap){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE content_blog SET url_image = ?, paragrap = ? WHERE serial = ?")
+                    .bind(0,url_image)
+                    .bind(1, paragrap)
+                    .bind(2,serial)
+                    .execute();
+        });
+    }
+
 
 
 
 
     public static void main(String[] args){
 
-        System.out.println(BlogService.getListContent(1).toString());
     }
 }
