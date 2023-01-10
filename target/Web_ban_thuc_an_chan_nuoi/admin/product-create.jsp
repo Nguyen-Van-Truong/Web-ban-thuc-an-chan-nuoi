@@ -117,7 +117,11 @@
                                                         <input type="text" class="form-control" placeholder="Giá bán"
                                                                name="productPrice">
                                                     </div>
-
+                                                    <div class="input-group mg-b-pro-edt" style="width: 100%">
+                                                        <label style="color: white">Số lượng</label>
+                                                        <input type="text" class="form-control" placeholder="Số lượng"
+                                                               name="productQuantity">
+                                                    </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <label style="color: white">Trạng thái</label>
                                                         <select name="productStatus"
