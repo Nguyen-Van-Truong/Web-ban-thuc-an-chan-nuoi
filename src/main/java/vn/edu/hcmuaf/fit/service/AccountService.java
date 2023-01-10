@@ -27,6 +27,19 @@ public class AccountService {
     public AccountService() {
     }
 
+    public static String getAvatar(int accountId) {
+        return JDBiConnector.get().withHandle(handle -> {
+            // Select the avatar column from the account table where the account_id column matches the provided accountId
+            String sql = "SELECT avatar FROM account WHERE account_id = ?";
+            return handle.createQuery(sql)
+                    .bind(0, accountId)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("img/images/img_default/img_not_found.png");
+        });
+    }
+
+
     public static AccountService getInstance() {
         if (instance == null) {
             instance = new AccountService();
@@ -73,9 +86,9 @@ public class AccountService {
         });
     }
 
-    public Account checkLogin(String username, String password) {
+    public static Account checkLogin(String username, String password) {
         List<Account> accounts = JDBiConnector.get().withHandle(h ->
-                h.createQuery("SELECT * FROM account WHERE name = ?")
+                h.createQuery("SELECT account_id, name, password, email, role FROM account WHERE name = ?")
                         .bind(0, username)
                         .mapToBean(Account.class)
                         .stream()
@@ -152,5 +165,9 @@ public class AccountService {
         return rowAffected > 0;
     }
 
+    public static void main(String[] args) {
+//        System.out.println(getAvatar(7));
+        System.out.println(checkLogin("truongpro2002", "123456789"));
+    }
 
 }

@@ -99,7 +99,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="blog.jsp">Tin Tức</a></li>
+            <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
             <li><a href="contact.jsp">Liên Hệ</a></li>
         </ul>
     </nav>
@@ -135,28 +135,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="https://www.facebook.com/"
-                            ><i class="fa fa-facebook"></i
-                            ></a>
-                            <a href="https://twitter.com/"
-                            ><i class="fa fa-twitter"></i
-                            ></a>
-                            <a href="https://www.instagram.com/"
-                            ><i class="fa fa-instagram"></i
-                            ></a>
-                        </div>
-
-                        <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i> Đăng nhập</a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
-                        </div>
-                    </div>
-                </div>
+                <%@ include file="/header_top_right.jsp" %>
             </div>
         </div>
     </div>
@@ -196,7 +175,7 @@
                     <ul class="menu__list">
                         <li><a href="index">Trang Chủ</a></li>
                         <li><a href="shop-grid">Sản phẩm</a></li>
-                        <li><a href="blog.jsp">Tin Tức</a></li>
+                        <li><a href="BlogController?pageNumber=1">Tin Tức</a></li>
                         <li><a href="contact.jsp">Liên Hệ</a></li>
                     </ul>
                 </nav>

@@ -3,6 +3,7 @@
 <%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
 <%@ page import="vn.edu.hcmuaf.fit.model.Blog" %>
 <%@ page import="vn.edu.hcmuaf.fit.service.BlogService" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.bean.Account" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -138,28 +139,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="https://www.facebook.com/"
-                            ><i class="fa fa-facebook"></i
-                            ></a>
-                            <a href="https://twitter.com/"
-                            ><i class="fa fa-twitter"></i
-                            ></a>
-                            <a href="https://www.instagram.com/"
-                            ><i class="fa fa-instagram"></i
-                            ></a>
-                        </div>
-
-                        <div class="header__top__right__auth">
-                            <a href="login.jsp"><i class="fa fa-user"></i>Đăng nhập</a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="profile.jsp"><i class="fa fa-user"></i>Tài khoản</a>
-                        </div>
-                    </div>
-                </div>
+                <%@ include file="/header_top_right.jsp" %>
             </div>
         </div>
     </div>
@@ -395,7 +375,7 @@
 
                             <%
                                 List<Product> list6BestSellingProducts = (List<Product>) request.getAttribute("ListNBestSellingProducts");
-                                for (int i = 0; i < list6BestSellingProducts.size()/2; i++) {
+                                for (int i = 0; i < list6BestSellingProducts.size() / 2; i++) {
                                     Product p = list6BestSellingProducts.get(i);%>
                             <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
@@ -439,7 +419,7 @@
                         <div class="latest-prdouct__slider__item">
                             <%
                                 List<Product> listNBestAvgScoreProducts = (List<Product>) request.getAttribute("ListNBestAvgScoreProducts");
-                                for (int i = 0; i < listNBestAvgScoreProducts.size()/2; i++) {
+                                for (int i = 0; i < listNBestAvgScoreProducts.size() / 2; i++) {
                                     Product p = listNBestAvgScoreProducts.get(i);%>
                             <a href="shop-detail?productId=<%=p.getProduct_id()%>" class="latest-product__item">
                                 <div class="latest-product__item__pic">
@@ -494,7 +474,7 @@
         <div class="row" id="blog">
             <%
                 List<Blog> listBlog = (List<Blog>) request.getAttribute("listBlog");
-                for (Blog blog: listBlog){ %>
+                for (Blog blog : listBlog) { %>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>">
                     <div class="blog__item">
@@ -503,21 +483,22 @@
                         </div>
                         <div class="blog__item__text">
                             <ul>
-                                <li><i class="fa fa-calendar-o"></i> <%=  blog.getCreate_date() %></li>
+                                <li><i class="fa fa-calendar-o"></i> <%=  blog.getCreate_date() %>
+                                </li>
                             </ul>
 
                             <h5><a href="BlogDetails?blog_id=<%= blog.getBlog_id()%>">"<%=  blog.getTitle() %>"</a></h5>
 
                             <p>
                                 <%=
-                                    blog.getIntroduce()
+                                blog.getIntroduce()
                                 %>
                             </p>
                         </div>
                     </div>
                 </a>
             </div>
-        <% } %>
+            <% } %>
         </div>
     </div>
 </section>
