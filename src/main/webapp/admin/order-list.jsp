@@ -152,16 +152,16 @@
 
                             <%
                                 List<Orders> listOrders = (List<Orders>) request.getAttribute("listOrders");
-                                for(Orders orders: listOrders){
+                                for(Orders order: listOrders){
                             %>
                             <tr>
-                                <td><img src="<%= AccountService.getAvatar(orders.getAccount_id())%>" alt="" style="width: 50px; height: 50px; border-radius: 25px;"/></td>
-                                <td><%= AccountService.getFullname(orders.getAccount_id())%></td>
+                                <td><img src="<%= AccountService.getAvatar(order.getAccount_id())%>" alt="" style="width: 50px; height: 50px; border-radius: 25px;"/></td>
+                                <td><%= AccountService.getFullname(order.getAccount_id())%></td>
                                 <td>
                                     <%
                                         String status = "" ;
                                         String classs = "";
-                                        switch (orders.getStatuss()){
+                                        switch (order.getStatus()){
                                             case 0: status = "Chưa xác nhận"; classs = "y-setting"; break;
                                             case 1: status = "Đã xác nhận"; classs = "g-setting"; break;
                                             case 2: status = "Đang giao hàng"; classs = "b-setting"; break;
@@ -171,10 +171,10 @@
                                     %>
                                     <button class="<%= classs%>"><%= status%></button>
                                 </td>
-                                <td><%= orders.getCreate_date()%></td>
-                                <td><%= orders.getTotal_price()%>vnd</td>
+                                <td><%= order.getCreate_date()%></td>
+                                <td><%= order.getTotal_price()%>vnd</td>
                                 <td>
-                                    <a href="OrdersDetail?orders_id=<%=orders.getOrders_id()%>">
+                                    <a href="OrdersDetail?orders_id=<%=order.getOrder_id()%>">
                                         <button data-toggle="tooltip" title="Chi tiết và cập nhật" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                     </a>
                                 </td>

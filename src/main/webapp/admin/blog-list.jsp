@@ -1,4 +1,6 @@
-<%--
+<%@ page import="vn.edu.hcmuaf.fit.model.Blog" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.service.BlogService" %><%--
   Created by IntelliJ IDEA.
   User: ledan
   Date: 01/09/2023
@@ -139,11 +141,9 @@
 <div class="all-content-wrapper">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="logo-pro">
-          <a href="index.jsp"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex">
+            <h1 style="margin: 45px auto; color: white">TRANG QUẢN LÝ BÀI VIẾT</h1>
         </div>
-      </div>
     </div>
   </div>
   <div class="product-status mg-b-30">
@@ -151,9 +151,9 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="product-status-wrap">
-            <h4>Danh sách sản phẩm</h4>
+            <h4>Danh sách bài viết</h4>
             <div class="add-product">
-              <a href="product-edit.jsp">Thêm sản phẩm</a>
+              <a href="product-edit.jsp">Thêm bài viết</a>
             </div>
             <table>
               <tr>
@@ -163,59 +163,46 @@
                 <th>Ngày tạo</th>
                 <th>Tùy chọn</th>
               </tr>
+              <%
+                List<Blog> blogList = (List<Blog>) request.getAttribute("listBlog");
+                for(Blog blog: blogList){
+              %>
               <tr>
-                <td><img src="img/new-product/5-small.jpg" alt="" style="width: 100px; height: 100px"/></td>
-                <td>Cách nuôi heo</td>
+                <td><img src="<%=BlogService.getUrl_image(blog.getBlog_id())%>" alt="" style="width: 50px; height: 50px"/></td>
+                <td><%=blog.getTitle()%></td>
                 <td>
-                  <button class="gr-setting">Đang hoạt động</button>
+                  <%
+                    String status = "" ;
+                    String classs = "";
+                    switch (blog.getIs_use()){
+                      case 0: status = "Đã ẩn"; classs = "r-setting"; break;
+                      case 1: status = "Hiển thị"; classs = "gr-setting"; break;
+                    }
+                  %>
+                  <button class="<%= classs%>"><%= status%></button>
                 </td>
                 <td>
-                  18/07/2022
+                  <%=blog.getCreate_date()%>
                 </td>
                 <td>
-                  <a href="product-edit.jsp">
-                    <button data-toggle="tooltip" title="Xem chi tiết" class="pd-setting-ed"><i class="fa fa-eye"aria-hidden="true"></i></button>
-                  </a>
-                  <a href="product-edit.jsp">
+                  <a href="EditBlog?blog_id=<%=blog.getBlog_id()%>">
                     <button data-toggle="tooltip" title="Chỉnh sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   </a>
-                  <a>
+                  <a href="SetStatusBlog?blog_id=<%=blog.getBlog_id()%>&status=<%=blog.getIs_use()%>&pageNumber=<%=request.getAttribute("pageNow")%>">
                     <button data-toggle="tooltip" title="Ẩn bài viết" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                   </a>
                 </td>
               </tr>
-              <tr>
-                <td><img src="img/new-product/5-small.jpg" alt="" style="width: 100px; height: 100px"/></td>
-                <td>Cách nuôi heo</td>
-                <td>
-                  <button class="r-setting">Bị ẩn</button>
-                </td>
-                <td>
-                  18/07/2022
-                </td>
-                <td>
-                  <a href="product-edit.jsp">
-                    <button data-toggle="tooltip" title="Xem chi tiết" class="pd-setting-ed"><i class="fa fa-eye"aria-hidden="true"></i></button>
-                  </a>
-                  <a href="product-edit.jsp">
-                    <button data-toggle="tooltip" title="Chỉnh sửa" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                  </a>
-                  <a>
-                    <button data-toggle="tooltip" title="Ẩn bài viết" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                  </a>
-                </td>
-              </tr>
-
-
-
-
-
+              <%}%>
             </table>
             <div class="custom-pagination">
               <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <%
+                  int pageSize = (int) request.getAttribute("pageSize");
+                  for(int i = 1; i <= pageSize; i++){
+                %>
+                <li class="page-item"><a class="page-link" href="LoadBlogList?pageNumber=<%=i%>"><%=i%></a></li>
+                <%}%>
               </ul>
             </div>
           </div>

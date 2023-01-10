@@ -206,8 +206,8 @@
                     <li>
                         <button class="menu__item" onclick="oder_click()">Lịch sử mua hàng</button>
                     </li>
-                    <li><a href="./admin/index.jsp">
-                        <button class="menu__item">Admin</button>
+                    <li><a href="AccountlistController?pageNumber=1">
+                        <button class="menu__item" >Admin</button>
                     </a></li>
 
 
@@ -244,10 +244,9 @@
                     </div>
                     <div class="right__profile">
                         <div style="display: flex; flex-direction: column;">
-                            <img src="<%=account.getAvatar()%>" alt=""
-                                 style="width: 200px; border-radius: 200px; margin: auto;">
-                            <input type="file" name="image__user" id="image__user" value="Chọn ảnh"
-                                   style="width: 98px; margin: 10px auto;">
+                            <input type="text" style="display: none" id="image__user" name="image__user">
+                            <img src="<%=account.getAvatar()%>" alt="" style="width: 200px; border-radius: 200px; margin: auto;" id="image">
+                            <input placeholder="<%=account.getAvatar()%>" type="file" style="width: 98px; margin: 10px auto;" onchange="choose(this,'image','image__user')">
                         </div>
                     </div>
                 </div>
@@ -343,7 +342,20 @@
         hideadd();
         document.getElementById('oder').style.display = "flex"
     }
+    function choose(fileInput, id, idinput) {
+        if(fileInput.files && fileInput.files[0]){
+            var reader = new FileReader();
+
+            reader.onload = function(e){
+                $('#'+id).attr('src', e.target.result)
+                $('#'+idinput).attr('value', e.target.result)
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
 
 </script>
+
+
 </body>
 </html>

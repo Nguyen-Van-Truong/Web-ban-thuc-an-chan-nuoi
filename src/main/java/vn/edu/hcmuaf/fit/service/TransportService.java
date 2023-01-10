@@ -11,11 +11,11 @@ public class TransportService {
                     .bind(0, transport_id)
                     .mapToBean(Transport.class)
                     .findFirst()
-                    .orElse(new Transport());
+                    .orElse(new Transport(0,"Lỗi",0));
         });
     }
 
     public static void main(String[] args) {
-        System.out.println(getTransport(1));
+        System.out.println(getTransport(4));
     }
 }

@@ -159,7 +159,7 @@
             <%}%>
             <div>
               <button style="background-color: #1b5e20; color: white">Lưu thay đổi</button>
-              <a>Hủy</a><
+              <a>Hủy</a>
             </div>
 
           </form>

@@ -69,7 +69,7 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="index.jsp"><img class="main-logo" src="img/logo.png" alt="" /></a>
+            <a href="index"><img class="main-logo" src="img/logo.png" alt="" /></a>
             <strong><img src="img/logo.png" alt="" /></strong>
         </div>
         <div class="left-custom-menu-adp-wrap comment-scrollbar">

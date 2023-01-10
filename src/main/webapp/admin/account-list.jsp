@@ -171,9 +171,6 @@
                   <button class="<%=setClass%>"><%=status%></button>
                 </td>
                 <td>
-                  <a href="product-edit.jsp">
-                    <button data-toggle="tooltip" title="Xem chi tiết" class="pd-setting-ed"><i class="fa fa-eye"aria-hidden="true"></i></button>
-                  </a>
                   <a href="LoadAccountEdit?account_id=<%= account.getAccount_id()%>&pageNow=<%=request.getAttribute("pageNow")%>">
                       <button data-toggle="tooltip" name="bt" title="Thay đôỉ trạng thái" class="pd-setting-ed" value="<%= account.getAccount_id()%>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   </a>

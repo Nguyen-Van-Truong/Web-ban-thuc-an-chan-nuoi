@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Web_ban_thuc_an_chan_nuoi" />
+        <module name="Web-ban-thuc-an-chan-nuoi" />
       </profile>
     </annotationProcessing>
   </component>

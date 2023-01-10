@@ -13,6 +13,8 @@ public class Order {
     private String status;
     private int transportId;
 
+    private int total_price;
+
     public Order(int orderId, int accountId, String date, String address, String phoneNumber, String status, int transportId) {
         this.orderId = orderId;
         this.accountId = accountId;
@@ -100,6 +102,14 @@ public class Order {
 
     public void setTransportId(int transportId) {
         this.transportId = transportId;
+    }
+
+    public int getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(int total_price) {
+        this.total_price = total_price;
     }
 
     @Override

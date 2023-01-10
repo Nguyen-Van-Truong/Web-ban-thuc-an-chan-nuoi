@@ -20,7 +20,7 @@ public class OrdersDetail extends HttpServlet {
         int orders_id = Integer.parseInt(request.getParameter("orders_id"));
         List<OrdersDetails> ordersDetailList = OrdersService.getOrdersDetailsList(orders_id);
         Orders orders = OrdersService.getOneOrders(orders_id);
-        Transport transport = TransportService.getTransport(orders_id);
+        Transport transport = TransportService.getTransport(orders.getTransport_id());
         request.setAttribute("transport", transport);
         request.setAttribute("listOrdersDetails", ordersDetailList);
         request.setAttribute("orders", orders);

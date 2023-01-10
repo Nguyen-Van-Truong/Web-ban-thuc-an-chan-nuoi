@@ -137,7 +137,7 @@
                             <label>Ngày tạo</label>
                             <p><%=blog.getCreate_date()%></p>
                             <label>Nội dung</label>
-                            <input name="number_content" type="number" value="<%=contentBlogList.size()%>" style="display: none">
+                            <input name="number_content" type="number" value="<%=contentBlogList.size()%>" style="display:none">
                             <%
                                 for(int i = 0; i < contentBlogList.size(); i++){
                             %>

@@ -6,38 +6,28 @@ import java.util.List;
 
 public class Orders implements Serializable {
 
-    private int orders_id;
+    private int order_id;
     private int account_id;
-    private Date create_date;
+    private Date date;
     private String address;
-    private String phone_number;
+    private String phonenumber;
+
+    private int status;
     private int transport_id;
     private int total_price;
-    private int statuss;
+
 
     private List<OrdersDetails> ordersDetailsList;
 
-    public Orders(int orders_id, int account_id, Date create_date, String address, String phone_number, int transport_id, int total_price, int statuss) {
-        this.orders_id = orders_id;
-        this.account_id = account_id;
-        this.create_date = create_date;
-        this.address = address;
-        this.phone_number = phone_number;
-        this.transport_id = transport_id;
-        this.total_price = total_price;
-        this.statuss = statuss;
+    public Orders() {
     }
 
-    public Orders(){
-
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public int getOrders_id() {
-        return orders_id;
-    }
-
-    public void setOrders_id(int orders_id) {
-        this.orders_id = orders_id;
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 
     public int getAccount_id() {
@@ -49,11 +39,11 @@ public class Orders implements Serializable {
     }
 
     public Date getCreate_date() {
-        return create_date;
+        return date;
     }
 
     public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+        this.date = create_date;
     }
 
     public String getAddress() {
@@ -65,11 +55,19 @@ public class Orders implements Serializable {
     }
 
     public String getPhone_number() {
-        return phone_number;
+        return phonenumber;
     }
 
     public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+        this.phonenumber = phone_number;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getTransport_id() {
@@ -88,13 +86,28 @@ public class Orders implements Serializable {
         this.total_price = total_price;
     }
 
-    public int getStatuss() {
-        return statuss;
+    public List<OrdersDetails> getOrdersDetailsList() {
+        return ordersDetailsList;
     }
 
-    public void setStatuss(int statuss) {
-        this.statuss = statuss;
+    public void setOrdersDetailsList(List<OrdersDetails> ordersDetailsList) {
+        this.ordersDetailsList = ordersDetailsList;
     }
 
-
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "order_id=" + order_id +
+                ", account_id=" + account_id +
+                ", create_date=" + date +
+                ", address='" + address + '\'' +
+                ", phone_number='" + phonenumber + '\'' +
+                ", status=" + status +
+                ", transport_id=" + transport_id +
+                ", total_price=" + total_price +
+                ", ordersDetailsList=" + ordersDetailsList +
+                '}';
+    }
 }
+
+

@@ -27,6 +27,10 @@ public class UpdateBlog extends HttpServlet {
                 url_image = request.getParameter("url_image"+i);
                 paragrap = request.getParameter("paragrap"+i);
                 serial = Integer.parseInt(request.getParameter("serial"+i));
+                System.out.println(serial);
+                System.out.println(url_image);
+                System.out.println(paragrap);
+
                 BlogService.updateContentBlog(serial, url_image, paragrap);
             }
         }

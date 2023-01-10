@@ -109,7 +109,7 @@
                                                     Account account = (Account) request.getAttribute("account");
                                                 %>
                                                 <div class="input-group mg-b-pro-edt" style="width: 100%; display: flex">
-                                                    <img src="<%= account.getAvatar_url()%>" style="margin: auto; width: 300px; height: 300px; border-radius: 100px; margin-bottom: 50px;">
+                                                    <img src="<%= account.getAvatar()%>" style="margin: auto; width: 300px; height: 300px; border-radius: 100px; margin-bottom: 50px;">
                                                 </div>
 
                                                 <div style="display: flex; justify-content: space-around">
@@ -121,7 +121,7 @@
                                                             </div>
                                                             <div class="input-group mg-b-pro-edt" style="width: 100%">
                                                                 <label  style="color: white">Họ tên khách hàng</label>
-                                                                <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= account.getFull_name()%>">
+                                                                <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= account.getFullname()%>">
                                                             </div>
                                                             <div class="input-group mg-b-pro-edt" style="width: 100%">
                                                                 <label  style="color: white">Địa chỉ email</label>
@@ -133,7 +133,7 @@
                                                         <div class="review-content-section">
                                                             <div class="input-group mg-b-pro-edt" style="width: 100%">
                                                                 <label  style="color: white">Sô điện thoại</label>
-                                                                <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= account.getPhone_number()%>">
+                                                                <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= account.getPhonenumber()%>">
                                                             </div>
                                                             <div class="input-group mg-b-pro-edt" style="width: 100%">
                                                                 <label  style="color: white">Ngày sinh</label>

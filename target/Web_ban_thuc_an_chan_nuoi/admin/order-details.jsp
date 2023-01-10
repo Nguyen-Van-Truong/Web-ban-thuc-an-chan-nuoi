@@ -171,7 +171,7 @@
                                     </div>
                                     <div class="input-group mg-b-pro-edt" style="width: 100%">
                                         <label  style="color: white">Phương thức vận chuyển</label>
-                                        <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= transport.getTransport_name()%>">
+                                        <input type="text" disabled="disabled" class="form-control" style="background-color: #152036;" placeholder="<%= transport.getName()%>">
                                     </div>
 
 
@@ -185,7 +185,7 @@
                                         <%
                                             String status = "" ;
                                             String classs = "";
-                                            switch (orders.getStatuss()){
+                                            switch (orders.getStatus()){
                                                 case 0: status = "Chưa xác nhận"; classs = "y-setting"; break;
                                                 case 1: status = "Đã xác nhận"; classs = "g-setting"; break;
                                                 case 2: status = "Đang giao hàng"; classs = "b-setting"; break;
@@ -198,7 +198,7 @@
                                     <div class="input-group mg-b-pro-edt" style="width: 100%">
                                         <label  style="color: white">Cập nhật trạng thái đơn hàng</label>
                                         <form action="/Web_ban_thuc_an_chan_nuoi_war/SetStatusOrder" method="post" style="display: flex">
-                                            <input name="orders_id" value="<%=orders.getOrders_id()%>" style="display: none">
+                                            <input name="orders_id" value="<%=orders.getOrder_id()%>" style="display: none">
                                             <select  name="select" style="background-color: #0c1923; color: white; margin: 5px auto 70px; font-size: 18px; border-radius: 5px; flex: 1;">
                                                 <option value="0">Chưa xác nhận</option>
                                                 <option value="1">Đã xác nhận</option>
@@ -229,7 +229,7 @@
 
                             <tr>
                                 <td><img src="<%= ProductService.get1SrcImg(ordersDetails.getProduct_id())%>" alt="" style="width: 50px; height: 50px;"/></td>
-                                <td><%= ProductService.getProductName(ordersDetails.getProduct_id())%></td>
+                                <td><%= ProductService.getNameProductFromProductId(ordersDetails.getProduct_id())%></td>
                                 <td><%= ordersDetails.getQuantity()%></td>
                                 <td><%= ordersDetails.getOut_price()%> vnd</td>
                                 <td><%= ordersDetails.totalAmount()%> vnd</td>

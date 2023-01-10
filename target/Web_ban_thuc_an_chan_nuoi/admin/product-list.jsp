@@ -124,10 +124,8 @@
 <div class="all-content-wrapper">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="logo-pro">
-                    <a href="index.jsp"><img class="main-logo" src="img/logo/logo.png" alt=""/></a>
-                </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex">
+                <h1 style="margin: 45px auto; color: white">TRANG QUẢN LÝ SẢN PHẨM</h1>
             </div>
         </div>
     </div>

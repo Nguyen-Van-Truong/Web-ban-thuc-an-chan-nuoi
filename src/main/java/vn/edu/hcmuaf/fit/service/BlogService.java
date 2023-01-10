@@ -11,7 +11,7 @@ public class BlogService {
 
     public static List<Blog> getNBlogFrom(int n, int off){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("select blog_id, title, create_date FROM blog  limit :n OFFSET :offset")
+            return handle.createQuery("select blog_id, title, create_date, is_use FROM blog  limit :n OFFSET :offset")
                     .bind("n", n)
                     .bind("offset", off)
                     .mapToBean(Blog.class)
@@ -21,7 +21,7 @@ public class BlogService {
 
     public static List<Blog> getNNewBlog(int n){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT blog_id, title, create_date FROM blog ORDER BY blog_id DESC LiMIT :n")
+            return handle.createQuery("SELECT blog_id, title, create_date, is_use FROM blog ORDER BY blog_id DESC LiMIT :n")
                     .bind("n", n)
                     .mapToBean(Blog.class)
                     .stream().collect(Collectors.toList());
@@ -75,7 +75,7 @@ public class BlogService {
 
     public static List<ContentBlog> getListContent(int blog_id){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT url_image, paragrap FROM content_blog WHERE blog_id = ?")
+            return handle.createQuery("SELECT serial, url_image, paragrap FROM content_blog WHERE blog_id = ?")
                     .bind(0, blog_id)
                     .mapToBean(ContentBlog.class)
                     .stream().collect(Collectors.toList());
@@ -124,7 +124,8 @@ public class BlogService {
 
 
     public static void main(String[] args){
+//        System.out.println(BlogService.getBlog(1));
+        updateContentBlog(1,"gggggg","fffffffffff");
 
-        System.out.println(BlogService.getListContent(1).toString());
     }
 }
