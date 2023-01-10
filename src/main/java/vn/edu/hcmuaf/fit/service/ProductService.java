@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductService {
-    static int pageSize = 4;  // so san pham 1 trang
+    static int pageSize = 10;  // so san pham 1 trang
 
     public static Product getProductFromProductId(int productId) {
         return JDBiConnector.get().withHandle(handle -> {

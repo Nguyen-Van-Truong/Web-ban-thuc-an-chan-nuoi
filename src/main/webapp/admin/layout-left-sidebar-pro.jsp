@@ -76,7 +76,7 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
                     <li class="active">
-                        <a class="has-arrow" href="product-list.jsp">
+                        <a class="has-arrow" href="ManageProduct">
                             <span class="mini-click-non">Quản lý sản phẩm</span>
                         </a>
                     </li>
