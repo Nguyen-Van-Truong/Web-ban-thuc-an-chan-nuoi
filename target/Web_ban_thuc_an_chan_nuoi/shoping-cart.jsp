@@ -153,9 +153,13 @@
                             <a href="shop-grid.html"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
-                            <a href="ShoppingCart"
-                            ><i class="fa fa-shopping-bag"></i> <span>3</span></a
-                            >
+                            <%
+                                ShoppingCart current_cart = (ShoppingCart) request.getSession().getAttribute("cart");
+                                int cartSize = 0;
+                                if (current_cart != null)
+                                    cartSize = current_cart.getItems().size();
+                            %>
+                            <a href="ShoppingCart"><i class="fa fa-shopping-bag"></i> <span><%=cartSize%></span></a>
                         </li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -247,7 +251,7 @@
                                         <input type="text" class="qty_text p<%=product.getProduct_id()%>"
                                                onkeyup="updateQuantity(event,<%=item.getProductId()%>)"
                                                value="<%=item.getQuantity()%>"
-                                               style="width: 35px;font-size: 16px;color: #6f6f6f;display: inline-block;color: white">
+                                               style="width: 35px;font-size: 16px;color: #6f6f6f;display: inline-block;color: black">
                                         <span class="inc qtybtn"
                                               onclick="increaseDecrease_Quantity(event,<%=item.getProductId()%>,+1)"
                                               style="width: 35px;font-size: 16px;color: #6f6f6f;cursor: pointer;display: inline-block;">+</span>

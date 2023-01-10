@@ -1,10 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="vn.edu.hcmuaf.fit.service.ProductService" %>
-<%@ page import="vn.edu.hcmuaf.fit.model.Category" %>
-<%@ page import="vn.edu.hcmuaf.fit.model.Characteristic" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.*" %>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -160,9 +158,13 @@
                             <a href="shop-grid.jsp"><i class="fa fa-heart"></i> <span>1</span></a>
                         </li>
                         <li>
-                            <a href="ShoppingCart"
-                            ><i class="fa fa-shopping-bag"></i> <span>3</span></a
-                            >
+                            <%
+                                ShoppingCart current_cart = (vn.edu.hcmuaf.fit.model.ShoppingCart) request.getSession().getAttribute("cart");
+                                int cartSize = 0;
+                                if (current_cart != null)
+                                    cartSize = current_cart.getItems().size();
+                            %>
+                            <a href="ShoppingCart"><i class="fa fa-shopping-bag"></i> <span><%=cartSize%></span></a>
                         </li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
