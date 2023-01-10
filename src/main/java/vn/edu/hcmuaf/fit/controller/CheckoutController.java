@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.model.CartItem;
 import vn.edu.hcmuaf.fit.model.Product;
 import vn.edu.hcmuaf.fit.model.ShoppingCart;
 import vn.edu.hcmuaf.fit.model.Transport;
+import vn.edu.hcmuaf.fit.model.bean.Account;
 import vn.edu.hcmuaf.fit.service.CheckoutService;
 import vn.edu.hcmuaf.fit.service.ProductService;
 
@@ -47,7 +48,8 @@ public class CheckoutController extends HttpServlet {
         }
         boolean successCheckout = true;
         try {
-            if (successCheckout &= CheckoutService.createOrder(currentDate, address, phoneNumber, transportId, 2)) {
+            Account acc = (Account) request.getSession().getAttribute("currentAccount");
+            if (successCheckout &= CheckoutService.createOrder(acc.getAccount_id(), currentDate, address, phoneNumber, transportId, 2)) {
                 List<CartItem> items = cart.getItems();
                 for (CartItem item : items) {
                     Product product = ProductService.getProductFromProductId(item.getProductId());

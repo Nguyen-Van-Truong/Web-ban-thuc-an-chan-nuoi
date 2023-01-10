@@ -21,7 +21,7 @@ public class CheckoutService {
         });
     }
 
-    public static boolean createOrder(String currentDate, String address, String phoneNumber, int transportId, int status) throws ParseException {
+    public static boolean createOrder(int accountId, String currentDate, String address, String phoneNumber, int transportId, int status) throws ParseException {
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = inputFormat.parse(currentDate);
@@ -34,14 +34,15 @@ public class CheckoutService {
         );
 
         int rowsAffected = JDBiConnector.get().withHandle(h ->
-                h.createUpdate("INSERT INTO `order` (order_id, date, address, phonenumber, transport_id,status)" +
-                                " VALUES (:orderId, :currentDate, :address, :phoneNumber, :transportId,:status)")
+                h.createUpdate("INSERT INTO `order` (account_id,order_id, date, address, phonenumber, transport_id,status)" +
+                                " VALUES (:account_id,:orderId, :currentDate, :address, :phoneNumber, :transportId,:status)")
                         .bind("orderId", maxOrderId + 1)  // Increment the maximum order_id by 1
                         .bind("currentDate", formattedDate)
                         .bind("address", address)
                         .bind("phoneNumber", phoneNumber)
                         .bind("transportId", transportId)
                         .bind("status", status)
+                        .bind("account_id", accountId)
                         .execute()
         );
         return rowsAffected > 0;
@@ -73,8 +74,8 @@ public class CheckoutService {
 
 
     public static void main(String[] args) throws ParseException {
-//        System.out.println(createOrder("9/1/2023", "tphcm", "0765366824", 1, 2));
-        System.out.println(createOrderDetail(1,10,20000));
+        System.out.println(createOrder(7, "9/1/2023", "tphcm", "0765366824", 1, 2));
+//        System.out.println(createOrderDetail(1,10,20000));
 
     }
 }
