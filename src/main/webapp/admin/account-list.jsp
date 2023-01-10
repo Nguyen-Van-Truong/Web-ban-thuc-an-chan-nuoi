@@ -156,8 +156,8 @@
                 for(Account account: listAccount){
               %>
               <tr>
-                <td><img src="<%= account.getAvatar_url()%>" alt="" style="width: 50px; height: 50px; border-radius: 25px;"/></td>
-                <td><%= account.getFull_name()%></td>
+                <td><img src="<%= account.getAvatar()%>" alt="" style="width: 50px; height: 50px; border-radius: 25px;"/></td>
+                <td><%= account.getFullname()%></td>
                 <%
                   String status = "";
                   String setClass = "";

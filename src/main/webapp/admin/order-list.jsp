@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="vn.edu.hcmuaf.fit.model.Orders" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.Order" %>
 <%@ page import="vn.edu.hcmuaf.fit.service.OrdersService" %>
 <%@ page import="vn.edu.hcmuaf.fit.service.AccountService" %><%--
   Created by IntelliJ IDEA.
@@ -150,8 +150,8 @@
                             </tr>
 
                             <%
-                                List<Orders> listOrders = (List<Orders>) request.getAttribute("listOrders");
-                                for(Orders orders: listOrders){
+                                List<Order> listOrders = (List<Order>) request.getAttribute("listOrders");
+                                for(Order orders: listOrders){
                             %>
                             <tr>
                                 <td><img src="<%= AccountService.getAvatar(orders.getAccount_id())%>" alt="" style="width: 50px; height: 50px; border-radius: 25px;"/></td>

@@ -11,7 +11,7 @@ public class OrdersService {
 
     public static List<Orders> getNOrdersFrom(int n, int offset){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT orders_id, account_id, create_date, total_price, statuss FROM orders LIMIT :n OFFSET :offset")
+            return handle.createQuery("SELECT order_id, account_id, create_date, total_price, statuss FROM order LIMIT :n OFFSET :offset")
                     .bind("n", n)
                     .bind("offset", offset)
                     .mapToBean(Orders.class)
@@ -22,7 +22,7 @@ public class OrdersService {
 
     public static int countOrders(){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT COUNT(*) AS soluong FROM orders")
+            return handle.createQuery("SELECT COUNT(*) AS soluong FROM order")
                     .mapTo(Integer.class)
                     .findFirst()
                     .orElse(0);
@@ -31,7 +31,7 @@ public class OrdersService {
 
     public static List<OrdersDetails> getOrdersDetailsList(int orders_id){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT orders_id, product_id, quantity, out_price FROM ordersDetails WHERE orders_id = ?")
+            return handle.createQuery("SELECT order_id, product_id, quantity, out_price FROM order_detail WHERE order_id = ?")
                     .bind(0, orders_id)
                     .mapToBean(OrdersDetails.class)
                     .stream()
@@ -41,7 +41,7 @@ public class OrdersService {
 
     public static Orders getOneOrders(int orders_id){
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT orders_id, account_id, create_date, total_price, statuss FROM orders where orders_id=?")
+            return handle.createQuery("SELECT orders_id, account_id, create_date, total_price, statuss FROM order where order_id=?")
                     .bind(0, orders_id)
                     .mapToBean(Orders.class)
                     .findFirst()
@@ -51,7 +51,7 @@ public class OrdersService {
 
     public static void setStatus(int orders_id, int statuss){
         JDBiConnector.get().withHandle(handle -> {
-            return handle.createUpdate("UPDATE orders SET statuss = ? WHERE orders_id = ?")
+            return handle.createUpdate("UPDATE order SET statuss = ? WHERE order_id = ?")
                     .bind(0, statuss)
                     .bind(1,orders_id)
                     .execute();

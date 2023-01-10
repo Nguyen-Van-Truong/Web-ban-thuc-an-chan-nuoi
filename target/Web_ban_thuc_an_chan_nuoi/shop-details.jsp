@@ -1,4 +1,4 @@
-<%@ page import="vn.edu.hcmuaf.fit.model.Product" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 
 <!DOCTYPE html>
@@ -47,7 +47,13 @@
                 <a href="like"><i class="fa fa-heart"></i> <span>1</span></a>
             </li>
             <li>
-                <a href="cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+                <%
+                    ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+                    int cartSize = 0;
+                    if (cart != null)
+                        cartSize = cart.getItems().size();
+                %>
+                <a href="cart"><i class="fa fa-shopping-bag"></i><%=cartSize%> <span></span></a>
             </li>
         </ul>
         <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -157,7 +163,7 @@
                         </li>
                         <li>
                             <a href="ShoppingCart"
-                            ><i class="fa fa-shopping-bag"></i> <span>3</span></a
+                            ><i class="fa fa-shopping-bag"></i> <span><%=cartSize%></span></a
                             >
                         </li>
                     </ul>
