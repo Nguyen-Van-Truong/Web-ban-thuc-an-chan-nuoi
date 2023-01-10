@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.model.bean;
 import vn.edu.hcmuaf.fit.service.AccountService;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Account implements Serializable {
     private int account_id;

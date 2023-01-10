@@ -83,6 +83,42 @@ public class BlogService {
     }
 
 
+    public static void setStatus(int blog_id, int status){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE blog SET is_use = ? WHERE blog_id = ?")
+                    .bind(0,status)
+                    .bind(1,blog_id)
+                    .execute();
+        });
+    }
+    public static void updateBlogTitle(int blog_id, String title){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE blog SET title = ? WHERE blog_id = ?")
+                    .bind(0,title)
+                    .bind(1,blog_id)
+                    .execute();
+        });
+    }
+
+
+    public static void updateBlog(Blog blog){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE blog SET title = ? WHERE blog_id = ?")
+                    .bind(0,blog.getTitle())
+                    .bind(1, blog.getBlog_id())
+                    .execute();
+        });
+    }
+    public static void updateContentBlog(int serial, String url_image, String paragrap){
+        JDBiConnector.get().withHandle(handle -> {
+            return handle.createUpdate("UPDATE content_blog SET url_image = ?, paragrap = ? WHERE serial = ?")
+                    .bind(0,url_image)
+                    .bind(1, paragrap)
+                    .bind(2,serial)
+                    .execute();
+        });
+    }
+
 
 
 

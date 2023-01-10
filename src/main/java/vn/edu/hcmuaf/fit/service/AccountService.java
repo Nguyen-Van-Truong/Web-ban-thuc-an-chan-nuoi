@@ -68,7 +68,7 @@ public class AccountService {
 
     public static List<Account> getNAccount(int n, int offset) {
         return JDBiConnector.get().withHandle(handle -> {
-            return handle.createQuery("SELECT account_id,full_name, avatar_url ,role FROM account Limit :n OFFSET :offset")
+            return handle.createQuery("SELECT account_id,fullname, avatar ,role FROM account Limit :n OFFSET :offset")
                     .bind("n", n)
                     .bind("offset", offset)
                     .mapToBean(Account.class)
@@ -179,10 +179,23 @@ public class AccountService {
         return rowAffected > 0;
     }
 
+    public static String getFullname(int account_id) {
+        return JDBiConnector.get().withHandle(handle -> {
+            return handle.createQuery("select fullname FROM account where account_id = ?")
+                    .bind(0, account_id)
+                    .mapTo(String.class)
+                    .findFirst()
+                    .orElse("");
+        });
+    }
+
+
     public static void main(String[] args) {
-//        System.out.println(getAvatar(7));
+        System.out.println(getAvatar(7));
 //        System.out.println(checkLogin("truongpro2002", "123"));
-        System.out.println(updateInfoUser("truongpro2002", "Nguyen Van Truong","truong1@gmail.com","99999","11-1-2002"));
+        System.out.println(updateInfoUser("truongpro2002", "Nguyen Van Truong", "truong1@gmail.com", "99999", "11-1-2002"));
+
+        System.out.println(AccountService.getAvatar(5));
     }
 
 }
