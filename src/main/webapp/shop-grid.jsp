@@ -526,6 +526,7 @@
 
                 <%--                    listproduct--%>
                 <div id="content" class="row">
+
                 </div>
                 <%
                     int pageSize = ProductService.getPageSize();  // Number of products per page

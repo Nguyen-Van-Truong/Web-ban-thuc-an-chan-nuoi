@@ -115,7 +115,7 @@ public class AccountService {
         }
     }
 
-    public boolean registerUser(String username, String password, String email) {
+    public static boolean registerUser(String username, String password, String email) {
 
         int count = JDBiConnector.get().withHandle(h ->
                 h.createQuery("SELECT COUNT(*) FROM account WHERE name = ?")
@@ -127,7 +127,7 @@ public class AccountService {
         if (count > 0)
             return false;
         int rowAffected = JDBiConnector.get().withHandle(h ->
-                h.createUpdate("INSERT INTO account SELECT (MAX(account_id)+1), ?, ?, ?, null, null, null,null, 1  FROM account")
+                h.createUpdate("INSERT INTO account SELECT (MAX(account_id)+1), ?, ?, ?, null, null, null,null, 1,null  FROM account")
                         .bind(0, username)
                         .bind(1, password)
                         .bind(2, email)
@@ -191,11 +191,11 @@ public class AccountService {
 
 
     public static void main(String[] args) {
-        System.out.println(getAvatar(7));
+        System.out.println(registerUser("gacon","123","gacon@gmail"));
 //        System.out.println(checkLogin("truongpro2002", "123"));
-        System.out.println(updateInfoUser("truongpro2002", "Nguyen Van Truong", "truong1@gmail.com", "99999", "11-1-2002"));
+//        System.out.println(updateInfoUser("truongpro2002", "Nguyen Van Truong", "truong1@gmail.com", "99999", "11-1-2002"));
 
-        System.out.println(AccountService.getAvatar(5));
+//        System.out.println(AccountService.getAvatar(5));
     }
 
 }

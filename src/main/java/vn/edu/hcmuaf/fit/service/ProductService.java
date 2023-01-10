@@ -4,12 +4,15 @@ package vn.edu.hcmuaf.fit.service;
 import vn.edu.hcmuaf.fit.db.JDBiConnector;
 import vn.edu.hcmuaf.fit.model.Product;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductService {
-    static int pageSize = 4;  // so san pham 1 trang
+    static int pageSize = 10;  // so san pham 1 trang
 
     public static Product getProductFromProductId(int productId) {
         return JDBiConnector.get().withHandle(handle -> {
@@ -276,6 +279,27 @@ public class ProductService {
                     .mapToBean(Product.class)
                     .list();
         });
+    }
+
+    public static boolean createProduct(String productName, String product_description, String quantity, int status) throws ParseException {
+
+        int maxProductId = JDBiConnector.get().withHandle(h ->
+                h.createQuery("SELECT MAX(product_id) FROM product")
+                        .mapTo(Integer.class)
+                        .findOnly()
+        );
+
+        int rowsAffected = JDBiConnector.get().withHandle(h ->
+                h.createUpdate("INSERT INTO product (product_id,product_name, product_description, quantity, `status`)\n" +
+                                "VALUES (:product_id,:product_name,:product_description,:quantity,:status)")
+                        .bind("product_id", maxProductId + 1)  // Increment the maximum order_id by 1
+                        .bind("productName", productName)
+                        .bind("product_description", product_description)
+                        .bind("quantity", quantity)
+                        .bind("status", status)
+                        .execute()
+        );
+        return rowsAffected > 0;
     }
 
     public static void main(String[] args) {

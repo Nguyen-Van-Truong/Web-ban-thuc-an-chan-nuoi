@@ -25,6 +25,14 @@ public class Product implements Serializable {
         this.status = status;
     }
 
+    public String toStringStatus() {
+        if (getStatus().equals("1"))
+            return "Đang bán";
+        if (getStatus().equals("2"))
+            return "Nổi bật";
+        return "Ẩn";
+    }
+
     public int getProduct_id() {
         return product_id;
     }
